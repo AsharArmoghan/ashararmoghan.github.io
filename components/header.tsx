@@ -20,16 +20,18 @@ const links = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="border-b border-gray-300 bg-white shadow-sm dark:border-gray-900 dark:bg-black dark:text-white">
-      <div className="container mx-auto flex items-center justify-between px-4 py-3">
+    <header className="fixed inset-x-0 top-0 z-50 border-b bg-background/75 py-3">
+      <div className="container flex max-w-4xl items-center justify-between px-4 py-2">
         {/* Logo */}
-        <div className="text-3xl font-bold">
-          <Link href="/">Portfolio</Link>
+        <div className="">
+          <Link className="text-3xl font-bold" href="/">
+            Portfolio
+          </Link>
         </div>
 
         {/* Navigation Menu */}
         <NavigationMenu className="hidden md:block">
-          <NavigationMenuList className="text-lg">
+          <NavigationMenuList className="transition-colors hover:text-foreground">
             <NavigationMenuItem>
               <ThemeToggle></ThemeToggle>
             </NavigationMenuItem>
@@ -54,7 +56,7 @@ export default function Header() {
                 href="/portfoilio"
                 className={cn("pr-3 hover:text-gray-700")}
               >
-                Portfoilio
+                Portfolio
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
@@ -75,7 +77,7 @@ export default function Header() {
         </button>
 
         {open && (
-          <div className="absolute left-0 top-0 flex h-screen w-screen flex-col items-center justify-center gap-5 bg-white text-2xl text-black dark:bg-black dark:text-white">
+          <div className="absolute left-0 top-0 flex h-screen w-screen flex-col items-center justify-center gap-5 bg-white text-2xl dark:bg-black">
             {links.map((link) => (
               <Link
                 href={link.url}

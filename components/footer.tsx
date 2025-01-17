@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-white py-6 text-black dark:bg-black dark:text-white">
-      <div className="container mx-auto px-4">
+    <footer className="border-t py-6">
+      <div className="container max-w-5xl px-4">
         {/* Top Section */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Branding / Logo */}
@@ -59,7 +59,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-6 border-t border-gray-200 pt-4 text-center text-sm text-gray-600">
+        <div className="mt-6 border-t pt-4 text-center text-sm">
           <p>© {new Date().getFullYear()} MyBrand. All rights reserved.</p>
         </div>
       </div>
