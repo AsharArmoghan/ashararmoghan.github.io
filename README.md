@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website 🌐
 
-## Getting Started
+![Portfolio Website Screenshot](./screenshot.png)
 
-First, run the development server:
+## Overview ✨
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This is a modern and responsive portfolio website built using **Next.js** with **TypeScript**. It leverages static site generation (SSG) with **Next Remote** for efficient and scalable content delivery. The website is designed to showcase projects, skills, and experience in a clean and professional layout.
+
+## Features 🚀
+
+- **Static Site Generation**: Optimized for speed and SEO with Next.js's static site generator.
+- **TypeScript**: Ensures type safety and robust development.
+- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices.
+- **Dynamic Content**: Fetches project and blog data dynamically using **Next Remote**.
+- **SEO Friendly**: Pre-rendered pages with meta tags and Open Graph support.
+- **Dark/Light Mode**: User-friendly theme toggle feature.
+- **Performance Optimized**: Fast loading times with Next.js and image optimization.
+
+## Tech Stack 🛠️
+
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **CSS Framework**: Tailwind CSS
+- **Content Delivery**: Next Remote (or a CMS like Contentful/Strapi if used)
+- **Hosting**: Vercel
+- **Version Control**: Git/GitHub
+
+## Installation and Setup 🏗️
+
+Follow these steps to set up the project locally:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/portfolio-website.git
+   cd portfolio-website
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Environment Variables**:
+   Create a `.env.local` file in the root of the project and configure the following variables:
+   ```env
+   NEXT_PUBLIC_API_URL=https://your-api-url.com
+   NEXT_PUBLIC_API_KEY=your-api-key
+   ```
+
+4. **Run the development server**:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+5. **Build for production**:
+   ```bash
+   npm run build
+   npm start
+   ```
+
+## Project Structure 📂
+
+```
+portfolio-website/
+├── public/             # Static assets (images, icons, etc.)
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── pages/          # Next.js pages (routes)
+│   ├── styles/         # Global and component-specific styles
+│   ├── utils/          # Helper functions and utilities
+│   ├── data/           # Static/dynamic content data
+│   ├── types/          # TypeScript type definitions
+│   └── config/         # Configuration files
+├── .env.local          # Environment variables
+├── next.config.js      # Next.js configuration
+├── tsconfig.json       # TypeScript configuration
+├── package.json        # Project dependencies and scripts
+└── README.md           # Project documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment 🚢
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project is designed to be deployed on [Vercel](https://vercel.com/):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Push the code to a GitHub repository.
+2. Connect the repository to Vercel.
+3. Configure environment variables in the Vercel dashboard.
+4. Deploy the project with a single click.
 
-## Learn More
+## Screenshots 📸
 
-To learn more about Next.js, take a look at the following resources:
+![Homepage](./public/screenshots/homepage.png)
+![Projects Section](./public/screenshots/projects.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing 🤝
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Contributions are welcome! Feel free to fork the repository and submit a pull request.
 
-## Deploy on Vercel
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add your message here"
+   ```
+4. Push the branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contact 📬
+
+If you have any questions or suggestions, feel free to reach out:
+
+- **Email**: ashararmoghan09@gmail.com
+- **Portfolio**: https://ashararmoghan.github.io/portfolio/
+- **GitHub**: https://github.com/AsharArmoghan/portfolio
+  
