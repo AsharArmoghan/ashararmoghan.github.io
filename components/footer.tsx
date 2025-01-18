@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="border-t py-6">
-      <div className="container max-w-5xl px-4">
+      <div className="container max-w-7xl px-4">
         {/* Top Section */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Branding / Logo */}

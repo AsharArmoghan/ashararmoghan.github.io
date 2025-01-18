@@ -1,5 +1,5 @@
 {
-  "homepage": "https://ashararmoghan.github.io/portfolio",
+  "homepage": "https://ashararmoghan.github.io",
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
@@ -8,8 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "output": "next export",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out --nojekyll"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",
