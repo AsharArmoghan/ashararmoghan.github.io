@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import typography from "@tailwindcss/typography";
 
 export default {
   darkMode: ["class"],
@@ -7,6 +8,8 @@ export default {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./content/**/*.{md,mdx}",
+    "./.contentlayer/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -80,4 +83,5 @@ export default {
       },
     },
   },
+  plugins: [typography],
 } satisfies Config;

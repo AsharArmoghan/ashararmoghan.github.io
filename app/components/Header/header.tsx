@@ -6,17 +6,17 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "@/app/components/ui/navigation-menu";
 import Link from "next/link";
-import ThemeToggle from "./theme-toggle";
+import ThemeToggle from "../Theme/theme-toggle";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
   { url: "/", title: "Home" },
   { url: "/about", title: "About" },
-  { url: "/portfolio", title: "Portfolio" },
-  { url: "/contact", title: "Contact" },
+  { url: "/projects", title: "Projects" },
+  { url: "/articles", title: "Article" },
 ];
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function Header() {
         {/* Logo */}
         <div className="">
           <Link className="text-3xl font-bold" href="/">
-            Portfolio
+            AA
           </Link>
         </div>
         <ThemeToggle></ThemeToggle>
@@ -53,18 +53,18 @@ export default function Header() {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
-                href="/portfoilio"
+                href="/projects"
                 className={navigationMenuTriggerStyle()}
               >
-                <p className={cn("pr-3 hover:text-gray-700")}> Portfolio </p>
+                <p className={cn("pr-3 hover:text-gray-700")}> Projects </p>
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
-                href="/contact"
+                href="/articles"
                 className={navigationMenuTriggerStyle()}
               >
-                <p className={cn("hover:text-gray-700")}>Contact </p>
+                <p className={cn("hover:text-gray-700")}>Articles </p>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "@/app/components/Header/header";
+import Footer from "@/app/components/Footer/footer";
 
-import Provider from "@/components/providers";
+import Provider from "@/app/components/Theme/providers";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
