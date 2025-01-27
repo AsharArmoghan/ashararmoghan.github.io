@@ -2,22 +2,27 @@ import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import typography from "@tailwindcss/typography";
 
-export default {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./content/**/*.{md,mdx}",
-    "./.contentlayer/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: { default: "20px", lg: "80px" },
       screens: {
-        "2xl": "1400px",
+        sm: "375px",
+        md: "760px",
+        lg: "1200px",
       },
+    },
+    screens: {
+      sm: "375px",
+      md: "760px",
+      lg: "1200px",
     },
     extend: {
       fontFamily: {
@@ -84,4 +89,5 @@ export default {
     },
   },
   plugins: [typography],
-} satisfies Config;
+};
+export default config;

@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/components/Header/header";
-import Footer from "@/app/components/Footer/footer";
+import { twMerge } from "tailwind-merge";
+import { Footer } from "@/app/components/Footer/footer";
 
 import Provider from "@/app/components/Theme/providers";
-import { cn } from "@/lib/utils";
+import { Header } from "./components/Header/header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-});
+// const playfair = Playfair_Display({
+//   subsets: ["latin"],
+//   variable: "--font-serif",
+// });
 export const metadata: Metadata = {
   title: "Portfolio",
   description: "This is my Portfolio",
@@ -25,15 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={cn(
-          "flex min-h-screen flex-col font-sans antialiased",
-          inter.variable,
-          playfair.variable,
+        className={twMerge(
+          inter.className,
+          "flex min-h-screen flex-col antialiased",
         )}
       >
         <Provider>
           <Header />
-          <main className="m-auto grow">{children}</main>
+          <main className="grow">{children}</main>
           <Footer />
         </Provider>
       </body>
