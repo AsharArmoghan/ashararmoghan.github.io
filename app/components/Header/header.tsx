@@ -2,9 +2,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import ThemeToggle from "../Theme/theme-toggle";
-import LogoIcon from "@/public/assets/logo 1.svg";
-import MenuIcon from "@/public/assets/icon-menu 1.svg";
+import LogoIcon from "@/public/assets/logo1_new.svg";
+import MenuIcon from "@/public/assets/icon-menu2.svg";
 import { X } from "lucide-react";
+// import { Button } from "@/components/ui/Button";
 const links = [
   { url: "/", title: "home" },
   { url: "/about", title: "about" },
@@ -15,19 +16,19 @@ export const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="border-b border-white/15 py-4 md:border-none">
-      <div className="container">
-        <div className="mx-auto flex max-w-2xl items-center justify-between rounded-xl border-white/15 md:border md:p-2.5">
+    <header className="sticky top-0 z-10 border-b border-white/15 bg-[radial-gradient(100%_100%_at_bottom,rgb(0,0,0,.25),rgb(0,0,0,.25),rgb(74,32,138,0.25))] py-4 md:border-none">
+      <div className="container backdrop-blur-sm backdrop-filter">
+        <div className="mx-auto flex max-w-2xl items-center justify-between rounded-xl border-black/15 dark:border-white/15 md:border md:p-2.5">
           <div>
             <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15">
-              <LogoIcon className="h-8 w-8" />
+              <LogoIcon className="h-8 w-8 rounded-md bg-black fill-black dark:bg-black" />
             </div>
           </div>
           <div className="hidden md:block">
             <nav className="flex gap-8 text-sm">
               {links.map((link) => (
                 <Link
-                  className="text-white/70 transition hover:text-white"
+                  className="font-semibold text-black/80 transition hover:text-black/40 dark:text-white/80 dark:hover:text-white/10"
                   href={link.url}
                   key={link.title}
                 >
@@ -38,20 +39,13 @@ export const Header = () => {
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle></ThemeToggle>
-            <button className="relative rounded-lg bg-gradient-to-b from-[#190d2e] to-[#4a208a] px-3 py-2 text-sm font-medium shadow-[0px_0px_10px_#8c45ff]">
-              <div className="absolute inset-0">
-                <div className="[mask-image:linear-gradiant(to_top,black,transparent) absolute inset-0 rounded-lg border border-white/20"></div>
-                <div className="[mask-image:linear-gradiant(to_bottom,black,transparent) absolute inset-0 rounded-lg border border-white/40"></div>
-                <div className="classabsolute inset-0 rounded-lg shadow-[0px_0px_10px_rgb(140,69,255,.7)_inset]"></div>
-              </div>
-              <span className="text-white">Button</span>
-            </button>
+            {/* <Button></Button> */}
             <button
               className="z-10 transition md:hidden"
               onClick={() => setOpen(!open)}
             >
               {!open ? (
-                <MenuIcon className="h-8 w-8" />
+                <MenuIcon className="h-8 w-8 fill-black/50" />
               ) : (
                 <X className="h-8 w-8" />
               )}

@@ -13,10 +13,12 @@
     "deploy": "gh-pages -d out --nojekyll"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.1",
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.469.0",
+    "motion": "^12.0.6",
     "next": "^15.1.6",
     "next-themes": "^0.4.4",
     "path": "^0.12.7",
