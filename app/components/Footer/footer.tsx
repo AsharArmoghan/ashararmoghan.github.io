@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <footer className="border-t py-6">
-      <div className="container max-w-7xl px-4">
+    <footer className="bottom-0 border-t bg-[radial-gradient(100%_100%_at_bottom,rgb(0,0,0,.25),rgb(0,0,0,.25),rgb(74,32,138,0.35))] py-6 backdrop-blur-sm backdrop-filter">
+      <div className="container inset-1 max-w-7xl px-4">
         {/* Top Section */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Branding / Logo */}

@@ -5,6 +5,7 @@ import ThemeToggle from "../Theme/theme-toggle";
 import LogoIcon from "@/public/assets/logo1_new.svg";
 import MenuIcon from "@/public/assets/icon-menu2.svg";
 import { X } from "lucide-react";
+import "@/app/components/Header/header.css";
 // import { Button } from "@/components/ui/Button";
 const links = [
   { url: "/", title: "home" },
@@ -16,8 +17,8 @@ export const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-10 border-b border-white/15 bg-[radial-gradient(100%_100%_at_bottom,rgb(0,0,0,.25),rgb(0,0,0,.25),rgb(74,32,138,0.25))] py-4 md:border-none">
-      <div className="container backdrop-blur-sm backdrop-filter">
+    <header className="header sticky top-0 z-10 border-b border-white/15 bg-[radial-gradient(100%_100%_at_top,rgb(0,0,0,.25),rgb(0,0,0,.25),rgb(74,32,138,0.25))] py-4 backdrop-blur-sm backdrop-filter md:border-none">
+      <div className="container inset-1 backdrop-blur-sm backdrop-filter">
         <div className="mx-auto flex max-w-2xl items-center justify-between rounded-xl border-black/15 dark:border-white/15 md:border md:p-2.5">
           <div>
             <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/15">

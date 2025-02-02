@@ -1,5 +1,5 @@
 "use client";
-import "./style.css";
+import "./home.css";
 import star from "@/public/images/stars2.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
@@ -14,7 +14,7 @@ export const Home = () => {
   const backgroundPositionY = useTransform(
     scrollYProgress,
     [0, 1],
-    [-400, 400],
+    [-800, 800],
   );
   return (
     <motion.section
@@ -26,6 +26,7 @@ export const Home = () => {
         repeat: Infinity,
         duration: 3000,
         ease: "linear",
+        type: "keyframes",
       }}
       className="mainSection flex-grow-0[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)] flex h-[500px] md:h-[800px]"
       style={{
@@ -84,13 +85,11 @@ export const Home = () => {
       {/* Rings End */}
       <div className="container relative mt-16">
         <h1 className="dark:bg-[radial-gradient(100%_100%_at_top_left,white,white,rgb(74,32,138))]md:text-[168px] bg-emerald-400 bg-[radial-gradient(100%_100%_at_top_left,rgb(0,0,0,.25),rgb(0,0,0,.25),rgb(74,32,138))] bg-clip-text text-center text-8xl font-semibold tracking-tighter text-transparent dark:bg-white md:leading-none">
-          Hello World
+          Hi
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-center text-lg text-black/70 dark:text-white md:text-xl">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
-          fugit, sequi sed quos voluptates hic delectus, porro eaque nemo quia
-          tenetur provident id ea, reprehenderit quas nostrum autem voluptatibus
-          earum.
+        <p className="mx-auto mt-5 max-w-xl text-center text-lg text-white/70 dark:text-muted-foreground md:text-xl">
+          I&#39;m a software engineer based in Delhi, India. I&#39;m passionate
+          about learning new technologies and sharing knowledge with others.
         </p>
       </div>
     </motion.section>
