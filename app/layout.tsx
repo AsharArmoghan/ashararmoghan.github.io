@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
-import { Footer } from "@/app/components/Footer/footer";
+// import { Footer } from "@/app/components/Footer/footer";
 
 import Provider from "@/app/components/Theme/providers";
-import { Header } from "./components/Header/header";
+// import { Header } from "./components/Header/header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 // const playfair = Playfair_Display({
@@ -31,9 +31,7 @@ export default function RootLayout({
         )}
       >
         <Provider>
-          <Header />
           <main className="grow">{children}</main>
-          <Footer />
         </Provider>
       </body>
     </html>

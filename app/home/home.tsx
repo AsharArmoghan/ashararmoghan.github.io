@@ -37,7 +37,7 @@ export const Home = () => {
     >
       <div className="mainGradiant absolute inset-0 bg-[radial-gradient(75%_75%_at_center_center,rgb(140,69,255,.5)_15%,rgb(14,0,36,.5)_70%,transparent)]"></div>
       {/* planet */}
-      <div className="planet left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-purple-500 bg-[radial-gradient(50%_50%_at_16.8%_18.3%,white,rgb(184,148,255)_37.7%,rgb(24,0,66))] md:h-96 md:w-96"></div>
+      <div className="planet left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 bg-[radial-gradient(50%_50%_at_16.8%_18.3%,white,rgb(184,148,255)_37.7%,rgb(24,0,66))] md:h-96 md:w-96"></div>
       {/* Rings Start*/}
       <motion.div
         style={{
@@ -85,11 +85,10 @@ export const Home = () => {
       {/* Rings End */}
       <div className="container relative mt-16">
         <h1 className="dark:bg-[radial-gradient(100%_100%_at_top_left,white,white,rgb(74,32,138))]md:text-[168px] bg-emerald-400 bg-[radial-gradient(100%_100%_at_top_left,rgb(0,0,0,.25),rgb(0,0,0,.25),rgb(74,32,138))] bg-clip-text text-center text-8xl font-semibold tracking-tighter text-transparent dark:bg-white md:leading-none">
-          Hi
+          Hello, World!
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-center text-lg text-white/70 dark:text-muted-foreground md:text-xl">
-          I&#39;m a software engineer based in Delhi, India. I&#39;m passionate
-          about learning new technologies and sharing knowledge with others.
+        <p className="mx-auto mt-5 max-w-xl text-center text-lg text-white/50 dark:text-muted-foreground md:text-xl">
+          Live with intention, create with passion, and move with purpose.
         </p>
       </div>
     </motion.section>
