@@ -1,18 +1,33 @@
 .mainSection {
   position: relative;
-
   overflow: hidden;
   align-items: center;
-  background-repeat: no-repeat;
   background-size: cover;
 }
-
+.mainGradiant {
+  /* background-color: oklch(0% 0 360); */
+}
 .planet {
+  @apply bg-[radial-gradient(50%_80%_at_80.8%_60.3%,white,var(--tw-color-secondary-planetLight)_37.7%,rgb(24,0,66))];
+  @apply dark:bg-[radial-gradient(100%_100%_at_16.8%_18.3%,white,var(--tw-color-secondary-planetDark)_27.7%,rgb(24,0,66))];
   position: absolute;
   height: 16rem;
   width: 16rem;
+}
+.custom-shadow {
+  @apply shadow-2xl;
+  box-shadow:
+    -20px -20px 50px rgba(255, 255, 255, 0.5),
+    -20px -20px 50px rgba(255, 255, 255, 0.3),
+    0 0 50px var(--tw-color-secondary-planetDark);
+}
+.dark .custom-shadow {
+  @apply shadow-2xl;
   box-shadow:
     -20px -20px 50px rgba(255, 255, 255, 0.5),
     -20px -20px 80px rgba(255, 255, 255, 0.1),
-    0 0 50px rgba(140, 69, 255);
+    0 0 50px var(--tw-color-secondary-planetLight);
+}
+.mainText {
+  @apply dark:bg-[radial-gradient(100%_100%_at_top_left,white,var(--tw-color-secondary-textSecond),var(--tw-color-secondary-textLight))];
 }

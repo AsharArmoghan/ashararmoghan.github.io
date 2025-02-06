@@ -43,10 +43,17 @@ const config: Config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          black: "oklch(0% 0 360)",
+          white: "oklch(100% 0 360)",
+          light_card: "oklch(43.74% 0.013 285.805)",
+          textLight: "oklch(38.66% 0.2099 287.87 / 89.71%)",
+          textsecond: "oklch(47.21% 0.1882 320.5)",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          planetDark: "oklch(37.6% 0.1582 260.58)",
+          planetLight: "oklch(63.63% 0.1968 256.7)",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",

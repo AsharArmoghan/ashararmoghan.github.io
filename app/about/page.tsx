@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { MotionProps, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
@@ -8,8 +9,10 @@ import Avatar from "@/public/images/authors/myAvatar.jpeg";
 import Logo from "../components/Logo/Logo";
 const About = () => {
   return (
-    <div className="min-h-screen bg-zinc-300 px-4 py-12 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-50">
-      <Logo />
+    <div className="min-h-screen bg-primary-white px-4 py-12 text-zinc-800 dark:bg-primary-black dark:text-zinc-300">
+      <div className="">
+        <Logo color={"fill-primary-black dark:fill-primary-white"} />
+      </div>
       <motion.div
         initial="initial"
         animate="animate"
@@ -55,7 +58,7 @@ const Block = ({ className, ...rest }: BlockProps) => {
         damping: 50,
       }}
       className={twMerge(
-        "col-span-4 rounded-lg border border-zinc-700 bg-zinc-800 p-6",
+        "bg-primary-light_card col-span-4 rounded-lg border border-zinc-500 p-6 dark:border-zinc-700 dark:bg-zinc-900",
         className,
       )}
       {...rest}
@@ -112,7 +115,7 @@ const SocialsBlock = () => (
     >
       <a
         href="#"
-        className="grid h-full place-content-center text-3xl text-white"
+        className="grid h-full place-content-center text-3xl text-white dark:text-zinc-300"
       >
         <SiGithub />
       </a>
@@ -122,11 +125,11 @@ const SocialsBlock = () => (
         rotate: "-2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-zinc-50 md:col-span-3"
+      className="col-span-6 bg-blue-400 md:col-span-3"
     >
       <a
         href="#"
-        className="grid h-full place-content-center text-3xl text-black"
+        className="grid h-full place-content-center text-3xl text-white dark:text-zinc-300"
       >
         <SiLinkedin />
       </a>
@@ -136,7 +139,7 @@ const SocialsBlock = () => (
         rotate: "2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-blue-500 md:col-span-3"
+      className="col-span-6 bg-red-800 md:col-span-3"
     >
       <a
         href="#"
@@ -168,7 +171,7 @@ const LocationBlock = () => (
 );
 
 const EmailListBlock = () => (
-  <Block className="col-span-12 md:col-span-9">
+  <Block className="col-span-12 text-zinc-50 md:col-span-9">
     <p className="mb-3 text-lg">Join my mailing list</p>
     <form
       onSubmit={(e) => e.preventDefault()}

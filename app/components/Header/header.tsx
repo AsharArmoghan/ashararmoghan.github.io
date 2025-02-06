@@ -5,6 +5,7 @@ import ThemeToggle from "../Theme/theme-toggle";
 import "@/app/components/Header/header.css";
 import { HeaderProps } from "@/lib/Sections";
 import Logo from "../Logo/Logo";
+// import Image from "next/image";
 
 export const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   // const [isVisible, setIsVisible] = useState(true);
@@ -43,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   return (
     <header
-      className="header sticky top-0 z-10 border-b border-white/15 bg-zinc-300 py-4 text-zinc-50 backdrop-blur-sm backdrop-filter dark:bg-zinc-900 md:border-none"
+      className="header bg-primary-white dark:bg-primary-black sticky top-0 z-10 border-b border-white/15 py-4 text-zinc-50 backdrop-blur-sm backdrop-filter md:border-none"
       // style={{
       //   transition: "transform 0.3s ease-in-out",
       //   transform: isVisible ? "translateY(0)" : "translateY(-100%)",
@@ -52,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       <div className="container">
         <div className="mx-auto flex max-w-2xl items-center justify-between rounded-xl border-black/15 dark:border-white/15 md:border md:p-2.5">
           <div className="h-8 w-8 rounded-lg">
-            <Logo />
+            <Logo color={"fill-primary-black dark:fill-primary-white"} />
           </div>
 
           <div className="hidden md:block">

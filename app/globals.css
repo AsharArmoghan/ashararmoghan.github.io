@@ -12,6 +12,10 @@ body {
 
 @layer base {
   :root {
+    --tw-color-secondary-planetLight: theme(colors.secondary.planetLight);
+    --tw-color-secondary-planetDark: theme(colors.secondary.planetDark);
+    --tw-color-secondary-textLight: theme(colors.primary.textLight);
+    --tw-color-secondary-textSecond: theme(colors.primary.textsecond);
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;

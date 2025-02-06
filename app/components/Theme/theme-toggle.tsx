@@ -22,9 +22,9 @@ export default function ThemeToggle() {
       }}
     >
       {resolvedTheme === "dark" ? (
-        <SunIcon className="size-5 rounded" />
+        <SunIcon className="size-7 rounded" />
       ) : (
-        <MoonIcon className="size-5 rounded" />
+        <MoonIcon className="fill-primary-black size-7 rounded" />
       )}
     </div>
   );

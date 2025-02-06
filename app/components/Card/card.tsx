@@ -1,3 +1,4 @@
+"use Client";
 import React, { useRef } from "react";
 import {
   motion,
@@ -6,7 +7,7 @@ import {
   useSpring,
 } from "framer-motion";
 // import { FiMousePointer } from "react-icons/fi";
-import trees from "@/public/images/trees.jpg";
+import blog from "@/public/images/thumb_blog.webp";
 import Image from "next/image";
 
 const ROTATION_RANGE = 32.5;
@@ -55,31 +56,31 @@ export const Card = () => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="relative h-96 w-72 rounded-xl bg-gradient-to-br from-indigo-300 to-violet-300"
+      className="relative flex items-center justify-center rounded-xl bg-gradient-to-br from-zinc-300 to-zinc-500 sm:mx-[15px] sm:h-[450px] sm:w-[500px] md:mx-[20px] md:h-[450px] md:w-[600px]"
     >
       <div
         style={{
           transform: "translateZ(75px)",
           transformStyle: "preserve-3d",
         }}
-        className="absolute inset-3 grid place-content-center rounded-xl bg-white shadow-lg"
+        className="absolute inset-3 grid place-content-center rounded-xl shadow-lg"
       >
         <Image
-          src={trees.src}
+          src={blog.src}
           alt="Ashar Armoghan"
-          width={200}
-          height={200}
+          width={500}
+          height={400}
           priority
           style={{
             transform: "translateZ(75px)",
           }}
-          className="mx-auto text-4xl text-black/75"
+          className="mx-auto text-4xl lg:w-[700px]"
         />
         <p
           style={{
             transform: "translateZ(50px)",
           }}
-          className="text-center text-2xl font-bold text-black/75"
+          className="text-center text-2xl font-bold"
         >
           HOVER ME
         </p>
