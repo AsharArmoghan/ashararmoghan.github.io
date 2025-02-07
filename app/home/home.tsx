@@ -28,7 +28,7 @@ export const Home = () => {
       //   ease: "linear",
       //   type: "keyframes",
       // }}
-      className="mainSection flex h-[600px] flex-grow-0 [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_70%,transparent)] dark:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)] md:h-[800px]"
+      className="mainSection flex h-[600px] flex-grow-0 bg-primary-white [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] dark:bg-primary-black dark:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:h-[800px]"
       // style={{
       //   backgroundImage: `url(${star})`,
       //   backgroundRepeat: "repeat-x",
@@ -52,7 +52,7 @@ export const Home = () => {
           repeat: Infinity,
           ease: "linear",
         }}
-        className="border-primary-light_card absolute left-1/2 top-1/2 h-[344px] w-[344px] -translate-x-1/2 -translate-y-1/2 rounded-full border opacity-50 dark:border-zinc-600 md:h-[580px] md:w-[580px]"
+        className="absolute left-1/2 top-1/2 h-[344px] w-[344px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-zinc-900 opacity-50 dark:border-slate-50 md:h-[580px] md:w-[580px]"
       >
         <div className="absolute left-0 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-black dark:bg-primary-white"></div>
         <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-black dark:bg-primary-white"></div>
@@ -67,7 +67,7 @@ export const Home = () => {
           translateY: "-50%",
         }}
         animate={{
-          rotate: "1turn",
+          rotate: "-1turn",
         }}
         transition={{
           duration: 70,
@@ -84,10 +84,10 @@ export const Home = () => {
       </motion.div>
       {/* Rings End */}
       <div className="container relative mt-16">
-        <h1 className="mainText bg-[radial-gradient(90%_60%_at_top_left,var(--tw-color-secondary-textSecond),white,var(--tw-color-secondary-textLight))] bg-clip-text text-center text-7xl font-semibold tracking-tighter text-transparent md:text-[100px] md:leading-none">
+        <h1 className="mainText bg-gradient-to-bl from-slate-800 via-orange-100 to-slate-800 bg-clip-text text-center text-7xl font-semibold tracking-tighter text-transparent md:text-[100px] md:leading-none">
           Hello, World!
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-center text-lg text-zinc-500 dark:text-zinc-500 md:text-xl">
+        <p className="mx-auto mt-5 max-w-xl text-center text-lg text-zinc-400 dark:text-slate-400 md:text-xl">
           Live with intention, create with passion, and move with purpose.
         </p>
       </div>

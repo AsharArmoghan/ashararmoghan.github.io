@@ -3,7 +3,7 @@ import ThemeToggle from "../Theme/theme-toggle";
 // import LogoIcon from "@/public/assets/logo1_new.svg";
 
 import "@/app/components/Header/header.css";
-import { HeaderProps } from "@/lib/Sections";
+import { HeaderProps } from "@/lib/HeaderProps";
 import Logo from "../Logo/Logo";
 // import Image from "next/image";
 
@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   return (
     <header
-      className="header bg-primary-white dark:bg-primary-black sticky top-0 z-10 border-b border-white/15 py-4 text-zinc-50 backdrop-blur-sm backdrop-filter md:border-none"
+      className="header sticky top-0 z-10 border-b border-white/15 bg-primary-white py-4 text-zinc-50 backdrop-blur-sm backdrop-filter dark:bg-primary-black md:border-none"
       // style={{
       //   transition: "transform 0.3s ease-in-out",
       //   transform: isVisible ? "translateY(0)" : "translateY(-100%)",
@@ -63,28 +63,36 @@ export const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 onClick={() => scrollToSection("home")}
                 key="home"
               >
-                Home
+                <p className="items-center px-3 text-lg font-semibold leading-none tracking-tight">
+                  Home
+                </p>
               </button>
               <button
                 className="font-semibold text-black/80 transition hover:text-black/40 dark:text-white/80 dark:hover:text-white/10"
                 onClick={() => scrollToSection("projects")}
                 key="projects"
               >
-                Projects
+                <p className="items-center px-3 text-lg font-semibold leading-none tracking-tight">
+                  Projects
+                </p>
               </button>
               <button
                 className="font-semibold text-black/80 transition hover:text-black/40 dark:text-white/80 dark:hover:text-white/10"
                 onClick={() => scrollToSection("articles")}
                 key="articles"
               >
-                Articles
+                <p className="items-center px-3 text-lg font-semibold leading-none tracking-tight">
+                  Articles
+                </p>
               </button>
               <button
                 className="font-semibold text-black/80 transition hover:text-black/40 dark:text-white/80 dark:hover:text-white/10"
                 onClick={() => scrollToSection("about")}
                 key="about"
               >
-                About
+                <p className="items-center px-3 text-lg font-semibold leading-none tracking-tight">
+                  About
+                </p>
               </button>
             </nav>
           </div>

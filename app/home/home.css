@@ -29,5 +29,5 @@
     0 0 50px var(--tw-color-secondary-planetLight);
 }
 .mainText {
-  @apply dark:bg-[radial-gradient(100%_100%_at_top_left,white,var(--tw-color-secondary-textSecond),var(--tw-color-secondary-textLight))];
+  @apply from-slate-800 via-orange-100 to-slate-800 bg-clip-text text-transparent dark:bg-gradient-to-bl;
 }

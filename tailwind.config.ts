@@ -46,8 +46,8 @@ const config: Config = {
           black: "oklch(0% 0 360)",
           white: "oklch(100% 0 360)",
           light_card: "oklch(43.74% 0.013 285.805)",
-          textLight: "oklch(38.66% 0.2099 287.87 / 89.71%)",
-          textsecond: "oklch(47.21% 0.1882 320.5)",
+          textLight: "oklch(75.07% 0.0716 75.164)",
+          textsecond: "oklch(0.279 0.041 260.031)",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

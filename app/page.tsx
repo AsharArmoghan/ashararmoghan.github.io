@@ -5,6 +5,7 @@ import About from "./about/page";
 import { Header } from "./components/Header/header";
 import Projects from "./projects/page";
 import Articles from "./articles/page";
+import Headroom from "react-headroom";
 
 export default function Main() {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -17,30 +18,31 @@ export default function Main() {
       case "home":
         return homeRef.current?.scrollIntoView({
           behavior: "smooth",
-          block: "end",
+          block: "start",
         });
 
       case "projects":
         return projectsRef.current?.scrollIntoView({
           behavior: "smooth",
-          block: "end",
+          block: "start",
         });
       case "articles":
         return articleRef.current?.scrollIntoView({
           behavior: "smooth",
-          block: "end",
+          block: "start",
         });
       case "about":
         return aboutRef.current?.scrollIntoView({
           behavior: "smooth",
-          block: "end",
+          block: "start",
         });
     }
   };
   return (
     <section className="flex h-screen flex-col justify-between">
-      <Header scrollToSection={scrollToSection}></Header>
-
+      <Headroom>
+        <Header scrollToSection={scrollToSection}></Header>
+      </Headroom>
       <section ref={homeRef}>
         <Home></Home>
       </section>

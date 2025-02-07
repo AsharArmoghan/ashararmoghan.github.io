@@ -1,4 +1,4 @@
-"use Client";
+"use client";
 import React, { useRef } from "react";
 import {
   motion,
@@ -6,24 +6,22 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
-// import { FiMousePointer } from "react-icons/fi";
-import blog from "@/public/images/thumb_blog.webp";
 import Image from "next/image";
+import { ProjectProps } from "@/lib/ProjectProps";
+interface CardProps {
+  ProjectProps: ProjectProps;
+}
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = 32.5 / 2;
 
-export const Card = () => {
+export const Card: React.FC<CardProps> = ({ ProjectProps }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
   const xSpring = useSpring(x);
   const ySpring = useSpring(y);
-
   const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
-
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!ref.current) return [0, 0];
 
@@ -41,7 +39,6 @@ export const Card = () => {
     x.set(rX);
     y.set(rY);
   };
-
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
@@ -56,7 +53,7 @@ export const Card = () => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="relative flex items-center justify-center rounded-xl bg-gradient-to-br from-zinc-300 to-zinc-500 sm:mx-[15px] sm:h-[450px] sm:w-[500px] md:mx-[20px] md:h-[450px] md:w-[600px]"
+      className="relative flex items-center justify-center rounded-xl bg-gradient-to-b from-sky-50 via-zinc-200 to-slate-100 dark:bg-gradient-to-br dark:from-zinc-800 dark:to-gray-800 sm:mx-[15px] sm:h-[200px] sm:w-[350px] md:mx-[20px] md:h-[350px] md:w-[600px]"
     >
       <div
         style={{
@@ -66,24 +63,25 @@ export const Card = () => {
         className="absolute inset-3 grid place-content-center rounded-xl shadow-lg"
       >
         <Image
-          src={blog.src}
-          alt="Ashar Armoghan"
-          width={500}
-          height={400}
+          src={ProjectProps.image.imgSrc}
+          alt={ProjectProps.title}
+          width={ProjectProps.image.width}
+          height={ProjectProps.image.height}
           priority
           style={{
             transform: "translateZ(75px)",
+            backgroundSize: "cover",
           }}
-          className="mx-auto text-4xl lg:w-[700px]"
+          className="mx-auto text-4xl sm:w-[350px] md:w-[550px] lg:w-[700px]"
         />
-        <p
+        {/* <p
           style={{
             transform: "translateZ(50px)",
           }}
           className="text-center text-2xl font-bold"
         >
           HOVER ME
-        </p>
+        </p> */}
       </div>
     </motion.div>
   );

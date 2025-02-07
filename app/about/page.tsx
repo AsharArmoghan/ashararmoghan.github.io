@@ -9,7 +9,7 @@ import Avatar from "@/public/images/authors/myAvatar.jpeg";
 import Logo from "../components/Logo/Logo";
 const About = () => {
   return (
-    <div className="min-h-screen bg-primary-white px-4 py-12 text-zinc-800 dark:bg-primary-black dark:text-zinc-300">
+    <div className="min-h-screen bg-primary-white px-4 py-12 text-stone-400 dark:bg-primary-black dark:text-zinc-300">
       <div className="">
         <Logo color={"fill-primary-black dark:fill-primary-white"} />
       </div>
@@ -58,7 +58,7 @@ const Block = ({ className, ...rest }: BlockProps) => {
         damping: 50,
       }}
       className={twMerge(
-        "bg-primary-light_card col-span-4 rounded-lg border border-zinc-500 p-6 dark:border-zinc-700 dark:bg-zinc-900",
+        "col-span-4 rounded-lg border border-zinc-400 bg-zinc-500 p-6 dark:border-zinc-700 dark:bg-zinc-900",
         className,
       )}
       {...rest}
@@ -77,7 +77,7 @@ const HeaderBlock = () => (
     />
     <h1 className="mb-12 text-4xl font-medium leading-tight text-zinc-50">
       Hi, I&apos;m Ashar.{" "}
-      <span className="text-zinc-400">
+      <span className="text-neutral-400 dark:text-zinc-400">
         I build cool websites like this one.
       </span>
     </h1>
@@ -114,7 +114,7 @@ const SocialsBlock = () => (
       className="col-span-6 bg-green-600 md:col-span-3"
     >
       <a
-        href="#"
+        href="https://github.com/AsharArmoghan"
         className="grid h-full place-content-center text-3xl text-white dark:text-zinc-300"
       >
         <SiGithub />
@@ -128,7 +128,7 @@ const SocialsBlock = () => (
       className="col-span-6 bg-blue-400 md:col-span-3"
     >
       <a
-        href="#"
+        href="https://linkedin.com/in/ashar-armoghan-915191100"
         className="grid h-full place-content-center text-3xl text-white dark:text-zinc-300"
       >
         <SiLinkedin />
@@ -155,7 +155,7 @@ const AboutBlock = () => (
   <Block className="col-span-12 text-3xl leading-snug text-zinc-50">
     <p>
       My passion is building cool stuff.{" "}
-      <span className="text-zinc-400">
+      <span className="text-neutral-400 dark:text-zinc-400">
         I build primarily with React, Tailwind CSS, and Framer Motion. I love
         this stack so much that I even built a website about it.
       </span>
@@ -166,7 +166,9 @@ const AboutBlock = () => (
 const LocationBlock = () => (
   <Block className="col-span-12 flex flex-col items-center gap-4 md:col-span-3">
     <FiMapPin className="text-3xl text-zinc-50" />
-    <p className="text-center text-lg text-zinc-400">India,Delhi</p>
+    <p className="text-center text-lg text-neutral-400 dark:text-zinc-400">
+      India,Delhi
+    </p>
   </Block>
 );
 
@@ -196,8 +198,8 @@ const Footer = () => {
   return (
     <footer className="mt-12">
       <p className="text-center text-zinc-400">
-        Made with ❤️ by{" "}
-        <a href="#" className="text-red-300 hover:underline">
+        Made with 💻|❤️ by{" "}
+        <a href="#" className="text-fuchsia-600 hover:underline">
           @AsharArmoghan
         </a>
       </p>
