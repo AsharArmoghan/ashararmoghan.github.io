@@ -28,7 +28,7 @@ export const Home = () => {
       //   ease: "linear",
       //   type: "keyframes",
       // }}
-      className="mainSection flex h-[600px] flex-grow-0 bg-primary-white [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] dark:bg-primary-black dark:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:h-[800px]"
+      className="mainSection flex h-[700px] flex-grow-0 bg-primary-white pb-4 [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] dark:bg-primary-black dark:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:h-[920px]"
       // style={{
       //   backgroundImage: `url(${star})`,
       //   backgroundRepeat: "repeat-x",
@@ -84,10 +84,10 @@ export const Home = () => {
       </motion.div>
       {/* Rings End */}
       <div className="container relative mt-16">
-        <h1 className="mainText bg-gradient-to-bl from-slate-800 via-orange-100 to-slate-800 bg-clip-text text-center text-7xl font-semibold tracking-tighter text-transparent md:text-[100px] md:leading-none">
-          Hello, World!
+        <h1 className="mainText bg-gradient-to-bl from-slate-800 via-orange-100 to-slate-800 bg-clip-text text-center text-6xl font-semibold leading-none tracking-tighter text-transparent sm:h-auto md:text-[80px] md:leading-none lg:h-[95px]">
+          Building Scalable Web Solutions
         </h1>
-        <p className="mx-auto mt-5 max-w-xl text-center text-lg text-zinc-400 dark:text-slate-400 md:text-xl">
+        <p className="animate-glow mx-auto mt-5 max-w-xl bg-clip-text text-center text-lg font-semibold leading-none text-transparent text-zinc-500 dark:text-slate-300 md:text-xl">
           Live with intention, create with passion, and move with purpose.
         </p>
       </div>

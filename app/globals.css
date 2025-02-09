@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
   box-sizing: border-box;
 }
 
@@ -83,6 +83,23 @@ body {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+@layer utilities {
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 30px #bd6c35c6;
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(8, 137, 222, 0.78);
+    }
+    100% {
+      text-shadow: 0 0 10px rgba(164, 79, 163, 0.78);
+    }
+  }
+
+  .animate-glow {
+    animation: glow 3.5s infinite alternate;
   }
 }
 

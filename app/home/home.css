@@ -29,5 +29,9 @@
     0 0 50px var(--tw-color-secondary-planetLight);
 }
 .mainText {
-  @apply from-slate-800 via-orange-100 to-slate-800 bg-clip-text text-transparent dark:bg-gradient-to-bl;
+  letter-spacing: -0.25rem;
+}
+
+.text {
+  letter-spacing: -0.08rem;
 }

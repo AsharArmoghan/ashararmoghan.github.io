@@ -3,11 +3,16 @@ export interface Image {
   width: number;
   height: number;
 }
+
 export interface ProjectProps {
-  id?: number;
+  id: number;
   author: string;
   title: string;
   description: string;
-  technology?: string;
   image: Image;
+  icons: {
+    name: string;
+    component: React.ComponentType<{ className?: string }>;
+    color: string;
+  }[];
 }

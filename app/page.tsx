@@ -2,10 +2,10 @@
 import React, { useRef } from "react";
 import { Home } from "./home/home";
 import About from "./about/page";
-import { Header } from "./components/Header/header";
+import Header from "./components/Header/header";
 import Projects from "./projects/page";
 import Articles from "./articles/page";
-import Headroom from "react-headroom";
+// import Headroom from "react-headroom";
 
 export default function Main() {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -39,10 +39,8 @@ export default function Main() {
     }
   };
   return (
-    <section className="flex h-screen flex-col justify-between">
-      <Headroom>
-        <Header scrollToSection={scrollToSection}></Header>
-      </Headroom>
+    <section className="flex h-screen flex-col justify-between overflow-x-hidden">
+      <Header scrollToSection={scrollToSection}></Header>
       <section ref={homeRef}>
         <Home></Home>
       </section>

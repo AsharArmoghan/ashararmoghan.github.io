@@ -1,9 +1,19 @@
-import { ProjectProps } from "@/lib/ProjectProps";
+import { ProjectProps } from "@/lib/Types/ProjectProps";
 // import thumbBlog from "@/public/images/thumb_blog.webp";
 import codeBlog from "@/public/images/CodeBlog1.png";
 import dashboard from "@/public/images/dashboard1.png";
 import portfolio from "@/public/images/portfolio.png";
-
+import { SiMaterialdesign } from "react-icons/si";
+import { FaNodeJs } from "react-icons/fa";
+import {
+  BiLogoTypescript,
+  BiLogoReact,
+  BiLogoAngular,
+  BiLogoMongodb,
+  BiLogoHtml5,
+  BiLogoCss3,
+} from "react-icons/bi";
+import { TbBrandNextjs } from "react-icons/tb";
 export const projectData: ProjectProps[] = [
   {
     id: 1,
@@ -16,6 +26,15 @@ export const projectData: ProjectProps[] = [
       width: 800,
       height: 600,
     },
+    icons: [
+      { name: "Angular", component: BiLogoAngular, color: "#d01001" },
+      { name: "Node.js", component: FaNodeJs, color: "#00972b" },
+      { name: "MongoDB", component: BiLogoMongodb, color: "#03c047" },
+      { name: "TypeScript", component: BiLogoTypescript, color: "#226dc2" },
+      { name: "Html", component: BiLogoHtml5, color: "#d04112" },
+      { name: "MaterialUi", component: SiMaterialdesign, color: "#d01001" },
+      { name: "Css", component: BiLogoCss3, color: "#227eb5" },
+    ],
   },
   {
     id: 2,
@@ -28,6 +47,14 @@ export const projectData: ProjectProps[] = [
       width: 800,
       height: 600,
     },
+    icons: [
+      { name: "React", component: BiLogoReact, color: "#40cdeb" },
+      { name: "Node.js", component: FaNodeJs, color: "#00972b" },
+      { name: "MongoDB", component: BiLogoMongodb, color: "#03c047" },
+      { name: "TypeScript", component: BiLogoTypescript, color: "#226dc2" },
+      { name: "Html", component: BiLogoHtml5, color: "#d04112" },
+      { name: "Css", component: BiLogoCss3, color: "#227eb5" },
+    ],
   },
   {
     id: 3,
@@ -40,5 +67,12 @@ export const projectData: ProjectProps[] = [
       width: 800,
       height: 600,
     },
+    icons: [
+      { name: "NextJs", component: TbBrandNextjs, color: "#43434c" },
+      { name: "React", component: BiLogoReact, color: "#40cdeb" },
+      { name: "TypeScript", component: BiLogoTypescript, color: "#226dc2" },
+      { name: "Html", component: BiLogoHtml5, color: "#d04112" },
+      { name: "Css", component: BiLogoCss3, color: "#227eb5" },
+    ],
   },
 ];

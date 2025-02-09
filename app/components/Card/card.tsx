@@ -7,7 +7,7 @@ import {
   useSpring,
 } from "framer-motion";
 import Image from "next/image";
-import { ProjectProps } from "@/lib/ProjectProps";
+import { ProjectProps } from "@/lib/Types/ProjectProps";
 interface CardProps {
   ProjectProps: ProjectProps;
 }

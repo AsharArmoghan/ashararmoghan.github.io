@@ -12,7 +12,7 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: { default: "20px", lg: "80px" },
+      padding: { default: "20px" },
       screens: {
         sm: "375px",
         md: "760px",
@@ -25,6 +25,10 @@ const config: Config = {
       lg: "1200px",
     },
     extend: {
+      backgroundImage: {
+        "custom-radial":
+          "radial-gradient(ellipse 50% 50px,  , amber 10%, #1e90ff 50%, slate)",
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
         serif: ["var(--font-serif)", ...fontFamily.serif],
