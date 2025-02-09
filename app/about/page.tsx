@@ -3,8 +3,10 @@ import React from "react";
 import { MotionProps, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
-import { SiGithub, SiYoutube, SiLinkedin, SiAngular } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiFiverr } from "react-icons/si";
+import { FaTwitter } from "react-icons/fa";
 import Image from "next/image";
+import { toast } from "react-hot-toast";
 import Avatar from "@/public/images/authors/myAvatar.jpeg";
 import Logo from "../components/Logo/Logo";
 const About = () => {
@@ -82,7 +84,7 @@ const HeaderBlock = () => (
       </span>
     </h1>
     <a
-      href="#"
+      href="mailto:ashararmoghan09@gmail.com"
       className="flex items-center gap-1 text-red-300 hover:underline"
     >
       Contact me <FiArrowRight />
@@ -97,13 +99,15 @@ const SocialsBlock = () => (
         rotate: "2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-red-500 md:col-span-3"
+      className="col-span-6 bg-green-300 md:col-span-3"
     >
       <a
-        href="#"
-        className="grid h-full place-content-center text-3xl text-white"
+        href="https://www.fiverr.com/syedashar09?public_mode=true"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="grid h-full place-content-center text-6xl text-white"
       >
-        <SiYoutube />
+        <SiFiverr />
       </a>
     </Block>
     <Block
@@ -111,10 +115,12 @@ const SocialsBlock = () => (
         rotate: "-2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-green-600 md:col-span-3"
+      className="col-span-6 bg-[#111444] md:col-span-3"
     >
       <a
         href="https://github.com/AsharArmoghan"
+        target="_blank"
+        rel="noopener noreferrer"
         className="grid h-full place-content-center text-3xl text-white dark:text-zinc-300"
       >
         <SiGithub />
@@ -125,10 +131,12 @@ const SocialsBlock = () => (
         rotate: "-2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-blue-400 md:col-span-3"
+      className="col-span-6 bg-[#1264bc] md:col-span-3"
     >
       <a
         href="https://linkedin.com/in/ashar-armoghan-915191100"
+        target="_blank"
+        rel="noopener noreferrer"
         className="grid h-full place-content-center text-3xl text-white dark:text-zinc-300"
       >
         <SiLinkedin />
@@ -139,13 +147,15 @@ const SocialsBlock = () => (
         rotate: "2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-red-800 md:col-span-3"
+      className="col-span-6 bg-[#1a99db] md:col-span-3"
     >
       <a
-        href="#"
+        href="https://x.com/SyedAshar09"
+        target="_blank"
+        rel="noopener noreferrer"
         className="grid h-full place-content-center text-3xl text-white"
       >
-        <SiAngular />
+        <FaTwitter />
       </a>
     </Block>
   </>
@@ -171,7 +181,9 @@ const LocationBlock = () => (
     </p>
   </Block>
 );
-
+const handleClick = () => {
+  toast.success("You have been Added to the List! Thank You");
+};
 const EmailListBlock = () => (
   <Block className="col-span-12 text-zinc-50 md:col-span-9">
     <p className="mb-3 text-lg">Join my mailing list</p>
@@ -185,6 +197,7 @@ const EmailListBlock = () => (
         className="w-full rounded border border-zinc-700 bg-zinc-800 px-3 py-1.5 transition-colors focus:border-red-300 focus:outline-0"
       />
       <button
+        onClick={handleClick}
         type="submit"
         className="flex items-center gap-2 whitespace-nowrap rounded bg-zinc-50 px-3 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-300"
       >

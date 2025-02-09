@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  transition={{ ease: "easeInOut", duration: 0.4 }}
+                  transition={{ ease: "easeInOut", duration: 0.2 }}
                   className="text-black/80 transition hover:text-zinc-500 dark:text-white/80 dark:hover:text-zinc-400"
                   onClick={() => scrollToSection(section)}
                   key={section}

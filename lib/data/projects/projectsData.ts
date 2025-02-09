@@ -12,6 +12,7 @@ import {
   BiLogoMongodb,
   BiLogoHtml5,
   BiLogoCss3,
+  BiLogoTailwindCss,
 } from "react-icons/bi";
 import { TbBrandNextjs } from "react-icons/tb";
 export const projectData: ProjectProps[] = [
@@ -32,8 +33,8 @@ export const projectData: ProjectProps[] = [
       { name: "MongoDB", component: BiLogoMongodb, color: "#03c047" },
       { name: "TypeScript", component: BiLogoTypescript, color: "#226dc2" },
       { name: "Html", component: BiLogoHtml5, color: "#d04112" },
-      { name: "MaterialUi", component: SiMaterialdesign, color: "#d01001" },
-      { name: "Css", component: BiLogoCss3, color: "#227eb5" },
+      { name: "MaterialUI", component: SiMaterialdesign, color: "#d01001" },
+      { name: "CSS", component: BiLogoCss3, color: "#227eb5" },
     ],
   },
   {
@@ -72,6 +73,7 @@ export const projectData: ProjectProps[] = [
       { name: "React", component: BiLogoReact, color: "#40cdeb" },
       { name: "TypeScript", component: BiLogoTypescript, color: "#226dc2" },
       { name: "Html", component: BiLogoHtml5, color: "#d04112" },
+      { name: "TailwindCss", component: BiLogoTailwindCss, color: "#30afd3" },
       { name: "Css", component: BiLogoCss3, color: "#227eb5" },
     ],
   },

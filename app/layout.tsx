@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
-// import { Footer } from "@/app/components/Footer/footer";
-
+import { Toaster } from "react-hot-toast";
 import Provider from "@/app/components/Theme/providers";
-// import { Header } from "./components/Header/header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 // const playfair = Playfair_Display({
@@ -14,7 +12,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 // });
 export const metadata: Metadata = {
   title: "Portfolio",
-  description: "This is my Portfolio",
+  description: "Hi! I'am Ashar,This is My Portfolio",
 };
 
 export default function RootLayout({
@@ -31,6 +29,7 @@ export default function RootLayout({
         )}
       >
         <Provider>
+          <Toaster position="bottom-center" />
           <main className="grow">{children}</main>
         </Provider>
       </body>

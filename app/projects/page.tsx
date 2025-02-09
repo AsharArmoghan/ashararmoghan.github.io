@@ -4,8 +4,6 @@ import Card from "../components/Card/card";
 import { motion } from "framer-motion";
 import "../projects/projects.css";
 import { projectData } from "@/lib/data/projects/projectsData";
-// import { FaReact } from "react-icons/fa";
-// import { ProjectProps } from "@/lib/Types/ProjectProps";
 
 const Projects: React.FC = () => {
   return (
@@ -45,27 +43,37 @@ const Projects: React.FC = () => {
             <h2 className="mb-4 flex w-[500px] items-center justify-start px-8 text-left text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-4xl">
               {project.title}
             </h2>
-            <div className="my-3 flex flex-wrap gap-5 px-8">
-              {project.icons?.map((icon) => {
-                const IconComponent = icon.component;
-                return (
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    transition={{
-                      type: "spring",
-                      visualDuration: 0.3,
-                      bounce: 0.3,
-                    }}
-                    key={icon.name}
-                    title={icon.name}
-                    className="h-10 w-10 text-gray-700 dark:text-gray-300"
-                    style={{ color: icon.color }}
-                  >
-                    <IconComponent className="h-full w-full" />{" "}
-                  </motion.div>
-                );
-              })}
+            <div className="relative w-full overflow-hidden py-3">
+              <motion.div
+                className="flex w-max gap-4"
+                animate={{ x: ["50%", "-50%"] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 35,
+                  ease: "linear",
+                }}
+              >
+                {project.icons.map((icon, index) => {
+                  const IconComponent = icon.component;
+                  return (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{
+                        type: "spring",
+                        visualDuration: 0.3,
+                        bounce: 0.3,
+                      }}
+                      title={icon.name}
+                      style={{ color: icon.color }}
+                      className="h-10 w-10 flex-shrink-0 text-gray-700"
+                    >
+                      <IconComponent className="h-full w-full" />
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
             </div>
             <div className="container text-left">
               <p className="mb-8 px-8 text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl">
