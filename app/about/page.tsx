@@ -9,6 +9,8 @@ import Image from "next/image";
 import { toast } from "react-hot-toast";
 import Avatar from "@/public/images/authors/myAvatar.jpeg";
 import Logo from "../components/Logo/Logo";
+import Footer from "../components/Footer/footer";
+
 const About = () => {
   return (
     <div className="min-h-screen bg-primary-white px-4 py-12 text-stone-400 dark:bg-primary-black dark:text-zinc-300">
@@ -71,6 +73,7 @@ const Block = ({ className, ...rest }: BlockProps) => {
 const HeaderBlock = () => (
   <Block className="col-span-12 row-span-2 md:col-span-6">
     <Image
+      loading="lazy"
       src={Avatar.src}
       alt="avatar"
       width={56}
@@ -181,41 +184,37 @@ const LocationBlock = () => (
     </p>
   </Block>
 );
-const handleClick = () => {
+const handleClick = (e) => {
+  let email = [];
   toast.success("You have been Added to the List! Thank You");
+  email = e.target.value;
+  console.log(email);
+  e.preventDefault();
 };
 const EmailListBlock = () => (
   <Block className="col-span-12 text-zinc-50 md:col-span-9">
     <p className="mb-3 text-lg">Join my mailing list</p>
     <form
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={(e) => {
+        handleClick(e);
+        e.preventDefault();
+      }}
       className="flex items-center gap-2"
     >
       <input
         type="email"
         placeholder="Enter your email"
-        className="w-full rounded border border-zinc-700 bg-zinc-800 px-3 py-1.5 transition-colors focus:border-red-300 focus:outline-0"
+        className="w-full rounded border bg-zinc-800 px-3 py-1.5 transition-colors focus:border-red-300 focus:outline-0 dark:border-zinc-700"
       />
-      <button
-        onClick={handleClick}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ ease: "easeInOut", duration: 0.2 }}
         type="submit"
-        className="flex items-center gap-2 whitespace-nowrap rounded bg-zinc-50 px-3 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-300"
+        className="flex items-center gap-2 whitespace-nowrap rounded-lg bg-zinc-50 px-3 py-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-300"
       >
         <FiMail /> Join the list
-      </button>
+      </motion.button>
     </form>
   </Block>
 );
-
-const Footer = () => {
-  return (
-    <footer className="mt-12">
-      <p className="text-center text-zinc-400">
-        Made with 💻|❤️ by{" "}
-        <a href="#" className="text-fuchsia-600 hover:underline">
-          @AsharArmoghan
-        </a>
-      </p>
-    </footer>
-  );
-};

@@ -1,77 +1,55 @@
 "use client";
 
 import "@/app/components/Header/header.css";
-import { HeaderProps, SectionName } from "@/lib/Types/HeaderProps";
+import { HeaderProps, Section } from "@/lib/Types/HeaderProps";
 import Logo from "../Logo/Logo";
-// import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ThemeToggle from "../Theme/theme-toggle";
+import MobileNav from "../SideBar/sideNav";
 
-const sections: SectionName[] = ["home", "projects", "articles", "about"];
+// const sections: SectionName[] = ["home", "projects", "articles", "about"];
 
-const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
-  // const [isVisible, setIsVisible] = useState(true);
-  // const [lastScrollPos, setLastScrollPos] = useState(0);
-  // const [lastHiddenPos, setLastHiddenPos] = useState(0);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const currentScrollPos = window.scrollY;
-  //     // Always show navbar at top of page
-  //     if (currentScrollPos <= 10) {
-  //       setIsVisible(true);
-  //       return;
-  //     }
-  //     if (currentScrollPos > lastScrollPos) {
-  //       // Scrolling down
-  //       if (isVisible) {
-  //         setIsVisible(false);
-  //         setLastHiddenPos(currentScrollPos);
-  //       }
-  //     } else {
-  //       // Scrolling up
-  //       if (!isVisible && currentScrollPos <= lastHiddenPos - 30) {
-  //         setIsVisible(true);
-  //       }
-  //     }
-
-  //     setLastScrollPos(currentScrollPos);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [lastScrollPos, isVisible, lastHiddenPos]);
+const Header: React.FC<HeaderProps> = ({
+  scrollToSection,
+  activeSection,
+  sections,
+}) => {
+  // const [activeSection, setActiveSection] = useState<SectionName>("home");
 
   return (
-    <header
-      className="header sticky top-0 z-10 border-b border-white/15 bg-primary-white py-5 text-zinc-50 dark:border-zinc-700 dark:bg-primary-black md:border-none"
-      // style={{
-      //   transition: "transform 0.3s ease-in-out",
-      //   transform: isVisible ? "translateY(0)" : "translateY(-100%)",
-      // }}
-    >
-      <div className="flex items-baseline justify-center">
-        <div className="flex min-w-[350px] flex-row items-center justify-between gap-4 rounded-xl border-black/15 px-3 dark:border-white/15 md:w-[550px] md:border md:p-2.5">
-          <div className="h-8 w-8 items-center rounded-lg">
+    <header className="header sticky top-0 z-10 border-b border-zinc-200 bg-primary-white py-5 dark:border-zinc-900 dark:bg-primary-black md:border-none">
+      <div className="flex items-center justify-center">
+        <div className="flex flex-row items-center justify-around gap-4 rounded-xl border-black/15 px-3 dark:border-white/15 sm:w-full md:w-[550px] md:border md:p-2.5">
+          <div className="md:hidden">
+            <MobileNav
+              scrollToSection={scrollToSection}
+              activeSection="home"
+              sections={sections}
+            />
+          </div>
+          <div className="mb-3 flex h-8 w-8 items-baseline justify-center rounded-lg">
             <Logo color={"fill-primary-black dark:fill-primary-white"} />
           </div>
           <div className="hidden md:block">
-            <nav className="flex items-center justify-between">
-              {sections.map((section) => (
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ ease: "easeInOut", duration: 0.2 }}
-                  className="text-black/80 transition hover:text-zinc-500 dark:text-white/80 dark:hover:text-zinc-400"
-                  onClick={() => scrollToSection(section)}
-                  key={section}
+            <div className="flex items-center justify-between text-primary-black dark:text-primary-white">
+              {sections.map((section: Section) => (
+                <div
+                  key={section.id}
+                  onClick={() => {
+                    scrollToSection(section.id);
+                  }}
                 >
-                  <p className="items-center px-3 text-[18px] font-semibold leading-none tracking-tight">
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </p>
-                </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ ease: "easeInOut", duration: 0.2 }}
+                    className={`items-center px-3 text-[18px] leading-none transition-all ${activeSection === section.id ? "font-bold text-neutral-500 dark:text-neutral-400" : ""}`}
+                  >
+                    {section.label}
+                  </motion.button>
+                </div>
               ))}
-            </nav>
+            </div>
           </div>
           <motion.div
             className="items-center"
@@ -83,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               bounce: 0.3,
             }}
           >
-            <ThemeToggle></ThemeToggle>
+            <ThemeToggle />
           </motion.div>
         </div>
       </div>

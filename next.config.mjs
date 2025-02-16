@@ -1,6 +1,7 @@
 const isProd = process.env.NODE_ENV === "production";
 
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rules) =>
@@ -29,6 +30,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  extension: /\.mdx?$/,
   assetPrefix: isProd ? "" : "",
   basePath: isProd ? "" : "",
   trailingSlash: true,

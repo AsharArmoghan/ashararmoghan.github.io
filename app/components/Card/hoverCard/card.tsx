@@ -63,11 +63,11 @@ export const Card: React.FC<CardProps> = ({ ProjectProps }) => {
         className="absolute inset-3 grid place-content-center rounded-xl shadow-lg"
       >
         <Image
-          src={ProjectProps.image.imgSrc}
+          rel="preload"
+          src={ProjectProps.image[0].imgSrc}
           alt={ProjectProps.title}
-          width={ProjectProps.image.width}
-          height={ProjectProps.image.height}
-          priority
+          width={ProjectProps.image[0].width}
+          height={ProjectProps.image[0].height}
           style={{
             transform: "translateZ(75px)",
             backgroundSize: "cover",
