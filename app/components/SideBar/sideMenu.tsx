@@ -14,7 +14,7 @@ const SideMenu: React.FC<SideMenuProps> = ({
 }) => {
   return (
     <div
-      className={`fixed inset-y-0 left-0 z-50 w-64 transform bg-primary-white shadow-lg transition-all duration-300 ease-in-out dark:bg-primary-black ${
+      className={`fixed left-0 top-[88px] z-50 h-[550px] w-60 transform rounded-lg bg-primary-white shadow-lg transition-all duration-300 ease-in-out dark:bg-primary-black ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >

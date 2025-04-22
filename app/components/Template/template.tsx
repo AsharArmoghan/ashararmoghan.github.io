@@ -13,7 +13,7 @@ export function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   return (
     <AnimatePresence
-      mode="popLayout"
+      mode="wait"
       initial={true}
       onExitComplete={() => window.scrollTo(0, 0)}
     >
@@ -28,7 +28,7 @@ export function Template({ children }: { children: React.ReactNode }) {
           stiffness: 300,
           damping: 20,
         }}
-        className="min-h-screen w-full"
+        className="h-screen w-full"
       >
         {children}
       </motion.div>

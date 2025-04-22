@@ -7,8 +7,6 @@ import { motion } from "framer-motion";
 import ThemeToggle from "../Theme/theme-toggle";
 import MobileNav from "../SideBar/sideNav";
 
-// const sections: SectionName[] = ["home", "projects", "articles", "about"];
-
 const Header: React.FC<HeaderProps> = ({
   scrollToSection,
   activeSection,
@@ -17,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({
   // const [activeSection, setActiveSection] = useState<SectionName>("home");
 
   return (
-    <header className="header sticky top-0 z-10 border-b border-zinc-200 bg-primary-white py-5 dark:border-zinc-900 dark:bg-primary-black md:border-none">
+    <header className="header sticky top-0 z-10 h-[100px] w-full border-b border-zinc-200 bg-primary-white py-5 dark:border-zinc-900 dark:bg-primary-black md:border-none">
       <div className="flex items-center justify-center">
         <div className="flex flex-row items-center justify-around gap-4 rounded-xl border-black/15 px-3 dark:border-white/15 sm:w-full md:w-[550px] md:border md:p-2.5">
           <div className="md:hidden">

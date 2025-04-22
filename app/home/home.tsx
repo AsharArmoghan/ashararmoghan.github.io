@@ -2,10 +2,9 @@
 import "./home.css";
 // import star from "@/public/images/stars2.jpg";, useTransform, useScroll
 import { motion } from "framer-motion";
-import { useRef } from "react";
 
 export const Home = () => {
-  const scrollRef = useRef(null);
+  // const scrollRef = useRef(null);
 
   // const { scrollYProgress } = useScroll({
   //   target: scrollRef,
@@ -18,16 +17,6 @@ export const Home = () => {
   // );
   return (
     <motion.section
-      ref={scrollRef}
-      // animate={{
-      //   backgroundPositionX: star.width,
-      // }}
-      // transition={{
-      //   repeat: Infinity,
-      //   duration: 300,
-      //   ease: "linear",
-      //   type: "keyframes",
-      // }}
       className="mainSection flex h-[700px] flex-grow-0 bg-primary-white pb-4 [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] dark:bg-primary-black dark:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:h-[920px]"
       // style={{
       //   backgroundImage: `url(${star})`,

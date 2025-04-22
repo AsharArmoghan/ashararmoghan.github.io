@@ -22,6 +22,7 @@ export const Card: React.FC<CardProps> = ({ ProjectProps }) => {
   const xSpring = useSpring(x);
   const ySpring = useSpring(y);
   const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!ref.current) return [0, 0];
 
@@ -72,7 +73,7 @@ export const Card: React.FC<CardProps> = ({ ProjectProps }) => {
             transform: "translateZ(75px)",
             backgroundSize: "cover",
           }}
-          className="mx-auto text-4xl sm:w-[350px] md:w-[550px] lg:w-[700px]"
+          className="mx-auto sm:w-[350px] md:w-[550px] lg:w-[700px]"
         />
         {/* <p
           style={{

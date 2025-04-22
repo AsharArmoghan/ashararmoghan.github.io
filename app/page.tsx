@@ -4,10 +4,10 @@ import { Home } from "./home/home";
 import About from "./about/page";
 import Header from "./components/Header/header";
 import Projects from "./projects/page";
-import Articles from "./articles/page";
+import ArticleList from "./articles/page";
 import { Section, SectionName } from "@/lib/Types/HeaderProps";
 
-export default function Main() {
+const Main = () => {
   const [activeSection, setActiveSection] = useState<SectionName>("home");
 
   const scrollToSection = (section: SectionName) => {
@@ -36,7 +36,7 @@ export default function Main() {
       id: "articles",
       label: "Articles",
       ref: useRef<HTMLDivElement>(null),
-      component: <Articles />,
+      component: <ArticleList />,
     },
     {
       id: "about",
@@ -59,6 +59,7 @@ export default function Main() {
     sections.forEach((section) => {
       if (section.ref.current) observer.observe(section.ref.current);
     });
+
     return () => {
       sections.forEach((section) => {
         if (section.ref.current) observer.unobserve(section.ref.current);
@@ -66,12 +67,12 @@ export default function Main() {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("Active Section:", activeSection); // Debug log
-  }, [activeSection]);
+  // useEffect(() => {
+  //   // console.log("Active Section:", activeSection); // Debug log
+  // }, [activeSection]);
 
   return (
-    <section className="flex h-screen flex-col justify-between overflow-x-hidden">
+    <section className="min-h-screen w-full overflow-x-hidden">
       <Header
         scrollToSection={scrollToSection}
         activeSection={activeSection}
@@ -84,4 +85,5 @@ export default function Main() {
       ))}
     </section>
   );
-}
+};
+export default Main;

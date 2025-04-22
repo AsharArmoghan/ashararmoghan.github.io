@@ -1,22 +1,25 @@
 import { ProjectProps } from "@/lib/Types/ProjectProps";
-// import thumbBlog from "@/public/images/thumb_blog.webp";
-import codeBlog1 from "@/public/images/CodeBlog1.png";
-import codeBlog2 from "@/public/images/CodeBlog2.png";
+// import thumbBlog from "/images/thumb_blog.webp";
+import codeBlog1 from "@/public/images/Codeblog1.png";
+import codeBlog2 from "@/public/images/codeblog2.png";
 
-import dashboard from "@/public/images/dashboard1.png";
+import dashboard1 from "@/public/images/dashboard1.png";
+import dashboard2 from "@/public/images/dashboard2.png";
+import dashboard3 from "@/public/images/dashboard3.png";
 import portfolio from "@/public/images/portfolio.png";
-import { SiMaterialdesign } from "react-icons/si";
-import { FaNodeJs } from "react-icons/fa";
-import {
-  BiLogoTypescript,
-  BiLogoReact,
-  BiLogoAngular,
-  BiLogoMongodb,
-  BiLogoHtml5,
-  BiLogoCss3,
-  BiLogoTailwindCss,
-} from "react-icons/bi";
-import { TbBrandNextjs } from "react-icons/tb";
+// import { SiMaterialdesign } from "react-icons/si";
+// import { FaNodeJs } from "react-icons/fa";
+// import {
+//   BiLogoTypescript,
+//   BiLogoReact,
+//   BiLogoAngular,
+//   BiLogoMongodb,
+//   BiLogoHtml5,
+//   BiLogoCss3,
+//   BiLogoTailwindCss,
+// } from "react-icons/bi";
+// import { TbBrandNextjs } from "react-icons/tb";
+
 export const projectData: ProjectProps[] = [
   {
     id: 1,
@@ -25,17 +28,45 @@ export const projectData: ProjectProps[] = [
       "CodeBlog is a secure Angular blogging platform that empowers developers to create, share, and discover technical articles with role-based authorization, supported by a Node.js/Express backend using JWT authentication and middleware protection, while Angular's modular architecture, lazy loading, and dependency injection ensure high performance and seamless light/dark mode support.",
     author: "Ashar Armoghan",
     image: [
-      { imgSrc: codeBlog1.src, width: 800, height: 600 },
-      { imgSrc: codeBlog2.src, width: 800, height: 600 },
+      { imgSrc: codeBlog1.src, width: 1440, height: 1000 },
+      { imgSrc: codeBlog2.src, width: 1440, height: 1000 },
     ],
     icons: [
-      { name: "Angular", component: BiLogoAngular, color: "#d01001" },
-      { name: "Node.js", component: FaNodeJs, color: "#00972b" },
-      { name: "MongoDB", component: BiLogoMongodb, color: "#03c047" },
-      { name: "TypeScript", component: BiLogoTypescript, color: "#226dc2" },
-      { name: "Html", component: BiLogoHtml5, color: "#d04112" },
-      { name: "MaterialUI", component: SiMaterialdesign, color: "#d01001" },
-      { name: "CSS", component: BiLogoCss3, color: "#227eb5" },
+      {
+        name: "Angular",
+        component: "/assets/iconsSvg/angular.svg",
+        color: "#d01001",
+      },
+      {
+        name: "Node.js",
+        component: "/assets/iconsSvg/nodejs.svg",
+        color: "#00972b",
+      },
+      {
+        name: "MongoDB",
+        component: "/assets/iconsSvg/mongodb.svg",
+        color: "#03c047",
+      },
+      {
+        name: "TypeScript",
+        component: "/assets/iconsSvg/typescript.svg",
+        color: "#226dc2",
+      },
+      {
+        name: "Html",
+        component: "/assets/iconsSvg/html.svg",
+        color: "#d04112",
+      },
+      {
+        name: "MaterialUI",
+        component: "/assets/iconsSvg/material-ui.svg",
+        color: "#226dc2",
+      },
+      {
+        name: "CSS",
+        component: "/assets/iconsSvg/css.svg",
+        color: "#227eb5",
+      },
     ],
     projectRequirement: [
       " Develop a secure authentication system (JWT-based).",
@@ -46,12 +77,12 @@ export const projectData: ProjectProps[] = [
       "Deploy on a cloud platform (Vercel & Render).",
     ],
     approach: [
-      "🔹 Followed MVC (Model-View-Controller) architecture for backend.",
-      "🔹 Used React hooks (useEffect, useState, useContext) for UI updates.",
-      "🔹 Created a modular component system to ensure reusability.",
-      "🔹 Used Axios for API integration with loading & error handling.",
-      "🔹 Applied JWT authentication for secure user login.",
-      "🔹 Used React Router for client-side navigation.",
+      " Followed MVC (Model-View-Controller) architecture for backend.",
+      " Used React hooks (useEffect, useState, useContext) for UI updates.",
+      " Created a modular component system to ensure reusability.",
+      " Used Axios for API integration with loading & error handling.",
+      " Applied JWT authentication for secure user login.",
+      "Used React Router for client-side navigation.",
     ],
     challenges: [
       {
@@ -128,18 +159,52 @@ export const projectData: ProjectProps[] = [
     author: "Ashar Armoghan",
     image: [
       {
-        imgSrc: dashboard.src,
-        width: 800,
-        height: 600,
+        imgSrc: dashboard1.src,
+        width: 1440,
+        height: 1000,
+      },
+      {
+        imgSrc: dashboard2.src,
+        width: 1440,
+        height: 1000,
+      },
+      {
+        imgSrc: dashboard3.src,
+        width: 1440,
+        height: 1000,
       },
     ],
     icons: [
-      { name: "React", component: BiLogoReact, color: "#40cdeb" },
-      { name: "Node.js", component: FaNodeJs, color: "#00972b" },
-      { name: "MongoDB", component: BiLogoMongodb, color: "#03c047" },
-      { name: "TypeScript", component: BiLogoTypescript, color: "#226dc2" },
-      { name: "Html", component: BiLogoHtml5, color: "#d04112" },
-      { name: "Css", component: BiLogoCss3, color: "#227eb5" },
+      {
+        name: "React",
+        component: "/assets/iconsSvg/react.svg",
+        color: "#40cdeb",
+      },
+      {
+        name: "Node.js",
+        component: "/assets/iconsSvg/nodejs.svg",
+        color: "#00972b",
+      },
+      {
+        name: "MongoDB",
+        component: "/assets/iconsSvg/mongodb.svg",
+        color: "#03c047",
+      },
+      {
+        name: "TypeScript",
+        component: "/assets/iconsSvg/typescript.svg",
+        color: "#226dc2",
+      },
+      {
+        name: "Html",
+        component: "/assets/iconsSvg/html.svg",
+        color: "#d04112",
+      },
+      {
+        name: "CSS",
+        component: "/assets/iconsSvg/css.svg",
+        color: "#227eb5",
+      },
     ],
     projectRequirement: [
       " Develop a secure authentication system (JWT-based).",
@@ -150,12 +215,12 @@ export const projectData: ProjectProps[] = [
       "Deploy on a cloud platform (Vercel & Render).",
     ],
     approach: [
-      "🔹 Followed MVC (Model-View-Controller) architecture for backend.",
-      "🔹 Used React hooks (useEffect, useState, useContext) for UI updates.",
-      "🔹 Created a modular component system to ensure reusability.",
-      "🔹 Used Axios for API integration with loading & error handling.",
-      "🔹 Applied JWT authentication for secure user login.",
-      "🔹 Used React Router for client-side navigation.",
+      "Followed MVC (Model-View-Controller) architecture for backend.",
+      " Used React hooks (useEffect, useState, useContext) for UI updates.",
+      " Created a modular component system to ensure reusability.",
+      " Used Axios for API integration with loading & error handling.",
+      " Applied JWT authentication for secure user login.",
+      " Used React Router for client-side navigation.",
     ],
     challenges: [
       {
@@ -223,17 +288,42 @@ export const projectData: ProjectProps[] = [
     image: [
       {
         imgSrc: portfolio.src,
-        width: 800,
-        height: 600,
+        width: 1440,
+        height: 1000,
       },
     ],
     icons: [
-      { name: "NextJs", component: TbBrandNextjs, color: "#43434c" },
-      { name: "React", component: BiLogoReact, color: "#40cdeb" },
-      { name: "TypeScript", component: BiLogoTypescript, color: "#226dc2" },
-      { name: "Html", component: BiLogoHtml5, color: "#d04112" },
-      { name: "Tailwind", component: BiLogoTailwindCss, color: "#30afd3" },
-      { name: "Css", component: BiLogoCss3, color: "#227eb5" },
+      {
+        name: "NextJs",
+        component: "/assets/iconsSvg/nextjs.svg",
+        color: "#43434c",
+      },
+      {
+        name: "React",
+        component: "/assets/iconsSvg/react.svg",
+        color: "#40cdeb",
+      },
+
+      {
+        name: "Tailwind",
+        component: "/assets/iconsSvg/tailwindcss.svg",
+        color: "#4fb3d0",
+      },
+      {
+        name: "TypeScript",
+        component: "/assets/iconsSvg/typescript.svg",
+        color: "#226dc2",
+      },
+      {
+        name: "Html",
+        component: "/assets/iconsSvg/html.svg",
+        color: "#d04112",
+      },
+      {
+        name: "CSS",
+        component: "/assets/iconsSvg/css.svg",
+        color: "#227eb5",
+      },
     ],
     projectRequirement: [
       " Develop a secure authentication system (JWT-based).",
@@ -245,12 +335,12 @@ export const projectData: ProjectProps[] = [
     ],
 
     approach: [
-      "🔹 Followed MVC (Model-View-Controller) architecture for backend.",
-      "🔹 Used React hooks (useEffect, useState, useContext) for UI updates.",
-      "🔹 Created a modular component system to ensure reusability.",
-      "🔹 Used Axios for API integration with loading & error handling.",
-      "🔹 Applied JWT authentication for secure user login.",
-      "🔹 Used React Router for client-side navigation.",
+      " Followed MVC (Model-View-Controller) architecture for backend.",
+      " Used React hooks (useEffect, useState, useContext) for UI updates.",
+      " Created a modular component system to ensure reusability.",
+      " Used Axios for API integration with loading & error handling.",
+      " Applied JWT authentication for secure user login.",
+      " Used React Router for client-side navigation.",
     ],
     challenges: [
       {

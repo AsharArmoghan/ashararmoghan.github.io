@@ -1,39 +1,32 @@
+"use client";
+import React from "react";
 import { ProjectProps } from "@/lib/Types/ProjectProps";
-import { ImgCard } from "../Card/imageSlider/imgCard";
+import { ImgCard } from "../Card/imageCardSlider/imgCard";
+import { motion } from "framer-motion";
+import { IconCardComponent } from "../Card/iconCard/iconCard";
+import AnimatedText from "../Theme/animatedText";
 
-export const ProjectDetail = ({ project }: { project: ProjectProps }) => {
+const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
   return (
-    <div className="my-4 flex h-full min-w-[600px] max-w-[calc(100%-30rem)] flex-col items-center justify-center text-wrap">
-      <div>
+    <div className="my-4 flex h-full flex-col items-center justify-center text-wrap sm:w-full sm:overflow-x-hidden md:w-[100%-35rem]">
+      <div className="sm:h-[270px] md:h-[450px] lg:h-[600px]">
         <ImgCard image={project.image}></ImgCard>
       </div>
-      <div className="mt-8 flex flex-col items-center justify-evenly">
-        <div className="container mt-2 items-center justify-center text-zinc-800 dark:text-zinc-300 lg:pl-10">
+
+      <motion.div className="mt-8 flex flex-col items-center justify-evenly">
+        <div className="container mt-2 items-center justify-center text-zinc-800 dark:text-zinc-300">
           <h2 className="mb-4 items-center justify-start text-left text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-4xl">
             {project.title}
           </h2>
-
-          <p className="mb-8 text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl">
+          <AnimatedText
+            delay={0.5}
+            className="mb-8 text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl"
+          >
             {project.description}
-          </p>
+          </AnimatedText>
         </div>
-        <div className="container h-[120px] overflow-hidden py-3 lg:w-[calc(100%-5rem)]">
-          <ul className="flex flex-row items-center justify-between gap-6">
-            {project.icons.map((icon, index) => {
-              const IconComponent = icon.component;
-              return (
-                <li
-                  key={index}
-                  title={icon.name}
-                  style={{ color: icon.color }}
-                  className="h-12 w-12 text-gray-700"
-                >
-                  <IconComponent className="h-full w-full" />{" "}
-                  <p className="text-[17px] sm:text-[12px]">{icon.name}</p>
-                </li>
-              );
-            })}
-          </ul>
+        <div className="container h-[110px] overflow-hidden pt-3 lg:w-[calc(100%-5rem)]">
+          <IconCardComponent Icon={{ icon: project.icons }}></IconCardComponent>
         </div>
         <div className="container my-[80px]">
           <h2 className="pb-8 text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-4xl">
@@ -41,12 +34,11 @@ export const ProjectDetail = ({ project }: { project: ProjectProps }) => {
           </h2>
           <ul className="list-inside list-decimal space-y-2">
             {project.projectRequirement.map((requirement, index) => (
-              <li
-                key={index}
-                className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter"
-              >
-                {requirement}
-              </li>
+              <AnimatedText key={index} delay={0.3} stagger={0.3} className="">
+                <li className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter">
+                  {requirement}
+                </li>
+              </AnimatedText>
             ))}
           </ul>
         </div>
@@ -54,14 +46,13 @@ export const ProjectDetail = ({ project }: { project: ProjectProps }) => {
           <h2 className="mb-4 flex items-center justify-start text-left text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-4xl">
             Approaches Used
           </h2>
-          <ul className="list-inside list-none space-y-2">
+          <ul className="list-inside list-disc space-y-2">
             {project.approach.map((approach, index) => (
-              <li
-                key={index}
-                className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter"
-              >
-                {approach}
-              </li>
+              <AnimatedText key={index} stagger={0.2} className="">
+                <li className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter">
+                  {approach}
+                </li>
+              </AnimatedText>
             ))}
           </ul>
         </div>
@@ -77,10 +68,13 @@ export const ProjectDetail = ({ project }: { project: ProjectProps }) => {
             >
               {item.Challenge.map((challenge, index) => (
                 <div key={index} className="mb-2">
-                  <p className="font-semibold text-neutral-500 dark:text-neutral-400">
-                    {" 🔹 "}
-                    {challenge}
-                  </p>
+                  <AnimatedText delay={0.2} stagger={0.5}>
+                    {" "}
+                    <p className="font-semibold text-neutral-500 dark:text-neutral-400">
+                      {" 🔹 "}
+                      {challenge}
+                    </p>
+                  </AnimatedText>
                   <p className="pl-4 text-zinc-500"> {item.Solution[index]}</p>
                 </div>
               ))}
@@ -109,11 +103,11 @@ export const ProjectDetail = ({ project }: { project: ProjectProps }) => {
             write and publish blogs, and engage with the content. Authentication
             is handled via JWT.
             </p> */}
-        <div className="container mb-[50px]">
-          <h2 className="mx-4 text-center text-xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-2xl">
-            🏗️ Project Structure
+        <div className="container mb-[50px] sm:overflow-x-auto">
+          <h2 className="mx-4 text-left text-xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-2xl">
+            Project Structure
           </h2>
-          <pre className="mb-8 text-left font-normal text-gray-500 dark:text-gray-400 sm:text-sm md:text-lg lg:text-xl">
+          <pre className="pb-8 text-left font-normal text-gray-500 dark:text-gray-400 sm:text-sm md:text-lg lg:text-xl">
             {project.structure}
           </pre>
         </div>
@@ -135,8 +129,7 @@ export const ProjectDetail = ({ project }: { project: ProjectProps }) => {
             ))}
           </ul>
         </div>
-
-        <div className="container mb-[50px] w-[400px] rounded-md bg-zinc-100 p-4 dark:bg-neutral-600 lg:w-[600px]">
+        <div className="container mb-[50px] rounded-lg bg-zinc-100 p-4 dark:bg-neutral-600 lg:w-[650px]">
           <h2 className="mb-4 mt-4 flex items-center justify-start text-left text-xl font-bold leading-none -tracking-tight text-slate-900 dark:text-white lg:text-2xl">
             Installation
           </h2>
@@ -151,7 +144,6 @@ export const ProjectDetail = ({ project }: { project: ProjectProps }) => {
             {project.installation.frontend}
           </pre>
         </div>
-
         <div className="container mx-3 mt-3 flex flex-row items-center justify-start text-left sm:flex-col">
           <h2 className="text-xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-2xl">
             API Endpoints
@@ -177,7 +169,8 @@ export const ProjectDetail = ({ project }: { project: ProjectProps }) => {
             </tbody>
           </table>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
+export default ProjectDetail;

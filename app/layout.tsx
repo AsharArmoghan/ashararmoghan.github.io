@@ -29,12 +29,12 @@ export default function RootLayout({
           "flex min-h-screen flex-col antialiased",
         )}
       >
-        <Template>
-          <ThemeProvider>
+        <ThemeProvider>
+          <Template>
             <Toaster position="bottom-center" />
             <main className="grow">{children}</main>
-          </ThemeProvider>
-        </Template>
+          </Template>
+        </ThemeProvider>
       </body>
     </html>
   );

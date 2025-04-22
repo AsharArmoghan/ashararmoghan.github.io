@@ -78,7 +78,7 @@ const HeaderBlock = () => (
       alt="avatar"
       width={56}
       height={56}
-      className="mb-4 rounded-full object-cover"
+      className="mb-4 rounded-full object-contain"
     />
     <h1 className="mb-12 text-4xl font-medium leading-tight text-zinc-50">
       Hi, I&apos;m Ashar.{" "}
@@ -169,8 +169,8 @@ const AboutBlock = () => (
     <p>
       My passion is building cool stuff.{" "}
       <span className="text-neutral-400 dark:text-zinc-400">
-        I build primarily with React, Tailwind CSS, and Framer Motion. I love
-        this stack so much that I even built a website about it.
+        I build primarily with React, Angular, Material Design CSS, and Framer
+        Motion.
       </span>
     </p>
   </Block>

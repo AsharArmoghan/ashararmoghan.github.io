@@ -4,11 +4,7 @@ export interface ProjectProps {
   title: string;
   description: string;
   image: ImageProp[];
-  icons: {
-    name: string;
-    component: React.ComponentType<{ className?: string }>;
-    color: string;
-  }[];
+  icons: Icon[];
   projectRequirement: string[];
   approach: string[];
   challenges: { Challenge: string[]; Solution: string[] }[];
@@ -26,4 +22,10 @@ export interface ImageProp {
   imgSrc: string;
   width: number;
   height: number;
+}
+
+export interface Icon {
+  name: string;
+  component: string;
+  color: string;
 }
