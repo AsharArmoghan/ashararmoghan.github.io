@@ -1,50 +1,59 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Home } from "./home/home";
 import About from "./about/page";
 import Header from "./components/Header/header";
 import Projects from "./projects/page";
 import ArticleList from "./articles/page";
 import { Section, SectionName } from "@/lib/Types/HeaderProps";
+import Footer from "./components/Footer/footer";
 
 const Main = () => {
-  const [activeSection, setActiveSection] = useState<SectionName>("home");
+  const [activeSection, setActiveSection] = useState<SectionName>();
 
   const scrollToSection = (section: SectionName) => {
     const sectionData = sections.find((s) => s.id === section);
-    if (sectionData && sectionData.ref.current) {
+    if (sectionData.ref.current) {
       sectionData.ref.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
   };
-  const sections: Section[] = [
-    {
-      id: "home",
-      label: "Home",
-      ref: useRef<HTMLDivElement>(null),
-      component: <Home />,
-    },
-    {
-      id: "projects",
-      label: "Projects",
-      ref: useRef<HTMLDivElement>(null),
-      component: <Projects />,
-    },
-    {
-      id: "articles",
-      label: "Articles",
-      ref: useRef<HTMLDivElement>(null),
-      component: <ArticleList />,
-    },
-    {
-      id: "about",
-      label: "About",
-      ref: useRef<HTMLDivElement>(null),
-      component: <About />,
-    },
-  ];
+  const homeRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const articlesRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+
+  const sections: Section[] = useMemo(
+    () => [
+      {
+        id: "home",
+        label: "Home",
+        ref: homeRef,
+        component: <Home />,
+      },
+      {
+        id: "projects",
+        label: "Projects",
+        ref: projectsRef,
+        component: <Projects />,
+      },
+      {
+        id: "articles",
+        label: "Articles",
+        ref: articlesRef,
+        component: <ArticleList />,
+      },
+      {
+        id: "about",
+        label: "About",
+        ref: aboutRef,
+        component: <About />,
+      },
+    ],
+    [homeRef, projectsRef, articlesRef, aboutRef],
+  );
 
   useEffect(() => {
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
@@ -65,7 +74,7 @@ const Main = () => {
         if (section.ref.current) observer.unobserve(section.ref.current);
       });
     };
-  }, []);
+  }, [sections]);
 
   // useEffect(() => {
   //   // console.log("Active Section:", activeSection); // Debug log
@@ -83,6 +92,8 @@ const Main = () => {
           {section.component}
         </section>
       ))}
+
+      <Footer />
     </section>
   );
 };

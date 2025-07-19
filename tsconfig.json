@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["mdx"],
     "plugins": [
       {
         "name": "next"
@@ -29,7 +30,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/types/app/about/page.ts",
-    "next.config.mjs"
+    "next.config.ts",
+    "app/components/Card/imageCardSlider/ImageResizer.jsx"
   ],
   "exclude": ["node_modules"]
 }

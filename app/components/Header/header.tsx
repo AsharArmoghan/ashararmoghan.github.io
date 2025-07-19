@@ -5,7 +5,7 @@ import { HeaderProps, Section } from "@/lib/Types/HeaderProps";
 import Logo from "../Logo/Logo";
 import { motion } from "framer-motion";
 import ThemeToggle from "../Theme/theme-toggle";
-import MobileNav from "../SideBar/sideNav";
+import MobileNav from "../SideBar/sideNavButton";
 
 const Header: React.FC<HeaderProps> = ({
   scrollToSection,
@@ -15,9 +15,9 @@ const Header: React.FC<HeaderProps> = ({
   // const [activeSection, setActiveSection] = useState<SectionName>("home");
 
   return (
-    <header className="header sticky top-0 z-10 h-[100px] w-full border-b border-zinc-200 bg-primary-white py-5 dark:border-zinc-900 dark:bg-primary-black md:border-none">
+    <header className="header top-0 h-0 scroll-smooth border-b bg-primary-white dark:bg-primary-black md:border-none">
       <div className="flex items-center justify-center">
-        <div className="flex flex-row items-center justify-around gap-4 rounded-xl border-black/15 px-3 dark:border-white/15 sm:w-full md:w-[550px] md:border md:p-2.5">
+        <div className="dark:bg-primary-black/10 fixed top-[0px] z-10 flex h-[57.5px] flex-row items-center justify-around rounded-[20px] border-black/15 px-3 backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter dark:border-white/15 sm:w-full md:w-[550px] md:border md:p-2.5">
           <div className="md:hidden">
             <MobileNav
               scrollToSection={scrollToSection}
@@ -38,9 +38,11 @@ const Header: React.FC<HeaderProps> = ({
                   }}
                 >
                   <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    transition={{ ease: "easeInOut", duration: 0.2 }}
+                    whileHover={{
+                      scale: 1.2,
+                    }}
+                    whileTap={{ scale: 2.5 }}
+                    transition={{ ease: "backInOut", duration: 0.3 }}
                     className={`items-center px-3 text-[18px] leading-none transition-all ${activeSection === section.id ? "font-bold text-neutral-500 dark:text-neutral-400" : ""}`}
                   >
                     {section.label}
@@ -51,12 +53,15 @@ const Header: React.FC<HeaderProps> = ({
           </div>
           <motion.div
             className="items-center"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileTap={{ scale: 1.89 }}
+            animate
+            whileHover={{
+              rotate: 180,
+            }}
             transition={{
-              type: "spring",
-              visualDuration: 0.3,
-              bounce: 0.3,
+              type: "tween",
+              visualDuration: 2,
+              bounce: 1,
             }}
           >
             <ThemeToggle />

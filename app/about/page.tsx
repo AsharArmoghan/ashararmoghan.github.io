@@ -7,9 +7,8 @@ import { SiGithub, SiLinkedin, SiFiverr } from "react-icons/si";
 import { FaTwitter } from "react-icons/fa";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
-import Avatar from "@/public/images/authors/myAvatar.jpeg";
+import Avatar from "@/public/assets/images/authors/myAvatar.jpeg";
 import Logo from "../components/Logo/Logo";
-import Footer from "../components/Footer/footer";
 
 const About = () => {
   return (
@@ -31,7 +30,6 @@ const About = () => {
         <LocationBlock />
         <EmailListBlock />
       </motion.div>
-      <Footer />
     </div>
   );
 };

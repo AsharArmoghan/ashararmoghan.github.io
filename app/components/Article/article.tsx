@@ -5,7 +5,7 @@ import { Article } from "@/lib/Types/ArticleProps";
 const ArticleComponent: React.FC<{ article: Article }> = ({ article }) => {
   return (
     <motion.div
-      className="main min-w-[120px] rounded-lg bg-zinc-300 p-4 shadow-[9px_8px_2px_1px_#303030] dark:bg-zinc-700"
+      className="main min-w-[120px] scroll-smooth rounded-lg bg-zinc-300 p-4 shadow-[9px_8px_2px_1px_#303030] dark:bg-zinc-700"
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}

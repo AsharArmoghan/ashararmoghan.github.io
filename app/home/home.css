@@ -4,15 +4,15 @@
   align-items: center;
   background-size: cover;
 }
-.mainGradiant {
-  /* background-color: oklch(0% 0 360); */
-}
+/* .mainGradiant {
+  background-color: oklch(0% 0 360);
+} */
 .planet {
   @apply bg-[radial-gradient(50%_80%_at_80.8%_60.3%,white,var(--tw-color-secondary-planetLight)_37.7%,rgb(24,0,66))];
   @apply dark:bg-[radial-gradient(100%_100%_at_16.8%_18.3%,white,var(--tw-color-secondary-planetDark)_27.7%,rgb(24,0,66))];
   position: absolute;
-  height: 16rem;
-  width: 16rem;
+  height: 24rem;
+  width: 24rem;
 }
 .custom-shadow {
   @apply shadow-2xl;

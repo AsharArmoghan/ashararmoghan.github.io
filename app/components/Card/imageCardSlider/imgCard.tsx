@@ -6,7 +6,7 @@ import { FaCaretLeft, FaCaretRight } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { ImageProp } from "@/lib/Types/ProjectProps";
-import { spring } from "motion";
+// import ResponsiveCanvas from "./ResponsiveImage";
 type ImgCardProps = {
   image: ImageProp[];
 };
@@ -46,8 +46,8 @@ export const ImgCard: React.FC<ImgCardProps> = ({ image }) => {
     );
   };
   return (
-    <div className="conatiner mx-auto mb-10 flex items-center justify-center overflow-x-hidden sm:w-[450px] md:w-[900px] lg:w-[1200px]">
-      <div className="slideShow relative h-full w-full object-cover">
+    <div className="conatiner mx-auto mb-10 flex max-h-[630px] items-center justify-center overflow-x-hidden sm:w-[550px] md:w-[900px] lg:w-[1200px]">
+      <div className="slideShow relative w-full object-cover">
         <AnimatePresence mode="popLayout" initial={false} custom={direction}>
           <motion.div
             variants={variants}
@@ -56,15 +56,27 @@ export const ImgCard: React.FC<ImgCardProps> = ({ image }) => {
             exit="exit"
             key={currentIndex}
             custom={direction}
-            transition={{ type: spring, bounce: 0.4, duration: 0.3 }}
+            transition={{ type: "tween", bounce: 0.4, duration: 0.3 }}
           >
-            <Image
-              src={image[currentIndex].imgSrc}
-              width={image[currentIndex].width}
-              height={image[currentIndex].height}
+            <button
               className="rounded-lg shadow-md"
-              alt={`Slide ${currentIndex + 1}`}
-            />
+              onClick={() => {
+                const imgElement = document.getElementById("image");
+                if (imgElement) {
+                  imgElement.requestFullscreen();
+                }
+              }}
+            >
+              <Image
+                rel="preload"
+                src={image[currentIndex].imgSrc}
+                width={image[currentIndex].width}
+                height={image[currentIndex].height}
+                className="rounded-lg shadow-md"
+                id="image"
+                alt={`Slide ${currentIndex + 1}`}
+              />
+            </button>
             <button
               onClick={prevImage}
               className="prev absolute left-[16px] top-1/2 translate-y-1/2 cursor-pointer rounded-full border-none bg-zinc-400 text-[40px] dark:bg-zinc-600 sm:text-[30px]"

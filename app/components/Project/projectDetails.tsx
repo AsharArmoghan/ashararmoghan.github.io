@@ -8,8 +8,8 @@ import AnimatedText from "../Theme/animatedText";
 
 const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
   return (
-    <div className="my-4 flex h-full flex-col items-center justify-center text-wrap sm:w-full sm:overflow-x-hidden md:w-[100%-35rem]">
-      <div className="sm:h-[270px] md:h-[450px] lg:h-[600px]">
+    <div className="my-4 flex h-full flex-col items-center justify-center scroll-smooth text-wrap sm:w-full sm:overflow-x-hidden md:w-[100%-40rem]">
+      <div className="mb-auto sm:h-[270px] md:h-[450px] lg:h-[600px]">
         <ImgCard image={project.image}></ImgCard>
       </div>
 
@@ -19,7 +19,8 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
             {project.title}
           </h2>
           <AnimatedText
-            delay={0.5}
+            delay={0.2}
+            stagger={0.5}
             className="mb-8 text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl"
           >
             {project.description}
@@ -32,9 +33,9 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
           <h2 className="pb-8 text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-4xl">
             Project Requirements
           </h2>
-          <ul className="list-inside list-decimal space-y-2">
+          <ul className="list-inside list-disc space-y-2">
             {project.projectRequirement.map((requirement, index) => (
-              <AnimatedText key={index} delay={0.3} stagger={0.3} className="">
+              <AnimatedText key={index} delay={0.2} stagger={0.5} className="">
                 <li className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter">
                   {requirement}
                 </li>
@@ -48,7 +49,7 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
           </h2>
           <ul className="list-inside list-disc space-y-2">
             {project.approach.map((approach, index) => (
-              <AnimatedText key={index} stagger={0.2} className="">
+              <AnimatedText key={index} stagger={0.5} delay={0.2} className="">
                 <li className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter">
                   {approach}
                 </li>
@@ -70,10 +71,10 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
                 <div key={index} className="mb-2">
                   <AnimatedText delay={0.2} stagger={0.5}>
                     {" "}
-                    <p className="font-semibold text-neutral-500 dark:text-neutral-400">
-                      {" 🔹 "}
-                      {challenge}
-                    </p>
+                    <ul className="list-outside list-disc font-semibold text-neutral-500 dark:text-neutral-400">
+                      {/* {" 🔹 "} */}
+                      <li>{challenge}</li>
+                    </ul>
                   </AnimatedText>
                   <p className="pl-4 text-zinc-500"> {item.Solution[index]}</p>
                 </div>
@@ -119,7 +120,7 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
           <h2 className="mb-4 mt-4 flex items-center justify-start text-left text-xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-2xl">
             📦 Setup & Installation
           </h2>
-          <ul className="list-disc">
+          <ul className="list-inside list-disc">
             {project.setupSteps.map((step, idx) => (
               <li
                 key={idx}
@@ -129,12 +130,12 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
             ))}
           </ul>
         </div>
-        <div className="container mb-[50px] rounded-lg bg-zinc-100 p-4 dark:bg-neutral-600 lg:w-[650px]">
+        <div className="container mb-[50px] rounded-lg bg-zinc-100 p-4 dark:bg-neutral-600 md:w-full lg:w-[650px]">
           <h2 className="mb-4 mt-4 flex items-center justify-start text-left text-xl font-bold leading-none -tracking-tight text-slate-900 dark:text-white lg:text-2xl">
             Installation
           </h2>
           <h3 className="font-semibold">Backend</h3>
-          <pre className="rounded bg-slate-300 p-2 dark:bg-slate-700">
+          <pre className="rounded bg-slate-300 p-2 dark:bg-slate-700 md:w-[100%]">
             {project.installation.backend}
           </pre>
           <h3 className="mb-4 mt-4 flex items-center justify-start text-left text-xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-2xl">
@@ -154,6 +155,7 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
                 <th className="border p-2">Method</th>
                 <th className="border p-2">Route</th>
                 <th className="border p-2">Description</th>
+                <th className="border p-2">AuthRequired</th>
               </tr>
             </thead>
             <tbody>
@@ -164,6 +166,7 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
                   </td>
                   <td className="border p-2">{endpoint.route}</td>
                   <td className="border p-2">{endpoint.description}</td>
+                  <td className="border p-2">{endpoint.authRequired}</td>
                 </tr>
               ))}
             </tbody>

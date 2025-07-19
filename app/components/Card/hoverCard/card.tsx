@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { ProjectProps } from "@/lib/Types/ProjectProps";
+// import ResponsiveCanvas from "../imageCardSlider/ResponsiveImage";
 interface CardProps {
   ProjectProps: ProjectProps;
 }
@@ -75,14 +76,6 @@ export const Card: React.FC<CardProps> = ({ ProjectProps }) => {
           }}
           className="mx-auto sm:w-[350px] md:w-[550px] lg:w-[700px]"
         />
-        {/* <p
-          style={{
-            transform: "translateZ(50px)",
-          }}
-          className="text-center text-2xl font-bold"
-        >
-          HOVER ME
-        </p> */}
       </div>
     </motion.div>
   );

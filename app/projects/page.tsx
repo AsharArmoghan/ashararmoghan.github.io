@@ -10,7 +10,7 @@ import AnimatedText from "../components/Theme/animatedText";
 
 const Projects: React.FC = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-primary-white pt-3 dark:bg-primary-black dark:text-zinc-300">
+    <div className="flex min-h-screen flex-col items-center justify-center scroll-smooth bg-primary-white pt-3 dark:bg-primary-black dark:text-zinc-300">
       <div className="py-3 text-zinc-800 dark:text-zinc-300 lg:my-20">
         <h1 className="mb-12 flex items-center justify-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
           Things I&apos;ve Built

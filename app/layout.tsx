@@ -13,7 +13,7 @@ import { Template } from "./components/Template/template";
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description: "Hi! I'am Ashar,This is My Portfolio",
+  description: "I'am Ashar,This is My Portfolio",
 };
 
 export default function RootLayout({

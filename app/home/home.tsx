@@ -1,7 +1,7 @@
 "use client";
 import "./home.css";
-// import star from "@/public/images/stars2.jpg";, useTransform, useScroll
 import { motion } from "framer-motion";
+import planet from "@/public/assets/images/planet.png";
 
 export const Home = () => {
   // const scrollRef = useRef(null);
@@ -17,7 +17,7 @@ export const Home = () => {
   // );
   return (
     <motion.section
-      className="mainSection flex h-[700px] flex-grow-0 bg-primary-white pb-4 [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] dark:bg-primary-black dark:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:h-[920px]"
+      className="mainSection flex h-[700px] flex-grow-0 scroll-smooth pb-4 [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] dark:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:h-[920px]"
       // style={{
       //   backgroundImage: `url(${star})`,
       //   backgroundRepeat: "repeat-x",
@@ -26,7 +26,14 @@ export const Home = () => {
     >
       <div className="mainGradiant absolute inset-0 bg-primary-white dark:bg-primary-black"></div>
       {/* planet */}
-      <div className="planet custom-shadow left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15 md:h-96 md:w-96"></div>
+      <div
+        className="planet left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full md:h-96 md:w-96"
+        style={{
+          backgroundImage: `url(${planet.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
       {/* Rings Start*/}
       <motion.div
         style={{
@@ -45,7 +52,7 @@ export const Home = () => {
       >
         <div className="absolute left-0 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-black dark:bg-primary-white"></div>
         <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-black dark:bg-primary-white"></div>
-        <div className="absolute left-1/2 top-full inline-flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-zinc-900 opacity-50 dark:border-slate-50">
+        <div className="absolute left-1/2 top-full flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-zinc-900 opacity-50 dark:border-slate-50">
           <div className="h-2 w-2 rounded-full bg-primary-black dark:bg-primary-white"></div>
         </div>
         <div className="absolute left-1/2 top-1/2 h-[444px] w-[444px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-zinc-900 dark:border-slate-50 md:h-[780px] md:w-[780px]"></div>
@@ -67,7 +74,7 @@ export const Home = () => {
       >
         <div className="absolute left-1/2 top-full h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-black dark:bg-primary-white"></div>
         <div className="absolute left-full top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-black dark:bg-primary-white"></div>
-        <div className="absolute left-0 top-1/2 inline-flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-zinc-900 dark:border-slate-50">
+        <div className="absolute left-0 top-1/2 flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-zinc-900 dark:border-slate-50">
           <div className="h-2 w-2 rounded-full bg-primary-black dark:bg-primary-white"></div>
         </div>
       </motion.div>

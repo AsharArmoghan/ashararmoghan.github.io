@@ -6,7 +6,7 @@ const Logo = ({ color }) => {
       height="40"
       viewBox="0 0 50 39"
       fill="none"
-      className={`mx-auto mb-12 ${color} `}
+      className={`mx-auto mb-12 ${color}`}
     >
       <path
         d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z"
