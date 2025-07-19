@@ -1,6 +1,6 @@
 # Portfolio Website 🌐
 
-![Portfolio Website Screenshot](./screenshot.png)
+
 
 ## Overview ✨
 
@@ -30,55 +30,24 @@ This is a modern and responsive portfolio website built using **Next.js** with *
 Follow these steps to set up the project locally:
 
 1. **Clone the repository**:
-<<<<<<< HEAD
-
-=======
->>>>>>> baab79b931e4fa781bb3693629c5d1450e050943
-   ```bash
+ ```
    git clone https://github.com/your-username/portfolio-website.git
-   cd portfolio-website
    ```
+cd portfolio-website
 
-2. **Install dependencies**:
-<<<<<<< HEAD
-
-=======
->>>>>>> baab79b931e4fa781bb3693629c5d1450e050943
-   ```bash
+3. **Install dependencies**:
+   ```
    npm install
-   # or
-   yarn install
    ```
 
-3. **Environment Variables**:
-   Create a `.env.local` file in the root of the project and configure the following variables:
-<<<<<<< HEAD
-
-=======
->>>>>>> baab79b931e4fa781bb3693629c5d1450e050943
-   ```env
-   NEXT_PUBLIC_API_URL=https://your-api-url.com
-   NEXT_PUBLIC_API_KEY=your-api-key
-   ```
-
-4. **Run the development server**:
-<<<<<<< HEAD
-
-=======
->>>>>>> baab79b931e4fa781bb3693629c5d1450e050943
-   ```bash
+5. **Run the development server**:
+ ```
    npm run dev
-   # or
-   yarn dev
    ```
-<<<<<<< HEAD
-
-=======
->>>>>>> baab79b931e4fa781bb3693629c5d1450e050943
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-5. **Build for production**:
-   ```bash
+6. **Build for production**:
+   ```
    npm run build
    npm start
    ```
@@ -114,42 +83,21 @@ The project is designed to be deployed on [Vercel](https://vercel.com/):
 
 ## Screenshots 📸
 
-![Homepage](./public/screenshots/homepage.png)
-![Projects Section](./public/screenshots/projects.png)
+![Homepage](./public/assets/Portfolio_1.png)
+![About](./public/assets/Portfolio_3.png)
+![Projects](./public/assets/Portfolio_2.png)
+
 
 ## Contributing 🤝
 
 Contributions are welcome! Feel free to fork the repository and submit a pull request.
 
-1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add your message here"
-   ```
-4. Push the branch:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-5. Open a pull request.
-
-<<<<<<< HEAD
-## Contact 📬
-
 =======
 
 ## Contact 📬
 
->>>>>>> baab79b931e4fa781bb3693629c5d1450e050943
 If you have any questions or suggestions, feel free to reach out:
 
 - **Email**: ashararmoghan09@gmail.com
-- **Portfolio**: https://ashararmoghan.github.io/portfolio/
-- **GitHub**: https://github.com/AsharArmoghan/portfolio
-<<<<<<< HEAD
-=======
-  
->>>>>>> baab79b931e4fa781bb3693629c5d1450e050943
+- **Portfolio**: https://ashararmoghan.github.io
+- **GitHub**: https://github.com/AsharArmoghan
