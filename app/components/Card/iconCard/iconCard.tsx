@@ -33,7 +33,7 @@ export const IconCardComponent: React.FC<{ Icon: { icon: Icon[] } }> = ({
                 transition={{
                   type: "spring",
                   visualDuration: 0.3,
-                  dumping: 100,
+                  damping: 80,
                   bounce: 1,
                 }}
                 title={icon.name}

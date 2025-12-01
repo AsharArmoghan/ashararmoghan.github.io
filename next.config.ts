@@ -4,40 +4,6 @@ const isProd = process.env.NODE_ENV === "production";
 const nextConfig = {
   reactStrictMode: false,
 
-  // Turbopack configuration (valid keys only)
-  turbopack: {
-    resolveAlias: {
-      "@svgr/webpack": require.resolve("@svgr/webpack"),
-    },
-    loaders: [
-      {
-        test: /\.svg$/i,
-        resourceQuery: { not: [/url/] },
-        use: [
-          {
-            loader: "@svgr/webpack",
-            options: {
-              svgo: false,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.svg$/i,
-        resourceQuery: /url/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[name].[hash].[ext]",
-            },
-          },
-        ],
-      },
-    ],
-  },
-
-  // Webpack fallback for production builds
   webpack(config) {
     config.cache = false;
     const fileLoaderRule = config.module.rules.find((rules) =>
@@ -69,7 +35,6 @@ const nextConfig = {
 
     return config;
   },
-  appdir: true,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     unoptimized: true,
