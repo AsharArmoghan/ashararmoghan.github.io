@@ -46,7 +46,7 @@ export const ImgCard: React.FC<ImgCardProps> = ({ image }) => {
     );
   };
   return (
-    <div className="conatiner mx-auto mb-10 flex max-h-[630px] items-center justify-center overflow-x-hidden sm:w-[550px] md:w-[900px] lg:w-[1200px]">
+    <div className="conatiner mx-auto mb-10 flex max-h-[630px] items-center justify-center overflow-x-hidden sm:w-[420px] md:w-[900px] lg:w-[1200px]">
       <div className="slideShow relative w-full object-cover">
         <AnimatePresence mode="popLayout" initial={false} custom={direction}>
           <motion.div

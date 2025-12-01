@@ -1,7 +1,7 @@
 {
   "homepage": "https://ashararmoghan.github.io",
   "name": "ashararmoghan.github.io",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "set TURBOPACK_SOURCEMAP=without-urls&& next dev --turbopack --port 4000",

@@ -155,7 +155,6 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
                 <th className="border p-2">Method</th>
                 <th className="border p-2">Route</th>
                 <th className="border p-2">Description</th>
-                <th className="border p-2">AuthRequired</th>
               </tr>
             </thead>
             <tbody>
@@ -166,7 +165,6 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
                   </td>
                   <td className="border p-2">{endpoint.route}</td>
                   <td className="border p-2">{endpoint.description}</td>
-                  <td className="border p-2">{endpoint.authRequired}</td>
                 </tr>
               ))}
             </tbody>

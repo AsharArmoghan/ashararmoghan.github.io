@@ -4,7 +4,11 @@ import { motion } from "framer-motion";
 import planet from "@/public/assets/images/planet.png";
 
 export const Home = () => {
-  // const scrollRef = useRef(null);
+  // const scrollRef = useRef(null);   // style={{
+  //   backgroundImage: `url(${star})`,
+  //   backgroundRepeat: "repeat-x",
+  //   backgroundPositionY,
+  // }}
 
   // const { scrollYProgress } = useScroll({
   //   target: scrollRef,
@@ -16,14 +20,7 @@ export const Home = () => {
   //   [-800, 800],
   // );
   return (
-    <motion.section
-      className="mainSection flex h-[700px] flex-grow-0 scroll-smooth pb-4 [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] dark:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:h-[920px]"
-      // style={{
-      //   backgroundImage: `url(${star})`,
-      //   backgroundRepeat: "repeat-x",
-      //   backgroundPositionY,
-      // }}
-    >
+    <motion.section className="mainSection flex h-[700px] flex-grow-0 scroll-smooth pb-4 [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] dark:[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] md:h-[920px]">
       <div className="mainGradiant absolute inset-0 bg-primary-white dark:bg-primary-black"></div>
       {/* planet */}
       <div

@@ -9,7 +9,7 @@ import { Section, SectionName } from "@/lib/Types/HeaderProps";
 import Footer from "./components/Footer/footer";
 
 const Main = () => {
-  const [activeSection, setActiveSection] = useState<SectionName>();
+  const [activeSection, setActiveSection] = useState<SectionName>("home");
 
   const scrollToSection = (section: SectionName) => {
     const sectionData = sections.find((s) => s.id === section);
@@ -17,6 +17,7 @@ const Main = () => {
       sectionData.ref.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
+        inline: "center",
       });
     }
   };

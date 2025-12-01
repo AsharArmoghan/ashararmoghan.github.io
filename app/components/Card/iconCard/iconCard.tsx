@@ -16,7 +16,7 @@ export const IconCardComponent: React.FC<{ Icon: { icon: Icon[] } }> = ({
           animate={{ x: ["50%", "-50%"] }}
           transition={{
             repeat: Infinity,
-            duration: 35,
+            duration: 18,
             ease: "linear",
             opacity: { duration: 1 },
           }}
@@ -28,12 +28,13 @@ export const IconCardComponent: React.FC<{ Icon: { icon: Icon[] } }> = ({
             return (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 1.3 }}
                 transition={{
                   type: "spring",
                   visualDuration: 0.3,
-                  bounce: 0.3,
+                  dumping: 100,
+                  bounce: 1,
                 }}
                 title={icon.name}
                 className="flex-shrink-0 items-center justify-center text-gray-700"
