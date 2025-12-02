@@ -1,4 +1,4 @@
-import { ProjectProps } from "@/lib/Types/ProjectProps";
+import { ProjectProps } from "@/app/lib/Types/ProjectProps";
 // import thumbBlog from "/images/thumb_blog.webp";
 import codeBlog1 from "@/public/assets/images/codeblog1.png";
 import codeBlog2 from "@/public/assets/images/codeblog2.png";

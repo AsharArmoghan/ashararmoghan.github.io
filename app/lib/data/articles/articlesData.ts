@@ -1,4 +1,4 @@
-import { Article } from "@/lib/Types/ArticleProps";
+import { Article } from "@/app/lib/Types/ArticleProps";
 
 export const ArticlesData: Article[] = [
   {
