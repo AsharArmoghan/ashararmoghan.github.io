@@ -4,6 +4,7 @@ import "./globals.css";
 import { twMerge } from "tailwind-merge";
 import { Toaster } from "react-hot-toast";
 import ThemeProvider from "@/app/components/Theme/providers";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 // const playfair = Playfair_Display({
 //   subsets: ["latin"],
@@ -61,6 +62,7 @@ export default function RootLayout({
             </Template>
           </ThemeProvider>
         </LenisProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
