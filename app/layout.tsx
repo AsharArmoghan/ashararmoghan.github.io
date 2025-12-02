@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 // });
 import { Template } from "./components/Template/template";
 import Script from "next/script";
+import { LenisProvider } from "./providers/LenisProvider";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -52,12 +53,14 @@ export default function RootLayout({
           "flex min-h-screen flex-col antialiased",
         )}
       >
-        <ThemeProvider>
-          <Template>
-            <Toaster position="bottom-center" />
-            <main className="grow">{children}</main>
-          </Template>
-        </ThemeProvider>
+        <LenisProvider>
+          <ThemeProvider>
+            <Template>
+              <Toaster position="bottom-center" />
+              <main className="grow">{children}</main>
+            </Template>
+          </ThemeProvider>
+        </LenisProvider>
       </body>
     </html>
   );

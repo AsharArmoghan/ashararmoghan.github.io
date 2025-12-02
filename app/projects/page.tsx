@@ -3,7 +3,7 @@ import React from "react";
 import Card from "../components/Card/hoverCard/card";
 import { motion } from "framer-motion";
 import "../projects/projects.css";
-import { projectData } from "@/lib/data/projects/projectsData";
+import { projectData } from "../lib/data/projects/projectsData";
 import Link from "next/link";
 import { IconCardComponent } from "../components/Card/iconCard/iconCard";
 import AnimatedText from "../components/Theme/animatedText";

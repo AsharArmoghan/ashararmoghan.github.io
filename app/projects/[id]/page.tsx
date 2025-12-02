@@ -1,4 +1,4 @@
-import { projectData } from "@/lib/data/projects/projectsData";
+import { projectData } from "../../lib/data/projects/projectsData";
 import Link from "next/link";
 import ProjectDetail from "@/app/components/Project/projectDetails";
 import Footer from "@/app/components/Footer/footer";

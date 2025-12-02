@@ -5,7 +5,7 @@ import About from "./about/page";
 import Header from "./components/Header/header";
 import Projects from "./projects/page";
 import ArticleList from "./articles/page";
-import { Section, SectionName } from "@/lib/Types/HeaderProps";
+import { Section, SectionName } from "./lib/Types/HeaderProps";
 import Footer from "./components/Footer/footer";
 
 const Main = () => {
@@ -76,11 +76,6 @@ const Main = () => {
       });
     };
   }, [sections]);
-
-  // useEffect(() => {
-  //   // console.log("Active Section:", activeSection); // Debug log
-  // }, [activeSection]);
-
   return (
     <section className="min-h-screen w-full overflow-x-hidden">
       <Header
