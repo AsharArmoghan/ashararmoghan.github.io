@@ -7,7 +7,7 @@ import {
   useSpring,
 } from "framer-motion";
 import Image from "next/image";
-import { ProjectProps } from "@/lib/Types/ProjectProps";
+import { ProjectProps } from "@/app/lib/Types/ProjectProps";
 // import ResponsiveCanvas from "../imageCardSlider/ResponsiveImage";
 interface CardProps {
   ProjectProps: ProjectProps;

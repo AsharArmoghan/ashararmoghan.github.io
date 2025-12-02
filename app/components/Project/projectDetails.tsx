@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ProjectProps } from "@/lib/Types/ProjectProps";
+import { ProjectProps } from "@/app/lib/Types/ProjectProps";
 import { ImgCard } from "../Card/imageCardSlider/imgCard";
 import { motion } from "framer-motion";
 import { IconCardComponent } from "../Card/iconCard/iconCard";

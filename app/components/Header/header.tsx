@@ -1,7 +1,7 @@
 "use client";
 
 import "@/app/components/Header/header.css";
-import { HeaderProps, Section } from "@/lib/Types/HeaderProps";
+import { HeaderProps, Section } from "@/app/lib/Types/HeaderProps";
 import Logo from "../Logo/Logo";
 import { motion } from "framer-motion";
 import ThemeToggle from "../Theme/theme-toggle";

@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { VscChromeClose } from "react-icons/vsc";
-import { SideMenuProps, SectionName } from "@/lib/Types/HeaderProps";
+import { SideMenuProps, SectionName } from "@/app/lib/Types/HeaderProps";
 
 const sections: SectionName[] = ["home", "projects", "articles", "about"];
 

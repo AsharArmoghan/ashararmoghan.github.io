@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import SideMenu from "./sideMenu";
 import { RiMenu2Fill } from "react-icons/ri";
-import { HeaderProps } from "@/lib/Types/HeaderProps";
+import { HeaderProps } from "@/app/lib/Types/HeaderProps";
 import { motion, AnimatePresence } from "framer-motion";
 import { spring } from "motion";
 
