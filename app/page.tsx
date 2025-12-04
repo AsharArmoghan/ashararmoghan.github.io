@@ -7,12 +7,7 @@ import Projects from "./projects/page";
 import ArticleList from "./articles/page";
 import { Section, SectionName } from "./lib/Types/HeaderProps";
 import Footer from "./components/Footer/footer";
-import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Ashar | Building Scalable Web Solutions",
-  description:
-    "Hi, I'm Ashar. I build cool websites and scalable applications using Next.js, React, Angular, and Node.js. Explore my work.",
-};
+
 const Main = () => {
   const [activeSection, setActiveSection] = useState<SectionName>("home");
 
