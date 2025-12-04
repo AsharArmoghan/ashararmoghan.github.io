@@ -16,7 +16,7 @@ import { LenisProvider } from "./providers/LenisProvider";
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description: "I'am Ashar,This is My Portfolio",
+  description: "I am Ashar,This is My Portfolio",
 };
 
 export default function RootLayout({
@@ -28,6 +28,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Analytics Script */}
+        <meta
+          name="google-site-verification"
+          content="YqVGkuZ9GRJr_fSb_-7UjxOZnMnGWrNx7JyXx5az1A4"
+        />
         <Script
           async
           strategy="afterInteractive"

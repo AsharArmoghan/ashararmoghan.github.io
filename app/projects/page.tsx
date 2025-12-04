@@ -7,14 +7,19 @@ import { projectData } from "../lib/data/projects/projectsData";
 import Link from "next/link";
 import { IconCardComponent } from "../components/Card/iconCard/iconCard";
 import AnimatedText from "../components/Theme/animatedText";
+import TextReveal from "../utils/TextRevel";
 
 const Projects: React.FC = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center scroll-smooth bg-primary-white pt-3 dark:bg-primary-black dark:text-zinc-300">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-primary-white pt-3 dark:bg-primary-black dark:text-zinc-300">
       <div className="py-3 text-zinc-800 dark:text-zinc-300 lg:my-20">
-        <h1 className="mb-12 flex items-center justify-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-          Things I&apos;ve Built
-        </h1>
+        <div className="mb-12 flex items-center justify-center font-extrabold leading-none tracking-tight text-gray-900 dark:text-white">
+          <TextReveal delay={1}>
+            <h2 className="text-[4vw] md:text-[5vw] lg:text-[8vw]">
+              Things I&apos;ve Built
+            </h2>
+          </TextReveal>
+        </div>
         <hr className="mx-auto my-4 h-1 w-60 rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 md:my-10"></hr>
       </div>
 

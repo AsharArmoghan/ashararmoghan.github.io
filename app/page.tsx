@@ -77,7 +77,7 @@ const Main = () => {
     };
   }, [sections]);
   return (
-    <section className="min-h-screen w-full overflow-x-hidden">
+    <section className="">
       <Header
         scrollToSection={scrollToSection}
         activeSection={activeSection}

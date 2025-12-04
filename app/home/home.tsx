@@ -2,8 +2,12 @@
 import "./home.css";
 import { motion } from "framer-motion";
 import planet from "@/public/assets/images/planet.png";
+import ScrambleText from "../utils/ScrambleText";
 
 export const Home = () => {
+  const texts = [
+    " Live with intention, create with passion, and move with purpose. ",
+  ];
   // const scrollRef = useRef(null);   // style={{
   //   backgroundImage: `url(${star})`,
   //   backgroundRepeat: "repeat-x",
@@ -80,9 +84,15 @@ export const Home = () => {
         <h1 className="mainText bg-gradient-to-bl from-slate-800 via-orange-100 to-slate-800 bg-clip-text text-center text-6xl font-semibold leading-none tracking-tighter text-transparent sm:h-auto md:text-[80px] md:leading-none lg:h-[95px]">
           Building Scalable Web Solutions
         </h1>
-        <p className="animate-glow mx-auto mt-5 max-w-xl bg-clip-text text-center text-lg font-semibold leading-none text-transparent text-zinc-500 dark:text-slate-300 md:text-xl">
-          Live with intention, create with passion, and move with purpose.
-        </p>
+        <div className="mt-35 mx-auto max-w-xl bg-clip-text text-center text-lg text-transparent text-zinc-500 dark:text-slate-300 md:text-xl">
+          <ScrambleText
+            repeat={-1}
+            texts={texts}
+            color="text-off-white"
+            font="font-semibold leading-none tracking-tight"
+            navbarText=""
+          />
+        </div>
       </div>
     </motion.section>
   );
