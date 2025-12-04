@@ -6,17 +6,68 @@ import { Toaster } from "react-hot-toast";
 import ThemeProvider from "@/app/components/Theme/providers";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-// const playfair = Playfair_Display({
-//   subsets: ["latin"],
-//   variable: "--font-serif",
-// });
 import { Template } from "./components/Template/template";
 import Script from "next/script";
 import { LenisProvider } from "./providers/LenisProvider";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "I am Ashar,This is My Portfolio",
+  metadataBase: new URL("https://ashar-dev.vercel.app"),
+
+  title: {
+    default: "Ashar | Full-Stack Developer",
+    template: "%s | Ashar",
+  },
+  verification: {
+    google: "YqVGkuZ9GRJr_fSb_-7UjxOZnMnGWrNx7JyXx5az1A4",
+  },
+  description:
+    "Portfolio of Ashar, a Full-Stack Developer specializing in scalable web solutions with Next.js 15, React, and TypeScript. Based in Delhi, India.",
+  keywords: [
+    "Full Stack Developer",
+    "Next.js 15 Portfolio",
+    "React Developer",
+    "TypeScript",
+    "Tailwind CSS",
+    "Web Development Delhi",
+    "Software Engineer India",
+  ],
+  authors: [{ name: "Ashar" }],
+  creator: "Ashar",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://ashar-dev.vercel.app",
+    title: "Ashar | Full-Stack Developer",
+    description:
+      "Building scalable web solutions with Next.js 15, React, and Tailwind CSS.",
+    siteName: "Ashar Portfolio",
+    images: [
+      {
+        url: "/og-home.jpg", // Ensure this image exists in your public folder
+        width: 1200,
+        height: 630,
+        alt: "Ashar Portfolio Homepage",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ashar | Full-Stack Developer",
+    description: "Building scalable web solutions with Next.js 15 and React.",
+    images: ["/og-home.jpg"],
+    creator: "@your_twitter_handle", // Update this
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -28,10 +79,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Analytics Script */}
-        <meta
-          name="google-site-verification"
-          content="YqVGkuZ9GRJr_fSb_-7UjxOZnMnGWrNx7JyXx5az1A4"
-        />
         <Script
           async
           strategy="afterInteractive"

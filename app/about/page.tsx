@@ -9,6 +9,25 @@ import Image from "next/image";
 import { toast } from "react-hot-toast";
 import Avatar from "@/public/assets/images/authors/myAvatar.jpeg";
 import Logo from "../components/Logo/Logo";
+export const metadata = {
+  title: "About Me | Ashar - Full-Stack Developer",
+  description:
+    "Learn more about Ashar, a developer with 2+ years of experience in Flutter and React. Passionate about automation, AI, and building scalable solutions.",
+  keywords: [
+    "About Ashar",
+    "Software Engineer Bio",
+    "React Developer India",
+    "Flutter Developer Experience",
+    "Tech Stack",
+  ],
+  openGraph: {
+    title: "About Ashar | Developer Journey",
+    description:
+      "From mobile apps to full-stack web solutions. Read about my journey and technical expertise.",
+    url: "https://ashar-dev.vercel.app/about",
+    images: [{ url: "https://ashar-dev.vercel.app/og-about.jpg" }],
+  },
+};
 
 const About = () => {
   return (

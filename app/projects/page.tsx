@@ -8,6 +8,34 @@ import Link from "next/link";
 import { IconCardComponent } from "../components/Card/iconCard/iconCard";
 import AnimatedText from "../components/Theme/animatedText";
 import TextReveal from "../utils/TextRevel";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects | Code Blog, Portfolio ,React Dashboard and node.js Apps",
+  description:
+    "Explore my technical projectsand high-performance Next.js applications.",
+  openGraph: {
+    title: "Ashar's Projects",
+    description:
+      "Case studies: Secure Angular blogging platform, Next.js 15 Portfolio, and Mobile Apps.",
+    images: ["/og-projects.jpg"],
+  },
+  keywords: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Full-Stack Projects",
+    "Portfolio",
+    "Web Development",
+    "Node.js",
+    "Angular",
+    "Tailwind CSS",
+    "Project Showcase",
+    "Ashar's Projects",
+    "flutter",
+    "dart",
+  ],
+};
 
 const Projects: React.FC = () => {
   return (
