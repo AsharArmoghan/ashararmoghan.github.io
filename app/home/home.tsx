@@ -84,13 +84,8 @@ export const Home = () => {
         <h1 className="mainText bg-gradient-to-bl from-slate-800 via-orange-100 to-slate-800 bg-clip-text text-center text-6xl font-semibold leading-none tracking-tighter text-transparent sm:h-auto md:text-[80px] md:leading-none lg:h-[95px]">
           Building Scalable Web Solutions
         </h1>
-        <div className="mt-35 mx-auto max-w-xl bg-clip-text text-center text-lg text-transparent text-zinc-500 dark:text-slate-300 md:text-xl">
-          <ScrambleText
-            texts={texts}
-            color="text-off-white"
-            font="font-semibold leading-none tracking-tight"
-            navbarText=""
-          />
+        <div className="mt-35 mx-auto max-w-xl bg-clip-text text-center text-lg font-semibold leading-none tracking-tight text-transparent text-zinc-500 dark:text-slate-300 md:text-xl">
+          <ScrambleText texts={texts} navbarText="" />
         </div>
       </div>
     </motion.section>
