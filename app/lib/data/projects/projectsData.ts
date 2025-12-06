@@ -1,5 +1,4 @@
 import { ProjectProps } from "@/app/lib/Types/ProjectProps";
-// import thumbBlog from "/images/thumb_blog.webp";
 import codeBlog1 from "@/public/assets/images/codeblog1.png";
 import codeBlog2 from "@/public/assets/images/codeblog2.png";
 import dashboard_1 from "@/public/assets/images/dashboard/DashBoard_1.png";

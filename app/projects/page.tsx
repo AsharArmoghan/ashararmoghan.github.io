@@ -6,7 +6,6 @@ import "../projects/projects.css";
 import { projectData } from "../lib/data/projects/projectsData";
 import Link from "next/link";
 import { IconCardComponent } from "../components/Card/iconCard/iconCard";
-// import TextReveal from "../components/Theme/textReveal";
 import TextReveal from "../utils/TextRevel";
 
 const Projects: React.FC = () => {

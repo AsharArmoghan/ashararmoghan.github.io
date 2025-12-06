@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: "Ashar | Full-Stack Developer",
     description: "Building scalable web solutions with Next.js 15 and React.",
     images: ["/og-home.jpg"],
-    creator: "@your_twitter_handle", // Update this
+    creator: "https://x.com/SyedAshar09",
   },
   robots: {
     index: true,

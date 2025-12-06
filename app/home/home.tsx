@@ -89,7 +89,7 @@ export const Home = () => {
             texts={texts}
             color="text-off-white"
             font="font-semibold leading-none tracking-tight"
-            navbarText={texts}
+            navbarText=""
           />
         </div>
       </div>
