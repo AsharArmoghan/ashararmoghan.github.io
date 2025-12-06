@@ -41,8 +41,9 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
       y: 0,
       transition: {
         type: "spring",
-        stiffness: 90,
-        damping: 15,
+        stiffness: 300,
+        damping: 40,
+        resetDelta: 0.01,
         duration,
       },
     },
