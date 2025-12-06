@@ -1,5 +1,6 @@
 export interface ProjectProps {
   id: number;
+  slug?: string;
   author: string;
   title: string;
   description: string;

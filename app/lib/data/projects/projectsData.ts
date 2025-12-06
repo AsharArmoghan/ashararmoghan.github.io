@@ -22,6 +22,7 @@ export const projectData: ProjectProps[] = [
   {
     id: 1,
     title: "Code Blog ",
+    slug: "code-blog",
     description:
       "CodeBlog is a secure Angular blogging platform that empowers developers to create, share, and discover technical articles with role-based authorization, supported by a Node.js/Express backend using JWT authentication and middleware protection, while Angular's modular architecture, lazy loading, and dependency injection ensure high performance and seamless light/dark mode support.",
     author: "Ashar Armoghan",
@@ -203,6 +204,7 @@ export const projectData: ProjectProps[] = [
   {
     id: 2,
     title: "React Sales Dashboard ",
+    slug: "react-sales-dashboard",
     description:
       "React Sales Dashboard empowers sales teams with real-time analytics, dynamic visualizations, and interactive charts, backed by a secure Node.js/Express API with role-based authorization, JWT authentication, and middleware protection, while React hooks and context ensure efficient state management and enhanced frontend security.",
     author: "Ashar Armoghan",
@@ -444,6 +446,7 @@ export const projectData: ProjectProps[] = [
   {
     id: 3,
     title: "Portfolio",
+    slug: "portfolio",
     description:
       "A personal portfolio built using Next.js 15 (App Router) with Server-Side Rendering (SSR), dynamic routing, and MVC architecture, designed to showcase projects, skills, and experience. It supports SEO optimization, fast navigation, and clean code structure to make a strong impression on recruiters and clients.",
     author: "Ashar Armoghan",

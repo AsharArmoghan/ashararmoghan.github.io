@@ -4,7 +4,7 @@ import { ProjectProps } from "@/app/lib/Types/ProjectProps";
 import { ImgCard } from "../Card/imageCardSlider/imgCard";
 import { motion } from "framer-motion";
 import { IconCardComponent } from "../Card/iconCard/iconCard";
-import AnimatedText from "../Theme/animatedText";
+import TextReveal from "../../utils/TextRevel";
 
 const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
   return (
@@ -18,13 +18,11 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
           <h2 className="mb-4 items-center justify-start text-left text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-4xl">
             {project.title}
           </h2>
-          <AnimatedText
-            delay={0.2}
-            stagger={0.5}
-            className="mb-8 text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl"
-          >
-            {project.description}
-          </AnimatedText>
+          <TextReveal delay={0.2}>
+            <div className="mb-8 text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl">
+              {project.description}
+            </div>
+          </TextReveal>
         </div>
         <div className="container h-[110px] overflow-hidden pt-3 lg:w-[calc(100%-5rem)]">
           <IconCardComponent Icon={{ icon: project.icons }}></IconCardComponent>
@@ -33,29 +31,35 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
           <h2 className="pb-8 text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-4xl">
             Project Requirements
           </h2>
-          <ul className="list-inside list-disc space-y-2">
-            {project.projectRequirement.map((requirement, index) => (
-              <AnimatedText key={index} delay={0.2} stagger={0.5} className="">
-                <li className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter">
+          <TextReveal delay={0.2}>
+            <ul className="list-inside list-disc space-y-2">
+              {project.projectRequirement.map((requirement, index) => (
+                <li
+                  key={index}
+                  className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter"
+                >
                   {requirement}
                 </li>
-              </AnimatedText>
-            ))}
-          </ul>
+              ))}
+            </ul>
+          </TextReveal>
         </div>
         <div className="container mb-[80px]">
           <h2 className="mb-4 flex items-center justify-start text-left text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-4xl">
             Approaches Used
           </h2>
-          <ul className="list-inside list-disc space-y-2">
-            {project.approach.map((approach, index) => (
-              <AnimatedText key={index} stagger={0.5} delay={0.2} className="">
-                <li className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter">
+          <TextReveal delay={0.2}>
+            <ul className="list-inside list-disc space-y-2">
+              {project.approach.map((approach, index) => (
+                <li
+                  key={index}
+                  className="text-left font-normal text-gray-500 dark:text-gray-400 md:text-lg lg:text-xl lg:-tracking-tighter"
+                >
                   {approach}
                 </li>
-              </AnimatedText>
-            ))}
-          </ul>
+              ))}
+            </ul>
+          </TextReveal>
         </div>
 
         <div className="container mb-[80px]">
@@ -69,13 +73,14 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
             >
               {item.Challenge.map((challenge, index) => (
                 <div key={index} className="mb-2">
-                  <AnimatedText delay={0.2} stagger={0.5}>
-                    {" "}
+                  <TextReveal delay={0.2}>
                     <ul className="list-outside list-disc font-semibold text-neutral-500 dark:text-neutral-400">
-                      {/* {" 🔹 "} */}
-                      <li>{challenge}</li>
+                      <li>
+                        {" 👉🏽 "}
+                        {challenge}
+                      </li>
                     </ul>
-                  </AnimatedText>
+                  </TextReveal>
                   <p className="pl-4 text-zinc-500"> {item.Solution[index]}</p>
                 </div>
               ))}

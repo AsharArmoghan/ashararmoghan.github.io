@@ -5,15 +5,10 @@ import Footer from "@/app/components/Footer/footer";
 import { FaArrowLeft } from "react-icons/fa";
 
 export async function generateStaticParams() {
-  return projectData.map((project) => ({ id: project.id.toString() }));
+  return projectData.map((project) => ({ slug: project.slug }));
 }
-const Project: React.FC = async ({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) => {
-  const projectId = Number((await params).id);
-  const project = projectData.find((p) => p.id === projectId);
+const Project: React.FC = ({ params }: { params: { slug: string } }) => {
+  const project = projectData.find((p) => p.slug === params.slug);
 
   if (!project) {
     return (

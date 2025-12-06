@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     siteName: "Ashar Portfolio",
     images: [
       {
-        url: "/og-home.jpg", // Ensure this image exists in your public folder
+        url: "/og-home.jpg",
         width: 1200,
         height: 630,
         alt: "Ashar Portfolio Homepage",

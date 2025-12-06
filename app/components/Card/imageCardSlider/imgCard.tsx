@@ -52,13 +52,18 @@ export const ImgCard: React.FC<ImgCardProps> = ({ image }) => {
           <motion.div
             variants={variants}
             initial="initial"
+            layout={true}
             animate="animate"
             exit="exit"
             key={currentIndex}
             custom={direction}
-            transition={{ type: "tween", bounce: 0.4, duration: 0.3 }}
+            transition={{
+              type: "tween",
+              bounce: 0.7,
+              duration: 0.2,
+            }}
           >
-            <button
+            <motion.button
               className="rounded-lg shadow-md"
               onClick={() => {
                 const imgElement = document.getElementById("image");
@@ -76,19 +81,21 @@ export const ImgCard: React.FC<ImgCardProps> = ({ image }) => {
                 id="image"
                 alt={`Slide ${currentIndex + 1}`}
               />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              layout={true}
               onClick={prevImage}
               className="prev absolute left-[16px] top-1/2 translate-y-1/2 cursor-pointer rounded-full border-none bg-zinc-400 text-[40px] dark:bg-zinc-600 sm:text-[30px]"
             >
               <FaCaretLeft className="h-8 w-8" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              layout={true}
               onClick={nextImage}
               className="next absolute right-[16px] top-1/2 translate-y-1/2 cursor-pointer rounded-full border-none bg-zinc-400 text-[40px] dark:bg-zinc-600 sm:text-[30px]"
             >
               <FaCaretRight className="h-8 w-8" />
-            </button>
+            </motion.button>
           </motion.div>
         </AnimatePresence>
       </div>

@@ -4,11 +4,12 @@ import { MotionProps, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
 import { SiGithub, SiLinkedin, SiFiverr } from "react-icons/si";
-import { FaTwitter } from "react-icons/fa";
+// import { FaTwitter } from "react-icons/fa";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
 import Avatar from "@/public/assets/images/authors/myAvatar.jpeg";
 import Logo from "../components/Logo/Logo";
+import { FaXTwitter } from "react-icons/fa6";
 
 const About = () => {
   return (
@@ -60,7 +61,7 @@ const Block = ({ className, ...rest }: BlockProps) => {
         damping: 50,
       }}
       className={twMerge(
-        "col-span-4 rounded-lg border border-zinc-400 bg-zinc-500 p-6 dark:border-zinc-700 dark:bg-zinc-900",
+        "col-span-4 rounded-lg border border-zinc-400 bg-gray-500 p-6 dark:border-zinc-600 dark:bg-zinc-800",
         className,
       )}
       {...rest}
@@ -100,7 +101,7 @@ const SocialsBlock = () => (
         rotate: "2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-green-300 md:col-span-3"
+      className="col-span-6 bg-green-500 md:col-span-3"
     >
       <a
         href="https://www.fiverr.com/syedashar09?public_mode=true"
@@ -116,7 +117,7 @@ const SocialsBlock = () => (
         rotate: "-2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-[#111444] md:col-span-3"
+      className="col-span-6 bg-gray-700 md:col-span-3"
     >
       <a
         href="https://github.com/AsharArmoghan"
@@ -148,7 +149,7 @@ const SocialsBlock = () => (
         rotate: "2.5deg",
         scale: 1.1,
       }}
-      className="col-span-6 bg-[#1a99db] md:col-span-3"
+      className="col-span-6 bg-black md:col-span-3"
     >
       <a
         href="https://x.com/SyedAshar09"
@@ -156,7 +157,7 @@ const SocialsBlock = () => (
         rel="noopener noreferrer"
         className="grid h-full place-content-center text-3xl text-white"
       >
-        <FaTwitter />
+        <FaXTwitter />
       </a>
     </Block>
   </>
