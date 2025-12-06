@@ -86,7 +86,6 @@ export const Home = () => {
         </h1>
         <div className="mt-35 mx-auto max-w-xl bg-clip-text text-center text-lg text-transparent text-zinc-500 dark:text-slate-300 md:text-xl">
           <ScrambleText
-            repeat={2}
             texts={texts}
             color="text-off-white"
             font="font-semibold leading-none tracking-tight"

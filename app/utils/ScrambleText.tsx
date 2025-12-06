@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 
 gsap.registerPlugin(ScrambleTextPlugin);
 
-const ScrambleText = ({ navbarText, texts, color, font, repeat }) => {
+const ScrambleText = ({ navbarText, texts, color, font }) => {
   const textRef = useRef(null);
 
   useEffect(() => {
@@ -13,7 +13,6 @@ const ScrambleText = ({ navbarText, texts, color, font, repeat }) => {
     const tl = gsap.timeline({
       id: "text-scramble",
       defaults: { ease: "none" },
-      repeat: repeat,
       repeatDelay: 2,
     });
 
