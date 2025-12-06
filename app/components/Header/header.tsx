@@ -38,11 +38,20 @@ const Header: React.FC<HeaderProps> = ({
                   }}
                 >
                   <motion.button
-                    whileHover={{
+                    animate={{
+                      transition: {
+                        duration: 0.2,
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 10,
+                        restDelta: 0.1,
+                      },
+                    }}
+                    layout={true}
+                    whileTap={{
+                      y: 10,
                       scale: 1.2,
                     }}
-                    whileTap={{ scale: 2.5 }}
-                    transition={{ ease: "backInOut", duration: 0.3 }}
                     className={`items-center px-3 text-[18px] leading-none transition-all ${activeSection === section.id ? "font-bold text-neutral-500 dark:text-neutral-400" : ""}`}
                   >
                     {section.label}
@@ -53,16 +62,19 @@ const Header: React.FC<HeaderProps> = ({
           </div>
           <motion.div
             className="items-center"
-            whileTap={{ scale: 1.89 }}
-            animate
+            animate={{
+              transition: {
+                type: "tween",
+                duration: 0.3,
+                velocity: 2,
+                restDelta: 0.01,
+              },
+            }}
+            layout={true}
             whileHover={{
-              rotate: 180,
+              rotate: -90,
             }}
-            transition={{
-              type: "tween",
-              visualDuration: 2,
-              bounce: 1,
-            }}
+            whileTap={{ rotate: 360 }}
           >
             <ThemeToggle />
           </motion.div>
