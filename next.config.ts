@@ -42,7 +42,7 @@ const nextConfig = {
   assetPrefix: isProd ? "" : "",
   basePath: isProd ? "" : "",
   trailingSlash: true,
-  output: "export",
+  //output: "export",
 };
 
 module.exports = nextConfig;
