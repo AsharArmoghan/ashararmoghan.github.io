@@ -59,7 +59,7 @@ const Main = () => {
   useEffect(() => {
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        // console.log(entry.target.id, entry.isIntersecting);
+        if (!entry.target.id) return;
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id as SectionName);
         }

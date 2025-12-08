@@ -7,18 +7,22 @@ import { FaArrowLeft } from "react-icons/fa";
 export async function generateStaticParams() {
   return projectData.map((project) => ({ slug: project.slug }));
 }
-const Project: React.FC = async ({
-  params,
-}: {
+
+type Props = {
   params: Promise<{ slug: string }>;
-}) => {
-  const project = projectData.find(async (p) => p.slug === (await params).slug);
+};
+
+const Project = async ({ params }: Props) => {
+  const { slug } = await params;
+
+  const project = projectData.find((p) => p.slug === slug);
 
   if (!project) {
     return (
       <div className="flex h-[600px] w-full items-center justify-center">
         <h1>Project Not Found</h1>
-        <p>No project found for ID: {project.id}</p>
+        {/* Note: 'project' is null here, so project.id would crash. Fixed message below. */}
+        <p>No project found for slug: {slug}</p>
         <Link href="/">Go Back to Projects</Link>
       </div>
     );
@@ -28,9 +32,8 @@ const Project: React.FC = async ({
     <div>
       <nav className="sticky top-0 w-full pt-10 text-primary-black dark:text-primary-white">
         <div className="ml-6 flex h-10 w-10 flex-row items-center justify-center gap-2 sm:ml-1">
-          <Link href="/">
+          <Link href="/" className="flex items-center justify-center">
             <FaArrowLeft className="pl-4 text-[45px] sm:text-[35px]" />
-            {/* <p> Go Back</p> */}
           </Link>
         </div>
       </nav>
@@ -41,4 +44,5 @@ const Project: React.FC = async ({
     </div>
   );
 };
+
 export default Project;

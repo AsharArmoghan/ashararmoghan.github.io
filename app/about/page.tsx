@@ -5,9 +5,9 @@ import { twMerge } from "tailwind-merge";
 import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
 import { SiGithub, SiLinkedin, SiFiverr } from "react-icons/si";
 // import { FaTwitter } from "react-icons/fa";
-import Image from "next/image";
+// import Image from "next/image";
 import { toast } from "react-hot-toast";
-import Avatar from "@/public/assets/images/authors/myAvatar.jpeg";
+// import Avatar from "@/public/assets/images/authors/myAvatar.jpeg";
 import Logo from "../components/Logo/Logo";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -71,18 +71,18 @@ const Block = ({ className, ...rest }: BlockProps) => {
 
 const HeaderBlock = () => (
   <Block className="col-span-12 row-span-2 md:col-span-6">
-    <Image
+    {/* <Image
       loading="lazy"
       src={Avatar.src}
       alt="avatar"
       width={56}
       height={56}
       className="mb-4 rounded-full object-contain"
-    />
+    /> */}
     <h1 className="mb-12 text-4xl font-medium leading-tight text-zinc-50">
       Hi, I&apos;m Ashar.{" "}
       <span className="text-neutral-400 dark:text-zinc-400">
-        I build cool websites like this one.
+        I craft digital experiences like this.{" "}
       </span>
     </h1>
     <a
@@ -166,9 +166,9 @@ const SocialsBlock = () => (
 const AboutBlock = () => (
   <Block className="col-span-12 text-3xl leading-snug text-zinc-50">
     <p>
-      My passion is building cool stuff.{" "}
+      I craft intuitive digital experiences.{" "}
       <span className="text-neutral-400 dark:text-zinc-400">
-        I build primarily with React, Angular, Material Design CSS, and Framer
+        Specializing in scalable architecture using React, Angular, and Framer
         Motion.
       </span>
     </p>

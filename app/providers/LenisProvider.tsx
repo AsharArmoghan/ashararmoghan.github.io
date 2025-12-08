@@ -1,4 +1,3 @@
-// lib/lenis-provider.tsx
 "use client";
 
 import { createContext, useContext, useEffect, useState, useRef } from "react";
@@ -6,8 +5,8 @@ import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { LenisOptions } from "lenis";
+import { usePathname } from "next/navigation";
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const LenisContext = createContext<Lenis | null>(null);
@@ -21,6 +20,7 @@ export function LenisProvider({
 }) {
   const [lenis, setLenis] = useState<Lenis | null>(null);
   const optionsRef = useRef(options);
+  const pathname = usePathname();
 
   useEffect(() => {
     optionsRef.current = options;
@@ -41,20 +41,28 @@ export function LenisProvider({
 
     lenisInstance.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const update = (time: number) => {
       lenisInstance.raf(time * 1000);
-    });
+    };
+
+    gsap.ticker.add(update);
 
     gsap.ticker.lagSmoothing(0);
 
     return () => {
-      gsap.ticker.remove((time) => {
-        lenisInstance.raf(time * 1000);
-      });
+      gsap.ticker.remove(update);
       lenisInstance.off("scroll", ScrollTrigger.update);
       lenisInstance.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+
+      ScrollTrigger.refresh();
+    }
+  }, [pathname, lenis]);
 
   return (
     <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>

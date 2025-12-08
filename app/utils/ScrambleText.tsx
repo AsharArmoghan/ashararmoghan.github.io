@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-
 import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
 import { gsap } from "gsap";
 
@@ -30,7 +29,6 @@ const ScrambleText = ({ navbarText, texts }) => {
       });
     });
 
-    // Cleanup function to kill animation on unmount (prevents memory leaks)
     return () => {
       tl.kill();
     };

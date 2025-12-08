@@ -73,14 +73,14 @@ const ProjectDetail: React.FC<{ project: ProjectProps }> = ({ project }) => {
             >
               {item.Challenge.map((challenge, index) => (
                 <div key={index} className="mb-2">
-                  <TextReveal delay={0.2}>
-                    <ul className="list-outside list-disc font-semibold text-neutral-500 dark:text-neutral-400">
-                      <li>
+                  <ul className="list-none font-semibold text-neutral-500 dark:text-neutral-400">
+                    <TextReveal delay={0.2}>
+                      <li className="inline-block">
                         {" 👉🏽 "}
                         {challenge}
                       </li>
-                    </ul>
-                  </TextReveal>
+                    </TextReveal>
+                  </ul>
                   <p className="pl-4 text-zinc-500"> {item.Solution[index]}</p>
                 </div>
               ))}
