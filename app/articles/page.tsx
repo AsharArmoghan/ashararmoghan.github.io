@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ArticlesData } from "../lib/data/articles/articlesData";
-import ArticleComponent from "../components/Article/article";
+import ArticleComponent from "@/app/components/features/Article/article";
 
 const ArticleList: React.FC = () => {
   return (

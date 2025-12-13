@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Article } from "../../lib/Types/ArticleProps";
+import { Article } from "@/app/lib/Types/ArticleProps";
 const ArticleComponent: React.FC<{ article: Article }> = ({ article }) => {
   return (
     <motion.div

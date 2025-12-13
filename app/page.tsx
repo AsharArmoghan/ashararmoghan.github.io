@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Home } from "./home/home";
-import About from "./about/page";
-import Header from "./components/Header/header";
-import Projects from "./projects/page";
-import ArticleList from "./articles/page";
-import { Section, SectionName } from "./lib/Types/HeaderProps";
-import Footer from "./components/Footer/footer";
+import Home from "@/app/home/HomePage";
+import About from "@/app/about/page";
+import Header from "@/app/components/layout/Header/header";
+import Projects from "@/app/projects/page";
+import ArticleList from "@/app/articles/page";
+import { Section, SectionName } from "@/app/lib/Types/HeaderProps";
+import Footer from "@/app/components/layout/Footer/footer";
 
 const Main = () => {
   const [activeSection, setActiveSection] = useState<SectionName>("home");

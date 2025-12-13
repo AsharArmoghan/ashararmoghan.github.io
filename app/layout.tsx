@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 import { Toaster } from "react-hot-toast";
-import ThemeProvider from "@/app/components/Theme/providers";
+import ThemeProvider from "@/app/components/ui/Theme/providers";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 // import { Template } from "./components/Template/template";
 import Script from "next/script";

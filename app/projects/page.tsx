@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import Card from "../components/Card/hoverCard/card";
+import Card from "@/app/components/ui/Card/hoverCard/card";
 import { motion } from "framer-motion";
 import "../projects/projects.css";
-import { projectData } from "../lib/data/projects/projectsData";
+import { projectData } from "@/app/lib/data/projects/projectsData";
 import Link from "next/link";
-import { IconCardComponent } from "../components/Card/iconCard/iconCard";
-import TextReveal from "../utils/TextRevel";
+import { IconCardComponent } from "@/app/components/ui/Card/iconCard/iconCard";
+import TextReveal from "@/app/utils/TextRevel";
 
 const Projects: React.FC = () => {
   return (
@@ -22,10 +22,10 @@ const Projects: React.FC = () => {
         <hr className="mx-auto my-4 h-1 w-60 rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 md:my-10"></hr>
       </div>
 
-      {projectData.map((project) => (
+      {projectData.slice(0, 2).map((project) => (
         <div
           key={project.id}
-          className="grid grid-flow-dense items-center justify-center sm:min-h-[25rem] sm:min-w-[600px] sm:grid-rows-2 lg:max-h-[950px] lg:max-w-6xl lg:grid-cols-2"
+          className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-x-10 gap-y-12 px-4 py-8 lg:grid-cols-2"
         >
           <motion.div
             key="card"
@@ -52,10 +52,10 @@ const Projects: React.FC = () => {
               <Card ProjectProps={project} />
             </Link>
           </motion.div>
-          <div className="container ml-5 mt-2 flex flex-col justify-center pl-10 text-zinc-800 dark:text-zinc-300">
+          <div className="flex flex-col justify-items-center px-4 text-zinc-800 dark:text-zinc-300 lg:pl-10">
             <TextReveal delay={0.4}>
               <Link href={`/projects/${project.slug}`}>
-                <h2 className="mb-10 flex items-center justify-start text-left text-4xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:text-5xl">
+                <h2 className="mb-10 flex items-center justify-center text-center text-4xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:justify-start lg:text-left lg:text-5xl">
                   {project.title}
                 </h2>
               </Link>
@@ -71,7 +71,7 @@ const Projects: React.FC = () => {
               </TextReveal>
             </div>
           </div>
-          <hr className="mx-auto my-4 h-1 w-[400px] rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 md:my-10"></hr>
+          <hr className="col-span-1 mx-auto my-6 h-0.5 w-full max-w-[900px] rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 lg:col-span-2" />
         </div>
       ))}
     </div>

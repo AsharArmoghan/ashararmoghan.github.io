@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     ".next/types/app/about/page.ts",
     "next.config.ts",
-    "app/components/Card/imageCardSlider/ImageResizer.jsx"
+    "app/components/ui/imageCardSlider/ImageResizer.jsx"
   ],
   "exclude": ["node_modules"]
 }

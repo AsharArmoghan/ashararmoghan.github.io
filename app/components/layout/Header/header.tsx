@@ -1,11 +1,10 @@
 "use client";
 
-import "@/app/components/Header/header.css";
 import { HeaderProps, Section } from "@/app/lib/Types/HeaderProps";
-import Logo from "../Logo/Logo";
+import Logo from "@/app/components/ui/Logo/Logo";
 import { motion } from "framer-motion";
-import ThemeToggle from "../Theme/theme-toggle";
-import MobileNav from "../SideBar/sideNavButton";
+import ThemeToggle from "@/app/components/ui/Theme/theme-toggle";
+import MobileNav from "@/app/components/layout/SideBar/sideNavButton";
 
 const Header: React.FC<HeaderProps> = ({
   scrollToSection,
@@ -17,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className="header top-0 h-0 scroll-smooth border-b bg-primary-white dark:bg-primary-black md:border-none">
       <div className="flex items-center justify-center">
-        <div className="dark:bg-primary-black/10 fixed top-[0px] z-10 flex h-[57.5px] flex-row items-center justify-around rounded-[20px] border-black/15 px-3 backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter dark:border-white/15 sm:w-full md:w-[550px] md:border md:p-2.5">
+        <div className="dark:bg-primary-black/10 fixed top-[30px] z-10 flex h-[57.5px] flex-row items-center justify-around rounded-[20px] border-black/15 px-3 backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter dark:border-white/15 sm:w-full md:w-[550px] md:border md:p-2.5">
           <div className="md:hidden">
             <MobileNav
               scrollToSection={scrollToSection}

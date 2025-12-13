@@ -7,10 +7,6 @@ import dashboard_3 from "@/public/assets/images/dashboard/DashBoard_3.png";
 import dashboard_4 from "@/public/assets/images/dashboard/DashBoard_4.png";
 import dashboard_5 from "@/public/assets/images/dashboard/DashBoard_5.png";
 import dashboard_6 from "@/public/assets/images/dashboard/DashBoard_6.png";
-import dashboard_7 from "@/public/assets/images/dashboard/DashBoard_7.png";
-import dashboard_8 from "@/public/assets/images/dashboard/DashBoard_8.png";
-import dashboard_9 from "@/public/assets/images/dashboard/DashBoard_9.png";
-import dashboard_10 from "@/public/assets/images/dashboard/DashBoard_10.png";
 import portfolio from "@/public/assets/images/portfolio/Portfolio1.png";
 import portfolio1 from "@/public/assets/images/portfolio/Portfolio2.png";
 import portfolio2 from "@/public/assets/images/portfolio/Portfolio3.png";
@@ -237,26 +233,6 @@ export const projectData: ProjectProps[] = [
         imgSrc: dashboard_6.src,
         width: 1440,
         height: 1000,
-      },
-      {
-        imgSrc: dashboard_7.src,
-        width: 1440,
-        height: 1000,
-      },
-      {
-        imgSrc: dashboard_8.src,
-        width: 1440,
-        height: 1000,
-      },
-      {
-        imgSrc: dashboard_9.src,
-        width: 1440,
-        height: 1000,
-      },
-      {
-        imgSrc: dashboard_10.src,
-        width: 1080,
-        height: 800,
       },
     ],
     icons: [

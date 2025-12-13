@@ -1,7 +1,7 @@
-import { projectData } from "../../lib/data/projects/projectsData";
+import { projectData } from "@/app/lib/data/projects/projectsData";
 import Link from "next/link";
-import ProjectDetail from "@/app/components/Project/projectDetails";
-import Footer from "@/app/components/Footer/footer";
+import ProjectDetail from "@/app/components/features/Project/projectDetails";
+import Footer from "@/app/components/layout/Footer/footer";
 import { FaArrowLeft } from "react-icons/fa";
 
 export async function generateStaticParams() {

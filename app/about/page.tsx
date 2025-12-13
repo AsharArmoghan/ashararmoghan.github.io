@@ -8,7 +8,7 @@ import { SiGithub, SiLinkedin, SiFiverr } from "react-icons/si";
 // import Image from "next/image";
 import { toast } from "react-hot-toast";
 // import Avatar from "@/public/assets/images/authors/myAvatar.jpeg";
-import Logo from "../components/Logo/Logo";
+import Logo from "../components/ui/Logo/Logo";
 import { FaXTwitter } from "react-icons/fa6";
 
 const About = () => {
