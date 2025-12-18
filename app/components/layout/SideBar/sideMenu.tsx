@@ -1,17 +1,17 @@
-"use client";
-
 import React from "react";
 import { motion } from "framer-motion";
 import { VscChromeClose } from "react-icons/vsc";
-import { SideMenuProps, SectionName } from "@/app/lib/Types/HeaderProps";
+import { useRouter, usePathname } from "next/navigation";
+import { SideMenuPropsWithSections } from "@/app/lib/Types/HeaderProps";
 
-const sections: SectionName[] = ["home", "projects", "articles", "about"];
-
-const SideMenu: React.FC<SideMenuProps> = ({
-  scrollToSection,
+const SideMenu: React.FC<SideMenuPropsWithSections> = ({
   isOpen,
   onClose,
+  sections,
 }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
   return (
     <div
       className={`fixed left-0 top-2 z-50 h-screen w-72 transform rounded-lg bg-primary-white shadow-lg backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter transition-all duration-300 ease-in-out dark:bg-primary-black ${
@@ -36,13 +36,17 @@ const SideMenu: React.FC<SideMenuProps> = ({
                 transition={{ ease: "easeInOut", duration: 0.2 }}
                 className="text-black/80 transition hover:text-zinc-500 dark:text-white/80 dark:hover:text-zinc-400"
                 onClick={() => {
-                  scrollToSection(section);
                   onClose();
+                  if (section.id === "home") {
+                    router.push("/");
+                  } else {
+                    router.push(`/${section.id}`);
+                  }
                 }}
-                key={section}
+                key={section.id}
               >
                 <p className="items-center px-3 text-[21px] font-semibold leading-none tracking-tight">
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                  {section.label}
                 </p>
               </motion.button>
             ))}

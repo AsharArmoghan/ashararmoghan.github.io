@@ -1,56 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-
-export interface LiquidEtherProps {
-  mouseForce?: number;
-  cursorSize?: number;
-  isViscous?: boolean;
-  viscous?: number;
-  iterationsViscous?: number;
-  iterationsPoisson?: number;
-  dt?: number;
-  BFECC?: boolean;
-  resolution?: number;
-  isBounce?: boolean;
-  colors?: string[];
-  style?: React.CSSProperties;
-  className?: string;
-  autoDemo?: boolean;
-  autoSpeed?: number;
-  autoIntensity?: number;
-  takeoverDuration?: number;
-  autoResumeDelay?: number;
-  autoRampDuration?: number;
-}
-
-interface SimOptions {
-  iterations_poisson: number;
-  iterations_viscous: number;
-  mouse_force: number;
-  resolution: number;
-  cursor_size: number;
-  viscous: number;
-  isBounce: boolean;
-  dt: number;
-  isViscous: boolean;
-  BFECC: boolean;
-}
-
-interface LiquidEtherWebGL {
-  output?: { simulation?: { options: SimOptions; resize: () => void } };
-  autoDriver?: {
-    enabled: boolean;
-    speed: number;
-    resumeDelay: number;
-    rampDurationMs: number;
-    mouse?: { autoIntensity: number; takeoverDuration: number };
-    forceStop: () => void;
-  };
-  resize: () => void;
-  start: () => void;
-  pause: () => void;
-  dispose: () => void;
-}
+import { useReducedMotion } from "framer-motion";
+import {
+  LiquidEtherProps,
+  LiquidEtherWebGL,
+  SimOptions,
+} from "@/app/lib/Types/LiquidEtherTypes";
 
 const defaultColors = ["#5227FF", "#FF9FFC", "#B19EEF"];
 
@@ -82,9 +37,10 @@ export default function LiquidEther({
   const intersectionObserverRef = useRef<IntersectionObserver | null>(null);
   const isVisibleRef = useRef<boolean>(true);
   const resizeRafRef = useRef<number | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!mountRef.current) return;
+    if (!mountRef.current || shouldReduceMotion) return;
 
     function makePaletteTexture(stops: string[]): THREE.DataTexture {
       let arr: string[];
@@ -138,6 +94,7 @@ export default function LiquidEther({
           antialias: true,
           alpha: true,
         });
+        this.renderer.getContext().getExtension("EXT_float_blend");
         // Always transparent
         this.renderer.autoClear = false;
         this.renderer.setClearColor(new THREE.Color(0x000000), 0);
@@ -1113,6 +1070,19 @@ export default function LiquidEther({
         if (!Common.renderer) return;
         this.props.$wrapper.prepend(Common.renderer.domElement);
         this.output = new Output();
+        this.warmup();
+      }
+      warmup() {
+        // Pre-simulate to avoid empty screen on load
+        const cycles = 20;
+        for (let i = 0; i < cycles; i++) {
+          const angle = (i / cycles) * Math.PI * 2;
+          const x = Math.cos(angle) * 0.3;
+          const y = Math.sin(angle) * 0.3;
+          Mouse.setNormalized(x, y);
+          Mouse.update();
+          this.output.update();
+        }
       }
       resize() {
         Common.resize();
@@ -1207,13 +1177,27 @@ export default function LiquidEther({
       if (resolution !== prevRes) sim.resize();
     };
     applyOptionsFromProps();
+
+    webgl.resize();
     webgl.start();
+
+    const timeoutId = setTimeout(() => {
+      if (webglRef.current) {
+        webglRef.current.resize();
+        if (
+          isVisibleRef.current &&
+          !document.hidden &&
+          !webglRef.current.running
+        ) {
+          webglRef.current.start();
+        }
+      }
+    }, 100);
 
     const io = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        const isVisible =
-          entry.isIntersecting && entry.intersectionRatio > 0.01;
+        const isVisible = entry.isIntersecting;
         isVisibleRef.current = isVisible;
         if (!webglRef.current) return;
         if (isVisible && !document.hidden) {
@@ -1222,7 +1206,7 @@ export default function LiquidEther({
           webglRef.current.pause();
         }
       },
-      { threshold: [0, 0.01] },
+      { threshold: 0 },
     );
     io.observe(container);
     intersectionObserverRef.current = io;
@@ -1239,6 +1223,7 @@ export default function LiquidEther({
     resizeObserverRef.current = ro;
 
     return () => {
+      clearTimeout(timeoutId);
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
         rafRef.current = null;
@@ -1284,6 +1269,7 @@ export default function LiquidEther({
     takeoverDuration,
     autoResumeDelay,
     autoRampDuration,
+    shouldReduceMotion,
   ]);
 
   useEffect(() => {

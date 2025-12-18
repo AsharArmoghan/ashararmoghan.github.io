@@ -4,37 +4,46 @@ import { MotionProps, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
 import { SiGithub, SiLinkedin, SiFiverr } from "react-icons/si";
-// import { FaTwitter } from "react-icons/fa";
-// import Image from "next/image";
 import { toast } from "react-hot-toast";
-// import Avatar from "@/public/assets/images/authors/myAvatar.jpeg";
-import Logo from "../components/ui/Logo/Logo";
 import { FaXTwitter } from "react-icons/fa6";
+
+import BackButton from "../components/ui/Button/BackButton";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-primary-white px-4 py-12 text-stone-400 dark:bg-primary-black dark:text-zinc-300">
-      <div className="">
-        <Logo color={"fill-primary-black dark:fill-primary-white"} />
+    <>
+      <div className="relative z-10 mb-[500px] min-h-screen bg-primary-white dark:bg-primary-black md:mb-[400px]">
+        <nav className="sticky top-0 w-full pt-10 text-primary-black dark:text-primary-white">
+          <div className="ml-6 flex h-10 w-10 flex-row items-center justify-center gap-2 sm:ml-1">
+            <BackButton />
+          </div>
+        </nav>
+        <div className="min-h-screen px-4 py-12">
+          {/* <div className="">
+            <Logo color={"fill-primary-black dark:fill-primary-white"} />
+          </div> */}
+          <motion.div
+            initial="initial"
+            animate="animate"
+            transition={{
+              staggerChildren: 0.05,
+            }}
+            className="mx-auto grid max-w-4xl grid-flow-dense grid-cols-12 gap-4"
+          >
+            <HeaderBlock />
+            <SocialsBlock />
+            <AboutBlock />
+            <LocationBlock />
+            <EmailListBlock />
+          </motion.div>
+        </div>
       </div>
-      <motion.div
-        initial="initial"
-        animate="animate"
-        transition={{
-          staggerChildren: 0.05,
-        }}
-        className="mx-auto grid max-w-4xl grid-flow-dense grid-cols-12 gap-4"
-      >
-        <HeaderBlock />
-        <SocialsBlock />
-        <AboutBlock />
-        <LocationBlock />
-        <EmailListBlock />
-      </motion.div>
-    </div>
+    </>
   );
 };
+
 export default About;
+
 type BlockProps = {
   className?: string;
 } & MotionProps;
@@ -61,7 +70,7 @@ const Block = ({ className, ...rest }: BlockProps) => {
         damping: 50,
       }}
       className={twMerge(
-        "col-span-4 rounded-lg border border-zinc-400 bg-gray-500 p-6 dark:border-zinc-600 dark:bg-zinc-800",
+        "col-span-4 rounded-lg border border-zinc-400 bg-stone-500 p-6 dark:border-zinc-800 dark:bg-stone-900",
         className,
       )}
       {...rest}
@@ -71,18 +80,10 @@ const Block = ({ className, ...rest }: BlockProps) => {
 
 const HeaderBlock = () => (
   <Block className="col-span-12 row-span-2 md:col-span-6">
-    {/* <Image
-      loading="lazy"
-      src={Avatar.src}
-      alt="avatar"
-      width={56}
-      height={56}
-      className="mb-4 rounded-full object-contain"
-    /> */}
     <h1 className="mb-12 text-4xl font-medium leading-tight text-zinc-50">
       Hi, I&apos;m Ashar.{" "}
-      <span className="text-neutral-400 dark:text-zinc-400">
-        I craft digital experiences like this.{" "}
+      <span className="text-neutral-400 dark:text-zinc-600">
+        I build things for the web.
       </span>
     </h1>
     <a
@@ -166,10 +167,12 @@ const SocialsBlock = () => (
 const AboutBlock = () => (
   <Block className="col-span-12 text-3xl leading-snug text-zinc-50">
     <p>
-      I craft intuitive digital experiences.{" "}
+      I turn coffee into code and build websites .{" "}
       <span className="text-neutral-400 dark:text-zinc-400">
-        Specializing in scalable architecture using React, Angular, and Framer
-        Motion.
+        Focused on building scalable architectures with React and Flutter,
+        create fluid user experiences for web and mobile.
+        <br /> I leverage Framer Motion and third-party integrations to deliver
+        high-performance solutions.
       </span>
     </p>
   </Block>
@@ -183,13 +186,13 @@ const LocationBlock = () => (
     </p>
   </Block>
 );
-const handleClick = (e) => {
-  let email = [];
+
+const handleClick = (e: any) => {
   toast.success("You have been Added to the List! Thank You");
-  email = e.target.value;
-  console.log(email);
+  console.log(e.target.value);
   e.preventDefault();
 };
+
 const EmailListBlock = () => (
   <Block className="col-span-12 text-zinc-50 md:col-span-9">
     <p className="mb-3 text-lg">Join my mailing list</p>

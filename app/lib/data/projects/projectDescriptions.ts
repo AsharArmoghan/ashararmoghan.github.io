@@ -1,253 +1,473 @@
+import codeBlog1 from "@/public/assets/images/codeblog1.png";
+import dImage1 from "@/public/assets/images/dashboard/dImage1.png";
+import dImage2 from "@/public/assets/images/dashboard/dImage2.png";
+import dImage3 from "@/public/assets/images/dashboard/dImage3.png";
+import dImage4 from "@/public/assets/images/dashboard/dImage4.png";
+import dImage5 from "@/public/assets/images/dashboard/dImage5.png";
+import dImage6 from "@/public/assets/images/dashboard/dImage6.png";
+import portfolio from "@/public/assets/images/portfolio/Portfolio1.png";
+import portfolio1 from "@/public/assets/images/portfolio/Portfolio2.png";
+import portfolio2 from "@/public/assets/images/portfolio/Portfolio3.png";
+import portfolio3 from "@/public/assets/images/portfolio/Portfolio4.png";
+import portfolio4 from "@/public/assets/images/portfolio/Portfolio5.png";
+
 export const projectsDescriptions = {
   1: {
     id: 1,
     title: "Code Blog",
+    slug: "code-blog",
+    image: [{ imgSrc: codeBlog1.src, width: 1440, height: 1000 }],
+    icons: [
+      {
+        name: "Angular",
+        component: "/assets/iconsSvg/angular.svg?url",
+        color: "#d01001",
+      },
+      {
+        name: "Node.js",
+        component: "/assets/iconsSvg/nodejs.svg?url",
+        color: "#00972b",
+      },
+      {
+        name: "MongoDB",
+        component: "/assets/iconsSvg/mongodb.svg?url",
+        color: "#03c047",
+      },
+      {
+        name: "TypeScript",
+        component: "/assets/iconsSvg/typescript.svg?url",
+        color: "#226dc2",
+      },
+      {
+        name: "Html",
+        component: "/assets/iconsSvg/html.svg?url",
+        color: "#d04112",
+      },
+      {
+        name: "MaterialUI",
+        component: "/assets/iconsSvg/material-ui.svg?url",
+        color: "#226dc2",
+      },
+      {
+        name: "CSS",
+        component: "/assets/iconsSvg/css.svg?url",
+        color: "#227eb5",
+      },
+    ],
     overview:
-      "Code Blog is a secure, full-stack blogging platform designed for developers to create, share, and discover technical articles. Built with Angular on the frontend and Node.js/Express on the backend, the platform empowers users to publish content while maintaining strict role-based authorization and authentication.",
+      "A secure, full-stack blogging platform built with Angular and Node.js. Features strict role-based authentication, allowing developers to publish and manage technical content professionally.",
 
-    introduction: `Code Blog emerged from a clear need: many developers spend countless hours learning and want to share their knowledge, but existing blogging platforms often lack features tailored to technical writing. The goal was to create a professional, polished platform that would:
+    introduction: `Code Blog was built to address the lack of developer-focused features in existing platforms. The goal was to create a polished, professional space where junior developers can showcase expertise and build an audience, while demonstrating production-ready full-stack capabilities.`,
 
-    • Lower the barrier to entry for junior developers to publish technical content
-    • Provide a platform where developers can build an audience and showcase expertise
-    • Demonstrate the ability to build a complete, production-ready full-stack application
-    • Master the fundamentals of authentication, authorization, and API design
-
-    The vision was clear: a platform that felt professional and polished, something that would make bloggers proud to share their work. The experience needed to be intuitive for both readers discovering articles and writers crafting content.`,
-
-    purposeAndGoal: `Code Blog emerged from observing a real gap in the market. Technical writers need platforms designed specifically for code sharing, with features like syntax highlighting, proper formatting, and easy image management. Starting with user flow sketches (registration → writing → publishing → discovery), the project mapped out the database schema, API endpoints, and UI components carefully.
-
-    The choice of Angular for the frontend provided powerful features like dependency injection and built-in HTTP client capabilities. Node.js/Express was selected for the backend as a lightweight, JavaScript-based solution that would be easy to maintain and scale.`,
+    purposeAndGoal: `Designed to fill the gap for code-centric sharing platforms. Starting from user flow sketches (Auth → Write → Publish), the project prioritized a robust schema and API design. Angular was chosen for its strong dependency injection, while Node.js provided a scalable, lightweight backend.`,
 
     spotlight: {
       title: "Authentication & Security Architecture",
-      description: `The most technically impressive aspect of Code Blog is the authentication and authorization system. This wasn't trivial to implement, and it showcases deep understanding of security best practices—something that matters greatly to employers.
-
-      The Challenge:
-      Implementing JWT-based authentication across a single-page application presented several hurdles:
-
-      1. Token Persistence: How do you maintain login state across page refreshes without storing tokens insecurely in localStorage?
-      2. Protected Routes: How do you prevent unauthorized users from accessing admin-only routes?
-      3. API Request Interception: How do you automatically attach JWT tokens to every API request without duplicating code?
-      4. Token Refresh: How do you handle token expiration gracefully?
-
-      The Solution:
-      A three-layer authentication system was implemented:
-
-      Backend Layer (Node.js/Express):
-      • Created a dedicated AuthController handling registration and login endpoints
-      • Implemented password hashing using bcrypt (never storing plain-text passwords)
-      • Generated JWT tokens on successful login, signed with a secret key
-      • Built authentication middleware that validates incoming tokens on protected routes
-      • Set up role-based authorization middleware checking user permissions before executing route handlers
-
-      This means that when a user logs in, the server validates credentials, generates a secure token, and returns it. All subsequent requests must include this token in the Authorization header. The middleware automatically rejects any requests without a valid token.
-
-      Frontend Layer (Angular):
-      • Built an AuthService that manages the entire authentication lifecycle
-      • Created an AuthGuard that prevents access to protected routes
-      • Implemented an HTTP Interceptor that automatically attaches the JWT to all outgoing requests
-      • Stored the token in localStorage (with consideration of security tradeoffs)
-      • Created a BehaviorSubject for reactive updates to authentication state across components
-
-      What makes this impressive is the use of Angular's interceptor pattern—a single place to handle authentication logic means JWT attachment code isn't duplicated in every component that makes API calls.`,
+      sections: {
+        overview:
+          "The authentication system is the project's technical highlight, demonstrating enterprise-grade security practices.",
+        challenge: {
+          title: "The Challenge",
+          description:
+            "Securing a single-page app (SPA) involves complex hurdles:",
+          points: [
+            {
+              name: "Persistence",
+              description:
+                "Maintaining login state without insecure `localStorage`.",
+            },
+            {
+              name: "Protection",
+              description: "Guarding admin routes from unauthorized users.",
+            },
+            {
+              name: "DRY",
+              description:
+                "Attaching tokens to requests without code duplication.",
+            },
+            {
+              name: "Renewal",
+              description: "Handling token expiration seamlessly.",
+            },
+          ],
+        },
+        solution: {
+          title: "The Solution",
+          description: "A three-tier security architecture:",
+          backend: {
+            title: "Backend (Node/Express)",
+            points: [
+              {
+                label: "Dedicated AuthController",
+                description:
+                  "Built with bcrypt password hashing for secure credential storage.",
+              },
+              {
+                label: "JWT & Middleware",
+                description:
+                  "Implemented JWT signing and role-based middleware to validate every request.",
+              },
+            ],
+          },
+          frontend: {
+            title: "Frontend (Angular)",
+            points: [
+              {
+                label: "Central AuthService",
+                description:
+                  "Manages the entire authentication lifecycle from login to logout.",
+              },
+              {
+                label: "HTTP Interceptor",
+                description:
+                  "Auto-attaches tokens to outgoing requests for transparent authentication.",
+              },
+              {
+                label: "AuthGuard",
+                description:
+                  "Protects sensitive routes from unauthorized access.",
+              },
+              {
+                label: "BehaviorSubject",
+                description:
+                  "Provides reactive, app-wide auth state updates for real-time UI sync.",
+              },
+            ],
+          },
+        },
+        keyTakeaway:
+          "The use of Angular Interceptors ensures clean, maintainable code by centralizing security logic.",
+      },
     },
 
-    currentStatus: `Code Blog is deployed on Vercel (frontend) and Render (backend) and has been actively maintained. While it started as a portfolio project, continuous refinement has been based on learnings and feedback. The platform processes articles from developers in the learning network, with some users consistently publishing monthly technical deep-dives. Real-world usage has taught invaluable lessons about handling edge cases, managing performance under load, and iterating based on user feedback.`,
+    currentStatus: `Deployed on Vercel (Front) and Render (Back). Actively used by a network of developer peers. Continuous updates focus on performance optimization and handling edge cases discovered through real-world usage.`,
 
     technicalLessons: [
-      "Authentication is Complex: Building secure authentication taught why this is so often delegated to third-party services. Deep appreciation developed for token generation, storage, refresh, expiration, revocation concerns. This knowledge transfers to any backend system.",
-      "RxJS and Reactive Patterns: Managing authentication state with BehaviorSubjects and Observables deepened understanding of reactive programming. Learned when to subscribe, how to avoid memory leaks with async pipes, and how to chain operations.",
-      "API Design Matters: Building the backend API taught the value of consistent endpoint naming, proper HTTP status codes, and detailed error messages.",
-      "Component Composition: Building reusable components showed the power of Angular's modular architecture. Components that do one thing well are far easier to maintain and test.",
-      "Database Design: Setting up MongoDB schemas with Mongoose taught about relationships, indexing, and query performance.",
+      "Auth is Complex: Learned deep lessons in token storage, expiration, and revocation—knowledge transferable to any backend.",
+      "Reactive Programming: Mastered RxJS `BehaviorSubject` for state management, avoiding memory leaks with proper subscription handling.",
+      "Modular Architecture: Saw firsthand how Angular's component-based design simplifies testing and maintenance.",
+      "Database Modeling: Gained proficiency in Mongoose schemas, relationships, and indexing for query performance.",
     ],
 
     nonTechnicalLessons: [
-      "Shipping is Hard: Taking a project from local development to production taught about environment variables, CORS configuration, database migrations, and deployment pipelines.",
-      "User Experience Matters: Small details like loading states, error messages, and disabled buttons during submission affect how users perceive the application.",
-      "Feedback Loops are Valuable: Getting feedback from people actually using the application revealed bugs and feature requests that would never have been thought of alone.",
+      "Deployment Realities: Moving to production revealed hidden complexities in CORS, environment variables, and CI/CD pipelines.",
+      "User-Centricity: Small UI details like loading states and error messages define the perceived quality of the app.",
+      "Feedback is Gold: Real usage uncovered bugs and feature needs that hypothetical planning missed.",
     ],
 
-    impact: `This project established the ability to take a feature from concept to production. In subsequent projects, the authentication patterns developed here were reused, speeding up development time and reducing the surface area for security bugs. The lessons about component design directly influenced how React projects were structured, and the API design principles continue to guide backend work.`,
+    impact: `Established a reusable authentication pattern used in all subsequent projects, drastically reducing setup time. The project proved the ability to ship a full-stack feature set from concept to deployed product.`,
+    liveUrl: "https://code-blog-demo.vercel.app", // Placeholder
   },
 
   2: {
     id: 2,
     title: "React Sales Dashboard",
+    slug: "react-sales-dashboard",
+    image: [
+      {
+        imgSrc: dImage1.src,
+        width: 1440,
+        height: 1000,
+      },
+      {
+        imgSrc: dImage2.src,
+        width: 1440,
+        height: 1000,
+      },
+    ],
+    icons: [
+      {
+        name: "React",
+        component: "/assets/iconsSvg/react.svg?url",
+        color: "#40cdeb",
+      },
+      {
+        name: "Node.js",
+        component: "/assets/iconsSvg/nodejs.svg?url",
+        color: "#00972b",
+      },
+      {
+        name: "MongoDB",
+        component: "/assets/iconsSvg/mongodb.svg?url",
+        color: "#03c047",
+      },
+      {
+        name: "TypeScript",
+        component: "/assets/iconsSvg/typescript.svg?url",
+        color: "#226dc2",
+      },
+      {
+        name: "Html",
+        component: "/assets/iconsSvg/html.svg?url",
+        color: "#d04112",
+      },
+      {
+        name: "CSS",
+        component: "/assets/iconsSvg/css.svg?url",
+        color: "#227eb5",
+      },
+    ],
     overview:
-      "React Sales Dashboard is a comprehensive analytics and reporting platform designed for sales teams to track performance metrics, visualize trends, and make data-driven decisions. The dashboard provides real-time sales summaries, interactive charts, top-performer leaderboards, and detailed order management.",
+      "A comprehensive analytics platform for sales teams. Tracks performance metrics, visualizes trends, and enables data-driven decisions through real-time summaries and interactive charts.",
 
-    introduction: `React Sales Dashboard was born from observing real problems in sales teams: decisions are often made on gut feeling or incomplete information rather than data. The goal was to build something that would:
+    introduction: `Built to replace gut-feeling decisions with data. The goal: empower teams with clear visibility into performance metrics and meaningful visualizations, while demonstrating complex React state management at scale.`,
 
-    • Empower sales teams with visibility into their performance metrics
-    • Provide meaningful visualizations that reveal trends and patterns
-    • Demonstrate the ability to handle complex state management in React
-    • Show that complex applications can be built at scale with real data
-    • Master React hooks, context API, and data visualization techniques
-
-    The vision was clear: a dashboard that makes sales data accessible and understandable at a glance, while also allowing deep-dives into individual metrics.`,
-
-    purposeAndGoal: `The React Sales Dashboard started with studying existing dashboards (Shopify, Stripe, Google Analytics) to understand what makes an effective interface. The layout was sketched: sidebar navigation, header with summary cards, and main content area with various chart types.
-
-    The API was designed to efficiently serve aggregated data rather than asking the frontend to compute everything. React hooks were chosen for their simplicity and Context API for state management, avoiding Redux complexity while keeping the codebase maintainable.`,
+    purposeAndGoal: `modeled after leaders like Stripe and Shopify. The focus was efficient data serving using API aggregation rather than client-side computation and using React Context for clean, maintainable state management without Redux bloat.`,
 
     spotlight: {
       title: "State Management & Data Visualization",
-      description: `The most technically impressive aspect of this dashboard is how complex application state was managed and raw data was transformed into compelling visualizations—a skill that separates junior from mid-level frontend developers.
-
-      The Challenge:
-      Managing sales data across multiple pages presented several problems:
-
-      1. Avoiding Redundant API Calls: The dashboard needed to display related metrics across multiple views without fetching the same data repeatedly
-      2. Real-time Updates: When a new order is placed, summary cards and charts should update without a full page refresh
-      3. Performance: With potentially thousands of orders, aggregation and filtering needed to be efficient
-      4. Filter State: Users wanted to filter by date range, sales person, region—managing all these filters without prop drilling
-
-      The Solution:
-      A sophisticated state management system was built using React Context:
-
-      Backend Layer (Smart Aggregation):
-      • Created dedicated endpoints like /api/sales/summary that return pre-aggregated data
-      • Implemented filtering logic in the API for "orders from this month, this region"
-      • Built middleware to ensure users only see data they're authorized to view
-      • Set up efficient MongoDB queries with proper indexing on date and sales-person fields
-
-      Frontend Layer (React Context & Hooks):
-      • Created a SalesContext that holds the dashboard state (sales data, filters, loading state)
-      • Built custom hooks like useSalesData() and useOrderFilters() that encapsulate logic
-      • Implemented useEffect hooks that automatically fetch fresh data when filters change
-      • Used React.useMemo to prevent expensive calculations from running on every render
-      • Set up Axios interceptors for consistent error handling and loading state
-
-      What's impressive is correct handling of loading states—showing skeletons or spinners while data is fetching, so users never see a glitchy UI.
-
-      Data Visualization:
-      The right visualizations were chosen for each data type:
-      • Line charts for trends over time (revenue progression)
-      • Bar charts for comparing quantities (orders by region)
-      • Pie charts for showing composition (revenue distribution by category)`,
+      sections: {
+        overview:
+          "The core technical achievement is handling complex state and transforming raw data into performant visualizations.",
+        challenge: {
+          title: "The Challenge",
+          description:
+            "Managing sales data implies three critical requirements:",
+          points: [
+            {
+              name: "Efficiency",
+              description: "Avoiding redundant API calls across views.",
+            },
+            {
+              name: "Real-time",
+              description: "Updating charts instantly on new orders.",
+            },
+            {
+              name: "Filtering",
+              description:
+                "Handling date/region filters without prop drilling.",
+            },
+          ],
+        },
+        solution: {
+          title: "The Solution",
+          description: "A Context-based architecture :",
+          backend: {
+            title: "Backend (Smart Aggregation)",
+            points: [
+              {
+                label: "Pre-aggregated Endpoints",
+                description:
+                  "Created endpoints like /api/sales/summary returning pre-aggregated data.",
+              },
+              {
+                label: "Server-Side Logic",
+                description:
+                  "Moved heavy filtering logic to the server side (MongoDB indexing).",
+              },
+            ],
+          },
+          frontend: {
+            title: "Frontend (Context & Hooks)",
+            points: [
+              {
+                label: "SalesContext",
+                description:
+                  " Built to hold global state (data, filters, loading).",
+              },
+              {
+                label: "Custom Hooks",
+                description:
+                  " Designed custom hooks (useSalesData) to encapsulate fetching logic.",
+              },
+              {
+                label: "Performance Optimization",
+                description:
+                  " Used useMemo and useEffect to optimize re-renders and auto-refresh data on filter changes.",
+              },
+            ],
+          },
+        },
+        keyTakeaway:
+          "A UI that feels instant, with proper loading states (skeletons) preventing any visual glitching.",
+      },
     },
 
-    currentStatus: `The React Sales Dashboard has been deployed and represents a working system that handles real data. While it's primarily a portfolio project, the architecture is robust enough to be adapted for actual business use. Visualizations have been continuously refined based on what questions stakeholders asked most frequently.`,
+    currentStatus: `Deployed and functional with real-world data handling. The architecture is business-ready, with visualizations continuously refined based on "stakeholder" (simulated business requirements) feedback.`,
 
     technicalLessons: [
-      "State Management is About Architecture: The key to managing state isn't the tool—it's thinking carefully about where state lives and how it flows.",
-      "Performance Optimization: Putting all state in context can cause unnecessary re-renders if not structured carefully. Learned about component composition strategies and React.memo().",
-      "API Design for the Frontend: Building the backend API taught to think like a frontend developer. Create endpoints that return exactly what the UI needs.",
-      "Data Visualization is Hard: Getting charts to look good and communicate clearly required iteration. Learned about chart libraries and how to customize them.",
-      "Accessibility: Building a dashboard usable by people with visual impairments was more complex than expected. Learned to get creative with ARIA labels.",
+      "Architecture over Tools: State management is about data flow design, not just picking Redux vs Context.",
+      "Performance: Learned `React.memo` and composition strategies to prevent unnecessary re-renders in complex dashboards.",
+      "Frontend-Focused API: Learned to build endpoints that serve the UI's exact needs, reducing client-side processing.",
+      "Accessibility: Discovered the complexity of making data viz accessible via ARIA labels.",
     ],
 
     nonTechnicalLessons: [
-      "Design Feedback is Essential: Talking to actual potential users reveals what actually matters. Built features that looked cool but turned out to be rarely used.",
-      "Responsiveness is Non-Negotiable: Initial versions looked great on desktop but fell apart on mobile. Learned to design mobile-first.",
-      "Complexity Creep: Wanted to build everything—custom charts, advanced filtering, export to PDF. Learned the value of focus on most impactful features.",
+      "Responsive First: Fixing desktop-only designs for mobile taught the non-negotiable value of mobile-first thinking.",
+      "Focus vs Creep: Learned to prioritize high-impact features over 'nice-to-haves' like PDF export.",
     ],
 
-    impact: `The state management patterns developed here influenced every React project that followed. Became confident in building complex applications without framework overkill. The API design thinking made communication with backend developers better. The visualization work sparked interest in data and helped appreciate the challenges in building analytical tools.`,
+    impact: `Influenced all future React work: confident state persistence, cleaner API communication, and a new appreciation for the precision required in building analytical tools.`,
+    liveUrl: "https://react-sales-frontend.vercel.app",
   },
 
   3: {
     id: 3,
     title: "Portfolio",
+    slug: "portfolio",
+    image: [
+      {
+        imgSrc: portfolio.src,
+        width: 1440,
+        height: 1000,
+      },
+      {
+        imgSrc: portfolio1.src,
+        width: 1440,
+        height: 1000,
+      },
+      {
+        imgSrc: portfolio2.src,
+        width: 1440,
+        height: 1000,
+      },
+      {
+        imgSrc: portfolio3.src,
+        width: 1440,
+        height: 1000,
+      },
+      {
+        imgSrc: portfolio4.src,
+        width: 1440,
+        height: 1000,
+      },
+    ],
+    icons: [
+      {
+        name: "NextJs",
+        component: "/assets/iconsSvg/nextjs.svg?url",
+        color: "#43434c",
+      },
+      {
+        name: "React",
+        component: "/assets/iconsSvg/react.svg?url",
+        color: "#40cdeb",
+      },
+
+      {
+        name: "Tailwind",
+        component: "/assets/iconsSvg/tailwindcss.svg?url",
+        color: "#4fb3d0",
+      },
+      {
+        name: "TypeScript",
+        component: "/assets/iconsSvg/typescript.svg?url",
+        color: "#226dc2",
+      },
+      {
+        name: "Html",
+        component: "/assets/iconsSvg/html.svg?url",
+        color: "#d04112",
+      },
+      {
+        name: "CSS",
+        component: "/assets/iconsSvg/css.svg?url",
+        color: "#227eb5",
+      },
+    ],
     overview:
-      "This Portfolio is a modern, personal portfolio website built with Next.js 15 using the latest App Router architecture, Server-Side Rendering (SSR), and dynamic routing. It demonstrates the ability to build SEO-optimized, high-performance web applications.",
+      "A modern, SSR-enabled portfolio built with Next.js 15 App Router. Demonstrates SEO optimization, dynamic routing, and high-performance web architecture.",
 
-    introduction: `This Portfolio serves a dual purpose: it's both a tool to get hired and a testament to technical capabilities. The goal was to build something that would:
+    introduction: `More than a showcase—it's a technical demonstration of Next.js mastery. Built to impress technical evaluators with fast navigation, perfect SEO scores, and clean MVC-like architecture.`,
 
-    • Create a strong first impression with potential employers
-    • Demonstrate mastery of modern Next.js patterns and best practices
-    • Achieve high search engine rankings for key terms (SEO)
-    • Showcase projects in the most compelling way possible
-    • Provide fast, smooth navigation and excellent user experience
-    • Prove understanding of performance optimization
-
-    Unlike hiring managers who might spend 30 seconds glancing at a portfolio, technical evaluators will inspect the code. The goal was to build something to be proud of having others review.`,
-
-    purposeAndGoal: `Research on best practices for developer portfolios was done, studying Next.js documentation and portfolios of developers to admire. A folder structure was decided that separates concerns: API routes, reusable components, layout components, and data-fetching logic.
-
-    The plan was to use Next.js's powerful features like dynamic routes with [slug], generateMetadata() for per-page SEO, and Server Components for performance.`,
+    purposeAndGoal:
+      `Designed for performance and scalability. leveraged Next.js App Router for dynamic ` +
+      "project/[slug]" +
+      ` routes, automated metadata generation, and React Server Components to minimize client-side javascript.`,
 
     spotlight: {
-      title: "Server-Side Rendering & Dynamic Routing for SEO",
-      description: `The most technically sophisticated aspect of this portfolio is the implementation of Server-Side Rendering with dynamic routes and comprehensive SEO optimization—demonstrating understanding of the needs of both users (fast pages, good UX) and search engines (proper metadata, semantic HTML).
-
-      The Challenge:
-      Creating a portfolio with multiple project pages presented several problems:
-
-      1. Scalability: Ability to add new projects without rebuilding the entire site
-      2. SEO: Each project page needs unique metadata (title, description, Open Graph images)
-      3. Performance: Server rendering can be slow; how to keep pages loading fast while still rendering on the server?
-      4. Type Safety: Adding new projects shouldn't require updating TypeScript types
-
-      The Solution:
-      A sophisticated routing and data system was built:
-
-      File-Based Routing with Dynamic Paths:
-      app/
-      ├── projects/
-      │   └── [slug]/
-      │       ├── page.tsx           // Dynamic project detail page
-      │       └── metadata.tsx        // Generates SEO metadata for each project
-      ├── blog/
-      │   └── [slug]/
-      │       └── page.tsx
-
-      This structure allows creating infinite project pages from a single template.
-
-      Server-Side Generation:
-      • Used generateStaticParams() to pre-render the most important routes at build time
-      • When someone visits the portfolio, pages load instantly from a CDN
-      • For new projects added after deployment, Next.js falls back to on-demand rendering
-      • Users always get server-rendered HTML (great for SEO), not a JavaScript bundle
-
-      SEO Metadata Generation:
-      • Created a generateMetadata() function in each route that constructs unique metadata
-      • Each project page includes:
-        - Unique title and description
-        - Open Graph tags (og:title, og:description, og:image)
-        - Twitter Card metadata
-        - Canonical URLs to prevent duplicate content issues
-        - Structured data (JSON-LD) for rich snippets
-
-      Component Structure:
-      • Built a modular component system with clear separation:
-        - ui/ folder for atomic components (Button, Card, Badge)
-        - shared/ folder for layout components (Header, Footer)
-      • Used TypeScript interfaces to ensure data consistency
-      • Built a data fetching layer in lib/ that handles all API/database calls
-
-      This MVC-like architecture (Model: data fetching, View: components, Controller: page logic) makes the code maintainable and scalable.`,
+      title: "SSR & Dynamic Architecture",
+      sections: {
+        overview:
+          "Technically sophisticated Server-Side Rendering (SSR) meets dynamic routing for perfect SEO and performance.",
+        challenge: {
+          title: "The Challenge",
+          points: [
+            {
+              name: "Scalability",
+              description: "Adding projects without full rebuilds.",
+            },
+            {
+              name: "SEO",
+              description: "Unique metadata for every dynamic route.",
+            },
+            {
+              name: "Performance",
+              description: "Balancing server rendering with fast navigation.",
+            },
+          ],
+        },
+        solution: {
+          title: "The Solution",
+          description: "A robust file-based routing system:",
+          appStructure: {
+            title: "App Structure",
+            points: [
+              {
+                label: "Dynamic Detail Views",
+                description:
+                  "`app/projects/[slug]/page.tsx`: Routes for each project.",
+              },
+              {
+                label: "Auto-generated SEO",
+                description:
+                  "`metadata.tsx`: Generates SEO tags (OG images, JSON-LD) for each project.",
+              },
+            ],
+          },
+          performanceStrategy: {
+            title: "Performance Strategy",
+            points: [
+              {
+                label: "Static Pre-rendering",
+                description:
+                  "`generateStaticParams()`: Pre-renders top routes at build time (ISR).",
+              },
+              {
+                label: "Server Components",
+                description: "Delivers pure HTML, zero JS bundle for content.",
+              },
+              {
+                label: "Graceful Fallback",
+                description:
+                  "Handles new projects gracefully without redeploy.",
+              },
+            ],
+          },
+        },
+        keyTakeaway:
+          "A site that scores 100 on Lighthouse for SEO and Performance.",
+      },
     },
 
-    currentStatus: `This portfolio is live and serves as the primary marketing tool for job searching. It's actively maintained and evolving as new projects are built and articles are written. The site gets consistent traffic from search engines for relevant keywords, thanks to the SEO optimization work.`,
+    currentStatus: `Live, actively maintained, and evolving. Serves as both a marketing tool and a testing ground for new Next.js features.`,
 
     technicalLessons: [
-      "Server-Side Rendering Matters: Server-side rendering isn't just about SEO—it improves user experience. Pages load faster because the server sends complete HTML rather than the browser waiting for JavaScript.",
-      "Next.js is Powerful: Building this portfolio introduced sophisticated Next.js features: dynamic routing, incremental static regeneration (ISR), server components, and middleware.",
-      "SEO is Not Magic: SEO is mostly about doing the basics right: unique titles/descriptions, semantic HTML, fast load times, mobile optimization, and high-quality content.",
-      "TypeScript Saves Time: Type safety prevents bugs before they happen. When refactoring the project data structure, TypeScript errors immediately showed everywhere code needed updating.",
-      "Responsive Design is Essential: Mobile-first design isn't optional—it's required. Started designing for small screens and gradually enhanced for larger ones.",
-      "Performance Optimization: Learned about image optimization, code splitting, and lazy loading. Discovered that optimizing the page load experience is worth the effort.",
+      "SSR vs CSR: Deepened knowledge of when to render on server (content) vs client (interactivity).",
+      "Next.js Internals: Mastered dynamic routing, ISR, and middleware.",
+      'Real SEO: Learned that semantic HTML and meta tags matter more than "magic" optimizations.',
+      "TypeScript ROI: Type safety drastically reduced bugs during refactors.",
     ],
 
     nonTechnicalLessons: [
-      "A Portfolio is Iterative: Unlike a product shipped and forgotten, a portfolio evolves as new projects are built and growth happens as a developer.",
-      "Design Matters for Credibility: A beautifully designed portfolio makes people believe you're a strong developer. Investing in design pays dividends.",
-      "Writing About Your Work is Valuable: Articulating what was built, why, and what was learned cements understanding and makes you a better developer.",
+      "Iterative Design: A portfolio is never 'done'; it evolves with your skills.",
+      "Design = Credibility: A polished UI implies polished code to non-technical viewers.",
     ],
 
-    impact: `This portfolio became a template for how to approach web development projects. The principles learned here are consistently applied: think about SEO and performance upfront, use TypeScript for type safety, structure code for maintainability, and invest in accessible, responsive design. The portfolio itself continues to evolve, and each new project naturally finds its place in the showcase.`,
+    impact: `Set the template for all my future web projects: think SEO/Performance first, use TypeScript, and maintain strict MVC-like separation in folder structures.`,
+    liveUrl: "https://ashar-armoghan.vercel.app", // Placeholder
   },
 };
 
 export const detailedProjectDescriptions = {
-  codeBlog: {
+  "code-blog": {
     title: "Code Blog - Full-Stack Blogging Platform",
     sections: {
       introduction: `Code Blog is a secure, full-stack blogging platform designed for developers to create, share, and discover technical articles. Built with Angular on the frontend and Node.js/Express on the backend, the platform empowers users to publish content while maintaining strict role-based authorization and authentication.
 
+
       Whether you're a junior developer wanting to share your learning journey or an experienced engineer documenting technical insights, Code Blog provides an intuitive interface backed by enterprise-grade security practices.
+
 
       Core Features:
       - Secure user authentication and role-based authorization
@@ -258,14 +478,36 @@ export const detailedProjectDescriptions = {
       - RESTful API with comprehensive CRUD operations
       - JWT-based token authentication with persistent sessions`,
 
-      approach: `The architecture followed MVC (Model-View-Controller) pattern:
-      - Backend: Node.js with Express for API, MongoDB with Mongoose for data
-      - Frontend: Angular with modular component structure and service-based architecture
-      - Authentication: JWT tokens with Angular guards and interceptors
-      - State Management: RxJS for reactive data flow
-      - Deployment: Vercel for frontend, Render for backend
-
-      Design decisions prioritized security, scalability, and user experience. Lazy loading was implemented for performance, and responsive design ensured mobile compatibility.`,
+      approach: {
+        overview:
+          "The architecture followed MVC (Model-View-Controller) pattern:",
+        points: [
+          {
+            label: "Backend",
+            description:
+              "Node.js with Express for API, MongoDB with Mongoose for data",
+          },
+          {
+            label: "Frontend",
+            description:
+              "Angular with modular component structure and service-based architecture",
+          },
+          {
+            label: "Authentication",
+            description: "JWT tokens with Angular guards and interceptors",
+          },
+          {
+            label: "State Management",
+            description: "RxJS for reactive data flow",
+          },
+          {
+            label: "Deployment",
+            description: "Vercel for frontend, Render for backend",
+          },
+        ],
+        conclusion:
+          "Design decisions prioritized security, scalability, and user experience. Lazy loading was implemented for performance, and responsive design ensured mobile compatibility.",
+      },
 
       challenges: [
         {
@@ -369,30 +611,51 @@ export const detailedProjectDescriptions = {
     },
   },
 
-  dashboard: {
+  "react-sales-dashboard": {
     title: "React Sales Dashboard - Analytics Platform",
     sections: {
-      introduction: `React Sales Dashboard empowers sales teams with real-time analytics, dynamic visualizations, and interactive charts, backed by a secure Node.js/Express API with role-based authorization, JWT authentication, and middleware protection.
+      introduction:
+        "React Sales Dashboard empowers sales teams with real-time analytics, dynamic visualizations, and interactive charts, backed by a secure Node.js/Express API with role-based authorization, JWT authentication, and middleware protection. The dashboard transforms raw sales data into actionable insights through intuitive visualizations and responsive design, enabling better decision-making at all levels of the organization.",
+      features: [
+        "Real-time sales summary with key metrics",
+        "Interactive charts and data visualizations",
+        "Top performers leaderboard",
+        "Complete order management system",
+        "Product inventory management",
+        "Admin panel for user management",
+        "Responsive design for all devices",
+      ],
 
-      The dashboard transforms raw sales data into actionable insights through intuitive visualizations and responsive design, enabling better decision-making at all levels of the organization.
-
-      Core Features:
-      - Real-time sales summary with key metrics
-      - Interactive charts and data visualizations
-      - Top performers leaderboard
-      - Complete order management system
-      - Product inventory management
-      - Admin panel for user management
-      - Responsive design for all devices`,
-
-      approach: `Built with React hooks and Context API for state management:
-      - Frontend: React with custom hooks and Context API for global state
-      - Backend: Express with aggregation endpoints for pre-computed metrics
-      - Visualizations: Chart libraries with custom styling
-      - Performance: Memoization and smart re-render prevention
-      - Database: MongoDB with indexed queries for fast aggregation
-
-      Focused on smart API design where aggregation happens server-side, not client-side.`,
+      approach: {
+        overview:
+          "Built with React hooks and Context API for state management.",
+        points: [
+          {
+            label: "Frontend",
+            description:
+              "React with custom hooks and Context API for global state",
+          },
+          {
+            label: "Backend",
+            description:
+              "Express with aggregation endpoints for pre-computed metrics",
+          },
+          {
+            label: "Visualizations",
+            description: "Chart libraries with custom styling",
+          },
+          {
+            label: "Performance",
+            description: "Memoization and smart re-render prevention",
+          },
+          {
+            label: "Database",
+            description: "MongoDB with indexed queries for fast aggregation",
+          },
+        ],
+        conclusion:
+          "Focused on smart API design where aggregation happens server-side, not client-side.",
+      },
 
       challenges: [
         {
@@ -486,7 +749,9 @@ export const detailedProjectDescriptions = {
     sections: {
       introduction: `A personal portfolio built using Next.js 15 (App Router) with Server-Side Rendering (SSR), dynamic routing, and MVC architecture, designed to showcase projects, skills, and experience.
 
+
       The portfolio demonstrates the ability to build SEO-optimized, high-performance web applications with modern best practices, serving both as a marketing tool to land interviews and a technical showcase of development abilities.
+
 
       Core Features:
       - Server-side rendered homepage with optimized performance
@@ -498,16 +763,41 @@ export const detailedProjectDescriptions = {
       - Image optimization and lazy loading
       - Fast navigation with Next.js client-side routing`,
 
-      approach: `Implemented using modern Next.js 15 patterns:
-      - Server Components for data fetching and rendering
-      - Dynamic routes with [slug] for infinite scalability
-      - generateStaticParams() for pre-rendering key routes
-      - generateMetadata() for per-page SEO optimization
-      - Image optimization with next/image
-      - CSS with Tailwind for maintainability
-      - TypeScript for type safety throughout
-
-      Separated concerns using MVC-inspired architecture with lib/ for models (data), components/ for views, and pages/ for controllers.`,
+      approach: {
+        overview: "Implemented using modern Next.js 15 patterns:",
+        points: [
+          {
+            label: "Server Components",
+            description: "For data fetching and rendering",
+          },
+          {
+            label: "Dynamic routes",
+            description: "With [slug] for infinite scalability",
+          },
+          {
+            label: "Pre-rendering",
+            description: "generateStaticParams() for pre-rendering key routes",
+          },
+          {
+            label: "SEO",
+            description: "generateMetadata() for per-page SEO optimization",
+          },
+          {
+            label: "Images",
+            description: "Image optimization with next/image",
+          },
+          {
+            label: "Styling",
+            description: "CSS with Tailwind for maintainability",
+          },
+          {
+            label: "Type Safety",
+            description: "TypeScript for type safety throughout",
+          },
+        ],
+        conclusion:
+          "Separated concerns using MVC-inspired architecture with lib/ for models (data), components/ for views, and pages/ for controllers.",
+      },
 
       challenges: [
         {

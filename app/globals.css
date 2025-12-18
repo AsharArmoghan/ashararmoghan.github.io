@@ -101,6 +101,19 @@ body {
   .animate-glow {
     animation: glow 3.5s infinite alternate;
   }
+
+  @keyframes spinner-fade {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.15;
+    }
+  }
+
+  .animate-spinner-fade {
+    animation: spinner-fade 1.2s linear infinite;
+  }
 }
 
 @layer base {
@@ -126,4 +139,18 @@ body {
   .prose code span {
     @apply font-medium;
   }
+}
+
+@font-face {
+  font-family: "NinjaKage";
+  src: url("/assets/fonts/NinjaKageDemo-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NinjaKageRough";
+  src: url("/assets/fonts/NinjaKageDemo-Rough.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }

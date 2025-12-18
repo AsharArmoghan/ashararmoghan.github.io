@@ -32,6 +32,8 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
         serif: ["var(--font-serif)", ...fontFamily.serif],
+        ninja: ["NinjaKage", "sans-serif"],
+        ninjaRough: ["NinjaKageRough", "sans-serif"],
       },
       colors: {
         background: "hsl(var(--background))",

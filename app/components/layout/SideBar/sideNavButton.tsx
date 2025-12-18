@@ -6,7 +6,7 @@ import { HeaderProps } from "@/app/lib/Types/HeaderProps";
 import { motion, AnimatePresence } from "framer-motion";
 import { spring } from "motion";
 
-const MobileNav: React.FC<HeaderProps> = ({ scrollToSection }) => {
+const MobileNav: React.FC<HeaderProps> = ({ sections }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -34,7 +34,7 @@ const MobileNav: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <SideMenu
             isOpen={isMenuOpen}
             onClose={() => setIsMenuOpen(false)}
-            scrollToSection={scrollToSection}
+            sections={sections}
           />
           {isMenuOpen && (
             <div

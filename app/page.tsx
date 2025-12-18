@@ -1,95 +1,51 @@
 "use client";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React from "react";
 import Home from "@/app/home/HomePage";
-import About from "@/app/about/page";
-import Header from "@/app/components/layout/Header/header";
-import Projects from "@/app/projects/page";
-import ArticleList from "@/app/articles/page";
-import { Section, SectionName } from "@/app/lib/Types/HeaderProps";
-import Footer from "@/app/components/layout/Footer/footer";
+import { AboutGrid } from "@/app/components/features/About/AboutGrid";
+import HomeProjects from "@/app/components/features/Project/HomeProjects";
+import HomeArticles from "@/app/components/features/Article/HomeArticles";
+import { motion } from "framer-motion";
+
+const RevealSection = ({
+  children,
+  id,
+}: {
+  children: React.ReactNode;
+  id: string;
+}) => {
+  return (
+    <motion.section
+      id={id}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+      }}
+      viewport={{ once: true, margin: "-10%" }}
+    >
+      {children}
+    </motion.section>
+  );
+};
 
 const Main = () => {
-  const [activeSection, setActiveSection] = useState<SectionName>("home");
-
-  const scrollToSection = (section: SectionName) => {
-    const sectionData = sections.find((s) => s.id === section);
-    if (sectionData.ref.current) {
-      sectionData.ref.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "center",
-      });
-    }
-  };
-  const homeRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const articlesRef = useRef<HTMLDivElement>(null);
-  const aboutRef = useRef<HTMLDivElement>(null);
-
-  const sections: Section[] = useMemo(
-    () => [
-      {
-        id: "home",
-        label: "Home",
-        ref: homeRef,
-        component: <Home />,
-      },
-      {
-        id: "projects",
-        label: "Projects",
-        ref: projectsRef,
-        component: <Projects />,
-      },
-      {
-        id: "articles",
-        label: "Articles",
-        ref: articlesRef,
-        component: <ArticleList />,
-      },
-      {
-        id: "about",
-        label: "About",
-        ref: aboutRef,
-        component: <About />,
-      },
-    ],
-    [homeRef, projectsRef, articlesRef, aboutRef],
-  );
-
-  useEffect(() => {
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (!entry.target.id) return;
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id as SectionName);
-        }
-      });
-    };
-    const observer = new IntersectionObserver(observerCallback);
-    sections.forEach((section) => {
-      if (section.ref.current) observer.observe(section.ref.current);
-    });
-
-    return () => {
-      sections.forEach((section) => {
-        if (section.ref.current) observer.unobserve(section.ref.current);
-      });
-    };
-  }, [sections]);
   return (
-    <section className="min-h-screen w-full overflow-x-hidden">
-      <Header
-        scrollToSection={scrollToSection}
-        activeSection={activeSection}
-        sections={sections.map(({ id, label }) => ({ id, label }))}
-      />
-      {sections.map((section) => (
-        <section key={section.id} id={section.id} ref={section.ref}>
-          {section.component}
-        </section>
-      ))}
-
-      <Footer />
+    <section className="min-h-screen w-full">
+      <div className="relative z-10 mb-[500px] bg-primary-white dark:bg-primary-black md:mb-[400px]">
+        <RevealSection id="home">
+          <Home />
+        </RevealSection>
+        <RevealSection id="projects">
+          <HomeProjects />
+        </RevealSection>
+        <RevealSection id="articles">
+          <HomeArticles />
+        </RevealSection>
+        <RevealSection id="about">
+          <AboutGrid />
+        </RevealSection>
+      </div>
     </section>
   );
 };

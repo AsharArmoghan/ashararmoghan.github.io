@@ -1,79 +1,29 @@
 "use client";
 import React from "react";
-import Card from "@/app/components/ui/Card/hoverCard/card";
-import { motion } from "framer-motion";
+
+import ProjectStack from "@/app/components/ui/Card/ProjectStack/ProjectStack";
 import "../projects/projects.css";
-import { projectData } from "@/app/lib/data/projects/projectsData";
-import Link from "next/link";
-import { IconCardComponent } from "@/app/components/ui/Card/iconCard/iconCard";
 import TextReveal from "@/app/utils/TextRevel";
 
 const Projects: React.FC = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-primary-white pt-3 dark:bg-primary-black dark:text-zinc-300">
-      <div className="py-3 text-zinc-800 dark:text-zinc-300 lg:my-20">
-        <div className="my-12 flex items-center justify-center text-gray-900 dark:text-white">
-          <TextReveal delay={0.4}>
-            <h2 className="text-5xl font-extrabold leading-none tracking-tight lg:text-7xl">
-              Things I&apos;ve Built
-            </h2>
-          </TextReveal>
-        </div>
-        <hr className="mx-auto my-4 h-1 w-60 rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 md:my-10"></hr>
-      </div>
-
-      {projectData.slice(0, 2).map((project) => (
-        <div
-          key={project.id}
-          className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-x-10 gap-y-12 px-4 py-8 lg:grid-cols-2"
-        >
-          <motion.div
-            key="card"
-            initial={{
-              scale: 0.5,
-              y: 50,
-              opacity: 0,
-            }}
-            animate={{
-              scale: 1,
-              y: 0,
-              opacity: 1,
-            }}
-            transition={{
-              type: "spring",
-              mass: 0.5,
-              stiffness: 300,
-              damping: 30,
-              restDelta: 0.01,
-            }}
-            className="my-3 flex items-center justify-center"
-          >
-            <Link href={`/projects/${project.slug}`}>
-              <Card ProjectProps={project} />
-            </Link>
-          </motion.div>
-          <div className="flex flex-col justify-items-center px-4 text-zinc-800 dark:text-zinc-300 lg:pl-10">
+    <div className="flex min-h-screen flex-col items-center justify-center pt-3 dark:text-zinc-300">
+      <div className="relative z-10 mb-[500px] mt-[120px] w-full bg-primary-white dark:bg-primary-black md:mb-[400px]">
+        <div className="py-3 text-zinc-800 dark:text-zinc-300 lg:my-20">
+          <div className="my-12 flex items-center justify-center text-gray-900 dark:text-white">
             <TextReveal delay={0.4}>
-              <Link href={`/projects/${project.slug}`}>
-                <h2 className="mb-10 flex items-center justify-center text-center text-4xl font-bold leading-none tracking-tight text-gray-900 dark:text-white lg:justify-start lg:text-left lg:text-5xl">
-                  {project.title}
-                </h2>
-              </Link>
+              <h2 className="text-5xl font-extrabold leading-none tracking-tight lg:text-7xl">
+                Things I&apos;ve Built
+              </h2>
             </TextReveal>
-            <div>
-              <IconCardComponent Icon={{ icon: project.icons }} />
-            </div>
-            <div className="container w-full text-left">
-              <TextReveal delay={0.5}>
-                <p className="mt-8 pl-2 text-left font-normal leading-7 tracking-widest text-gray-500 dark:text-gray-400 md:text-[18px] lg:text-[22px] lg:-tracking-tighter">
-                  {project.description}
-                </p>
-              </TextReveal>
-            </div>
           </div>
-          <hr className="col-span-1 mx-auto my-6 h-0.5 w-full max-w-[900px] rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 lg:col-span-2" />
+          <hr className="mx-auto my-4 h-1 w-60 rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 md:my-10"></hr>
         </div>
-      ))}
+
+        <div className="mt-24 w-full px-4">
+          <ProjectStack />
+        </div>
+      </div>
     </div>
   );
 };

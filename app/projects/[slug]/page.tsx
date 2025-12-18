@@ -1,11 +1,15 @@
-import { projectData } from "@/app/lib/data/projects/projectsData";
+import {
+  projectsDescriptions,
+  detailedProjectDescriptions,
+} from "@/app/lib/data/projects/projectDescriptions";
 import Link from "next/link";
-import ProjectDetail from "@/app/components/features/Project/projectDetails";
-import Footer from "@/app/components/layout/Footer/footer";
-import { FaArrowLeft } from "react-icons/fa";
+import ProjectDetail from "@/app/components/features/Project/ProjectDetailsModern";
+import BackButton from "@/app/components/ui/Button/BackButton";
 
 export async function generateStaticParams() {
-  return projectData.map((project) => ({ slug: project.slug }));
+  return Object.values(projectsDescriptions).map((project) => ({
+    slug: project.slug,
+  }));
 }
 
 type Props = {
@@ -15,33 +19,42 @@ type Props = {
 const Project = async ({ params }: Props) => {
   const { slug } = await params;
 
-  const project = projectData.find((p) => p.slug === slug);
+  const basicInfo = Object.values(projectsDescriptions).find(
+    (p) => p.slug === slug,
+  );
+  const detailedInfo =
+    detailedProjectDescriptions[
+      slug as keyof typeof detailedProjectDescriptions
+    ];
 
-  if (!project) {
+  if (!basicInfo) {
     return (
       <div className="flex h-[600px] w-full items-center justify-center">
         <h1>Project Not Found</h1>
-        {/* Note: 'project' is null here, so project.id would crash. Fixed message below. */}
         <p>No project found for slug: {slug}</p>
-        <Link href="/">Go Back to Projects</Link>
+        <Link href="/projects">Go Back to Projects</Link>
       </div>
     );
   }
 
+  const project = {
+    ...basicInfo,
+    sections: detailedInfo?.sections,
+  };
+
   return (
-    <div>
-      <nav className="sticky top-0 w-full pt-10 text-primary-black dark:text-primary-white">
-        <div className="ml-6 flex h-10 w-10 flex-row items-center justify-center gap-2 sm:ml-1">
-          <Link href="/" className="flex items-center justify-center">
-            <FaArrowLeft className="pl-4 text-[45px] sm:text-[35px]" />
-          </Link>
+    <>
+      <div className="relative z-10 mb-[500px] min-h-screen bg-primary-white dark:bg-primary-black md:mb-[400px]">
+        <nav className="sticky top-0 w-full pt-10 text-primary-black dark:text-primary-white">
+          <div className="ml-6 flex h-10 w-10 flex-row items-center justify-center gap-2 sm:ml-1">
+            <BackButton />
+          </div>
+        </nav>
+        <div className="mx-auto flex flex-col items-center justify-center">
+          <ProjectDetail project={project}></ProjectDetail>
         </div>
-      </nav>
-      <div className="mx-auto flex flex-col items-center justify-center">
-        <ProjectDetail project={project}></ProjectDetail>
-        <Footer></Footer>
       </div>
-    </div>
+    </>
   );
 };
 

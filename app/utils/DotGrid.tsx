@@ -44,38 +44,11 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } {
   };
 }
 
-interface DotState {
-  cx: number;
-  cy: number;
-  xOffset: number;
-  yOffset: number;
-  _inertiaApplied: boolean;
-}
-
-interface PointerState {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  speed: number;
-  lastTime: number;
-  lastX: number;
-  lastY: number;
-}
-
-interface DotGridProps {
-  dotSize?: number;
-  gap?: number;
-  proximity?: number;
-  speedTrigger?: number;
-  shockRadius?: number;
-  shockStrength?: number;
-  maxSpeed?: number;
-  resistance?: number;
-  returnDuration?: number;
-  className?: string;
-  style?: React.CSSProperties;
-}
+import {
+  DotState,
+  PointerState,
+  DotGridProps,
+} from "@/app/lib/Types/DotGridTypes";
 
 /**
  * Interactive dot grid component with physics-based animations

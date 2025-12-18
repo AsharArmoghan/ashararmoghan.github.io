@@ -5,7 +5,6 @@ import { twMerge } from "tailwind-merge";
 import { Toaster } from "react-hot-toast";
 import ThemeProvider from "@/app/components/ui/Theme/providers";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-// import { Template } from "./components/Template/template";
 import Script from "next/script";
 import { LenisProvider } from "./providers/LenisProvider";
 
@@ -82,6 +81,10 @@ export const metadata: Metadata = {
   },
 };
 
+import { StartupLoader } from "./components/ui/StartupLoader";
+import Header from "./components/layout/Header/header";
+import Footer from "./components/layout/Footer/footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -117,10 +120,13 @@ export default function RootLayout({
           "flex min-h-screen flex-col antialiased",
         )}
       >
+        <StartupLoader />
         <LenisProvider>
           <ThemeProvider>
             <Toaster position="bottom-center" />
-            <main className="grow">{children}</main>
+            <Header />
+            <main className="relative z-10 grow">{children}</main>
+            <Footer />
           </ThemeProvider>
         </LenisProvider>
       </body>
