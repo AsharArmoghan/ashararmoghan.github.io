@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    turbo: {},
+  },
   webpack(config) {
     config.cache = false;
     const fileLoaderRule = config.module.rules.find((rules) =>
