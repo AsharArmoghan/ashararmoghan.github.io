@@ -2,6 +2,7 @@ import {
   projectsDescriptions,
   detailedProjectDescriptions,
 } from "@/app/lib/data/projects/projectDescriptions";
+import { Metadata } from "next";
 import Link from "next/link";
 import ProjectDetail from "@/app/components/features/Project/ProjectDetailsModern";
 import BackButton from "@/app/components/ui/Button/BackButton";
@@ -10,6 +11,45 @@ export async function generateStaticParams() {
   return Object.values(projectsDescriptions).map((project) => ({
     slug: project.slug,
   }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const basicInfo = Object.values(projectsDescriptions).find(
+    (p) => p.slug === slug,
+  );
+
+  if (!basicInfo) {
+    return {
+      title: "Project Not Found | Ashar",
+      description: "The requested project could not be found.",
+    };
+  }
+
+  return {
+    title: basicInfo.title,
+    description: basicInfo.overview,
+    openGraph: {
+      title: basicInfo.title,
+      description: basicInfo.overview,
+      images: basicInfo.image?.[0]?.imgSrc
+        ? [
+            {
+              url: basicInfo.image[0].imgSrc,
+              width: basicInfo.image[0].width,
+              height: basicInfo.image[0].height,
+              alt: basicInfo.title,
+            },
+          ]
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: basicInfo.title,
+      description: basicInfo.overview,
+      images: basicInfo.image?.[0]?.imgSrc ? [basicInfo.image[0].imgSrc] : [],
+    },
+  };
 }
 
 type Props = {
@@ -47,7 +87,7 @@ const Project = async ({ params }: Props) => {
       <div className="pointer-events-auto relative z-10 mb-[500px] min-h-screen bg-primary-white dark:bg-primary-black md:mb-[400px]">
         <nav className="sticky top-0 w-full pt-10 text-primary-black dark:text-primary-white">
           <div className="ml-6 flex h-10 w-10 flex-row items-center justify-center gap-2 sm:ml-1">
-            <BackButton />
+            <BackButton path="/projects" />
           </div>
         </nav>
         <div className="mx-auto flex flex-col items-center justify-center">

@@ -29,7 +29,7 @@ const ArticleComponent: React.FC<{ article: Article }> = ({ article }) => {
               onError={() => {
                 setImgSrc(
                   "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=2070&auto=format&fit=crop",
-                ); // Fallback gradient
+                );
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
