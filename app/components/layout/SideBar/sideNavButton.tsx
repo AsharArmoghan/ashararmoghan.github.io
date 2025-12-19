@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import SideMenu from "./sideMenu";
 import { RiMenu2Fill } from "react-icons/ri";
 import { HeaderProps } from "@/app/lib/Types/HeaderProps";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { spring } from "motion";
 
 const MobileNav: React.FC<HeaderProps> = ({ sections }) => {

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Logo from "@/app/components/ui/Logo/Logo";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import ThemeToggle from "@/app/components/ui/Theme/theme-toggle";
 import MobileNav from "@/app/components/layout/SideBar/sideNavButton";
 
@@ -37,6 +37,10 @@ const Header: React.FC = () => {
       router.push(`/${value}`);
     }
   };
+
+  if (pathname.includes("/articles/new")) {
+    return null;
+  }
 
   return (
     <header className="header top-0 h-0 scroll-smooth border-b bg-primary-white dark:bg-primary-black md:border-none">

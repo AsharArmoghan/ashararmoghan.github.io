@@ -1,4 +1,4 @@
-import { MotionValue } from "framer-motion";
+import { MotionValue } from "motion/react";
 
 export interface ProjectDescription {
   id: number;

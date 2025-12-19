@@ -9,6 +9,9 @@ export const ArticlesData: Article[] = [
     readTime: "5 min read",
     content:
       "In the world of software development, frameworks play a crucial role in streamlining the development process...",
+    slug: "popular-software-engineering-frameworks-explained",
+    image:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2669&auto=format&fit=crop",
   },
   {
     id: 2,
@@ -18,6 +21,9 @@ export const ArticlesData: Article[] = [
     readTime: "7 min read",
     content:
       "JavaScript is the backbone of modern web development. Understanding its core concepts can greatly enhance your coding skills...",
+    slug: "mastering-javascript-tips-and-tricks",
+    image:
+      "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=2667&auto=format&fit=crop",
   },
   {
     id: 3,
@@ -27,6 +33,9 @@ export const ArticlesData: Article[] = [
     readTime: "6 min read",
     content:
       "Artificial intelligence is transforming how software is developed, from automation to intelligent debugging...",
+    slug: "rise-of-ai-in-software-development",
+    image:
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2640&auto=format&fit=crop",
   },
   {
     id: 4,
@@ -36,5 +45,8 @@ export const ArticlesData: Article[] = [
     readTime: "8 min read",
     content:
       "Cloud computing has become an essential part of modern IT infrastructure. Here’s what you need to know in 2025...",
+    slug: "understanding-cloud-computing-2025",
+    image:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop",
   },
 ];

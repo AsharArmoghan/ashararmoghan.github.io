@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 import { projectsDescriptions } from "@/app/lib/data/projects/projectDescriptions";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";

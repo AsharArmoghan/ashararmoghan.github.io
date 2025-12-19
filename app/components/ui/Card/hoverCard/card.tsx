@@ -5,7 +5,7 @@ import {
   useMotionTemplate,
   useMotionValue,
   useSpring,
-} from "framer-motion";
+} from "motion/react";
 import Image from "next/image";
 import { ProjectProps } from "@/app/lib/Types/ProjectProps";
 // import ResponsiveCanvas from "../imageCardSlider/ResponsiveImage";

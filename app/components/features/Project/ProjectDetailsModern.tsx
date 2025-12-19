@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { IconCardComponent } from "@/app/components/ui/Card/iconCard/iconCard";
 import TextReveal from "@/app/utils/TextRevel";
 import { ArrowUpRightIcon } from "@/app/components/ui/Icons/ArrowUpRightIcon";

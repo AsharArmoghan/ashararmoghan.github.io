@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
@@ -23,7 +23,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         duration: 0.5,
         ease: "easeInOut",
       }}
-      className="min-h-screen w-full"
+      className="pointer-events-none min-h-screen w-full"
     >
       {children}
     </motion.div>

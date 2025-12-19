@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FaArrowLeft } from "react-icons/fa";
 
-const BackButton = () => {
+const BackButton = ({ path }: { path: string }) => {
   return (
-    <Link href="/" className="flex items-center justify-center">
+    <Link href={path} className="flex items-center justify-center">
       <motion.button
         className="ml-10 flex h-14 w-14 items-center justify-center rounded-full bg-white/10 text-primary-black backdrop-blur-md transition-colors hover:bg-white/20 dark:text-primary-white"
         initial={{ opacity: 0, x: -20 }}

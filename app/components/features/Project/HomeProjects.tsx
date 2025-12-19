@@ -5,7 +5,7 @@ import "../../../projects/projects.css";
 import TextReveal from "@/app/utils/TextRevel";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import MagneticButton from "@/app/components/ui/Button/MagneticButton";
 
 const HomeProjects: React.FC = () => {

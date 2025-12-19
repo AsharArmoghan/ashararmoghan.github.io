@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion, HTMLMotionProps } from "framer-motion";
+import { motion, HTMLMotionProps } from "motion/react";
 
 interface HoverAnimationProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;

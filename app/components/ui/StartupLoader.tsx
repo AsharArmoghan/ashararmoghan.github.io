@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ShinyLoading from "@/app/utils/LoadingIcon";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 
 export const StartupLoader = () => {
   const [loading, setLoading] = useState(true);

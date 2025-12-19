@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { MotionProps, motion } from "framer-motion";
+import { MotionProps, motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
 import { SiGithub, SiLinkedin, SiFiverr } from "react-icons/si";

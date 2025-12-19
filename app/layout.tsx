@@ -125,7 +125,9 @@ export default function RootLayout({
           <ThemeProvider>
             <Toaster position="bottom-center" />
             <Header />
-            <main className="relative z-10 grow">{children}</main>
+            <main className="pointer-events-none relative z-10 grow">
+              {children}
+            </main>
             <Footer />
           </ThemeProvider>
         </LenisProvider>

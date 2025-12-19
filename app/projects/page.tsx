@@ -8,7 +8,7 @@ import TextReveal from "@/app/utils/TextRevel";
 const Projects: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center pt-3 dark:text-zinc-300">
-      <div className="relative z-10 mb-[500px] mt-[120px] w-full bg-primary-white dark:bg-primary-black md:mb-[400px]">
+      <div className="pointer-events-auto relative z-10 mb-[500px] mt-[120px] w-full bg-primary-white dark:bg-primary-black md:mb-[400px]">
         <div className="py-3 text-zinc-800 dark:text-zinc-300 lg:my-20">
           <div className="my-12 flex items-center justify-center text-gray-900 dark:text-white">
             <TextReveal delay={0.4}>

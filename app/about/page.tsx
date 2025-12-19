@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { MotionProps, motion } from "framer-motion";
+import { MotionProps, motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
 import { SiGithub, SiLinkedin, SiFiverr } from "react-icons/si";
@@ -12,10 +12,10 @@ import BackButton from "../components/ui/Button/BackButton";
 const About = () => {
   return (
     <>
-      <div className="relative z-10 mb-[500px] min-h-screen bg-primary-white dark:bg-primary-black md:mb-[400px]">
+      <div className="pointer-events-auto relative z-10 mb-[500px] min-h-screen bg-primary-white dark:bg-primary-black md:mb-[400px]">
         <nav className="sticky top-0 w-full pt-10 text-primary-black dark:text-primary-white">
           <div className="ml-6 flex h-10 w-10 flex-row items-center justify-center gap-2 sm:ml-1">
-            <BackButton />
+            <BackButton path="/" />
           </div>
         </nav>
         <div className="min-h-screen px-4 py-12">

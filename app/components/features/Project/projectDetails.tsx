@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { ImgCard } from "@/app/components/ui/Card/imageCardSlider/imgCard";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { IconCardComponent } from "@/app/components/ui/Card/iconCard/iconCard";
 import TextReveal from "@/app/utils/TextRevel";
 

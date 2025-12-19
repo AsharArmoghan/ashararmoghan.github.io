@@ -5,4 +5,7 @@ export interface Article {
   date: string;
   readTime: string;
   content: string;
+  slug: string;
+  image?: string;
+  status?: "draft" | "published";
 }

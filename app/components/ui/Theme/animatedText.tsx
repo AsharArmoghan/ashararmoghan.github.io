@@ -1,5 +1,5 @@
 "use client";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView, AnimatePresence, Variants } from "motion/react";
 import { useRef, ReactNode, isValidElement, Children } from "react";
 
 interface AnimatedTextProps {
@@ -23,7 +23,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   const isInView = useInView(ref, { once });
 
   // Animation Variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -34,7 +34,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
     },
   };
 
-  const childVariants = {
+  const childVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
@@ -43,7 +43,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
         type: "spring",
         stiffness: 300,
         damping: 40,
-        resetDelta: 0.01,
+        restDelta: 0.01,
         duration,
       },
     },

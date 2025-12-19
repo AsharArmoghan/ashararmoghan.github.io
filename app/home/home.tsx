@@ -1,6 +1,6 @@
 "use client";
 import "./home.css";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import ScrambleText from "@/app/utils/ScrambleText";
 import LiquidEther from "@/app/utils/LiquidEther";
 import tc from "tailwindcss/colors";

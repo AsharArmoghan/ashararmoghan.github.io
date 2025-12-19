@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "motion/react";
 import {
   LiquidEtherProps,
   LiquidEtherWebGL,

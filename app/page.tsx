@@ -4,7 +4,7 @@ import Home from "@/app/home/HomePage";
 import { AboutGrid } from "@/app/components/features/About/AboutGrid";
 import HomeProjects from "@/app/components/features/Project/HomeProjects";
 import HomeArticles from "@/app/components/features/Article/HomeArticles";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const RevealSection = ({
   children,
@@ -32,7 +32,7 @@ const RevealSection = ({
 const Main = () => {
   return (
     <section className="min-h-screen w-full">
-      <div className="relative z-10 mb-[500px] bg-primary-white dark:bg-primary-black md:mb-[400px]">
+      <div className="pointer-events-auto relative z-10 mb-[500px] bg-primary-white dark:bg-primary-black md:mb-[400px]">
         <RevealSection id="home">
           <Home />
         </RevealSection>

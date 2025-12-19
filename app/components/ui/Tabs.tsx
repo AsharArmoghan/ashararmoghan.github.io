@@ -1,6 +1,6 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
 
 const TabsContext = createContext<any>(null);

@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 import React from "react";
 
 interface GrainProps {

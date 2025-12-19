@@ -5,7 +5,7 @@ import ArticleComponent from "@/app/components/features/Article/article";
 import TextReveal from "@/app/utils/TextRevel";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const HomeArticles: React.FC = () => {
   const displayArticles = ArticlesData.slice(0, 3);
@@ -23,7 +23,7 @@ const HomeArticles: React.FC = () => {
         <hr className="mx-auto my-2 h-1 w-60 rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 md:my-10"></hr>
       </div>
 
-      <div className="container mx-2 grid w-full gap-8 sm:grid-flow-row lg:grid-flow-col">
+      <div className="container mx-auto grid w-full grid-cols-1 gap-8 px-4 md:grid-cols-2 lg:grid-cols-3">
         {displayArticles.map((article) => (
           <ArticleComponent key={article.id} article={article} />
         ))}
