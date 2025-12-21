@@ -17,6 +17,7 @@ import { FaListOl, FaQuoteRight } from "react-icons/fa6";
 
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const NewArticle = () => {
   const router = useRouter();
@@ -133,7 +134,9 @@ const NewArticle = () => {
       <nav className="bg-primary-white/80 dark:bg-primary-black/80 sticky top-0 z-50 w-full border-b border-zinc-200 pt-4 backdrop-blur-sm dark:border-zinc-800">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-4">
-            <BackButton path="/articles" />
+            <Link href="/articles">
+              <BackButton />
+            </Link>
             <span className="font-semibold text-zinc-900 dark:text-zinc-100">
               Create Post
             </span>

@@ -54,7 +54,7 @@ const Card = ({ i, project, progress, range, targetScale }: CardProps) => {
   return (
     <div
       ref={container}
-      className="sticky top-28 flex min-h-screen origin-top items-start justify-center py-10"
+      className="sticky top-28 flex min-h-screen origin-top items-start justify-center py-16"
     >
       <motion.div
         style={{

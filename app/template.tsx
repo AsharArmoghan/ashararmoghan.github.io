@@ -6,24 +6,24 @@ export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
       initial={{
-        opacity: 0.08,
-        scale: 0.88,
-        filter: "blur(20px)",
-        y: -100,
-        translateY: -100,
+        opacity: 0,
+        scale: 0.9,
+        y: 20,
+        filter: "blur(10px)",
       }}
       animate={{
         opacity: 1,
         scale: 1,
-        filter: "blur(0px)",
         y: 0,
-        translateY: 0,
+        filter: "blur(0px)",
       }}
       transition={{
-        duration: 0.5,
-        ease: "easeInOut",
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+        mass: 1,
       }}
-      className="pointer-events-none min-h-screen w-full"
+      className="min-h-screen w-full"
     >
       {children}
     </motion.div>

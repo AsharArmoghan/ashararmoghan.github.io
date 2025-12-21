@@ -5,11 +5,10 @@ import { motion, AnimatePresence } from "motion/react";
 import { IconCardComponent } from "@/app/components/ui/Card/iconCard/iconCard";
 import TextReveal from "@/app/utils/TextRevel";
 import { ArrowUpRightIcon } from "@/app/components/ui/Icons/ArrowUpRightIcon";
-
 import { ModernProjectData } from "@/app/lib/Types/ProjectDetailsTypes";
 import Link from "next/link";
-import Magnet from "@/app/utils/Magnet";
 import HoverAnimation from "@/app/utils/HoverAnimation";
+import Magnet from "@/app/utils/Magnet";
 
 const ProjectDetailsModern: React.FC<{ project: ModernProjectData }> = ({
   project,
@@ -47,7 +46,7 @@ const ProjectDetailsModern: React.FC<{ project: ModernProjectData }> = ({
               {project.liveUrl && (
                 <div className="flex">
                   <Link
-                    href="http://react-dashboard-ash.vercel.app"
+                    href={project.liveUrl}
                     target="_blank"
                     className="group flex items-center gap-2 rounded-full bg-zinc-100 px-4 py-2 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
                   >

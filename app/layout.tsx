@@ -22,25 +22,34 @@ export const metadata: Metadata = {
     "Portfolio of Ashar, a Full-Stack Developer specializing in scalable web solutions with Next.js 15, React, and TypeScript. Based in Delhi, India.",
   keywords: [
     "Full Stack Developer",
-    "Next.js 15 Portfolio",
-    "React Developer",
+    "Web Developer",
+    "Mobile App Developer",
+    "Software Engineer",
+    "React",
+    "React.js",
+    "Next.js",
+    "Next.js 15",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Vercel",
     "TypeScript",
+    "JavaScript",
     "Tailwind CSS",
+    "Flutter",
+    "Dart",
+    "Android Development",
+    "iOS Development",
+    "Cross-Platform Development",
     "Web Development Delhi",
     "Software Engineer India",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Full-Stack Projects",
+    "Freelance Developer",
     "Portfolio",
-    "Web Development",
-    "Node.js",
-    "Angular",
-    "Tailwind CSS",
-    "Project Showcase",
-    "Ashar's Projects",
-    "flutter",
-    "dart",
+    "Full-Stack Projects",
+    "Scalable Web Solutions",
+    "ashar",
+    "syed ashar",
+    "ashar armoghan",
   ],
   authors: [{ name: "Ashar" }],
   creator: "Ashar",
@@ -125,9 +134,7 @@ export default function RootLayout({
           <ThemeProvider>
             <Toaster position="bottom-center" />
             <Header />
-            <main className="pointer-events-none relative z-10 grow">
-              {children}
-            </main>
+            <main className="relative z-10 grow">{children}</main>
             <Footer />
           </ThemeProvider>
         </LenisProvider>

@@ -4,8 +4,9 @@ import {
 } from "@/app/lib/data/projects/projectDescriptions";
 import { Metadata } from "next";
 import Link from "next/link";
-import ProjectDetail from "@/app/components/features/Project/ProjectDetailsModern";
+
 import BackButton from "@/app/components/ui/Button/BackButton";
+import ProjectContent from "./ProjectContent";
 
 export async function generateStaticParams() {
   return Object.values(projectsDescriptions).map((project) => ({
@@ -82,18 +83,27 @@ const Project = async ({ params }: Props) => {
     sections: detailedInfo?.sections,
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    name: basicInfo.title,
+    description: basicInfo.overview,
+    author: {
+      "@type": "Person",
+      name: "Ashar",
+    },
+    programmingLanguage: basicInfo.icons.map((icon) => icon.name),
+    url: `https://ashar-dev.vercel.app/projects/${slug}`,
+    image: basicInfo.image?.[0]?.imgSrc || "",
+  };
+
   return (
     <>
-      <div className="pointer-events-auto relative z-10 mb-[500px] min-h-screen bg-primary-white dark:bg-primary-black md:mb-[400px]">
-        <nav className="sticky top-0 w-full pt-10 text-primary-black dark:text-primary-white">
-          <div className="ml-6 flex h-10 w-10 flex-row items-center justify-center gap-2 sm:ml-1">
-            <BackButton path="/projects" />
-          </div>
-        </nav>
-        <div className="mx-auto flex flex-col items-center justify-center">
-          <ProjectDetail project={project}></ProjectDetail>
-        </div>
-      </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ProjectContent initialProject={project} />
     </>
   );
 };

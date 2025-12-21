@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll, useTransform, MotionValue } from "motion/react";
+import { motion } from "motion/react";
 import React from "react";
 
 interface GrainProps {
@@ -35,8 +35,6 @@ export const ParticleEffect: React.FC<ParticleEffectProps> = ({
   sand = {},
   className = "absolute inset-0 pointer-events-none overflow-hidden",
 }) => {
-  const { scrollYProgress } = useScroll();
-
   // Defaults
   const grainOpacity = grain.opacity ?? 1.0; // 100% default based on current usage
   const grainFreq = grain.baseFrequency ?? 0.9;

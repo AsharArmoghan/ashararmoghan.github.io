@@ -21,10 +21,12 @@ const ArticlesListClient: React.FC = () => {
 
   return (
     <>
-      <div className="pointer-events-auto relative z-10 mb-[500px] min-h-screen bg-primary-white dark:bg-primary-black md:mb-[400px]">
+      <div className="pointer-events-auto relative z-10 mb-[380px] min-h-screen bg-primary-white dark:bg-primary-black">
         <nav className="sticky top-0 w-full pt-10 text-primary-black dark:text-primary-white">
-          <div className="ml-6 flex h-10 w-10 flex-row items-center justify-center gap-2 sm:ml-1">
-            <BackButton path="/" />
+          <div className="ml-6 flex h-20 w-20 flex-row items-center justify-center gap-2 sm:ml-1">
+            <Link href="/">
+              <BackButton />
+            </Link>
           </div>
         </nav>
         <div className="container mx-auto flex flex-col items-center justify-center px-4 py-12">

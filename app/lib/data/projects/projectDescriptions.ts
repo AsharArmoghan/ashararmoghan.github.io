@@ -156,7 +156,7 @@ export const projectsDescriptions = {
     ],
 
     impact: `Established a reusable authentication pattern used in all subsequent projects, drastically reducing setup time. The project proved the ability to ship a full-stack feature set from concept to deployed product.`,
-    liveUrl: "https://code-blog-demo.vercel.app", // Placeholder
+    liveUrl: "https://code-blog-demo.vercel.app",
   },
 
   2: {
@@ -298,7 +298,7 @@ export const projectsDescriptions = {
     ],
 
     impact: `Influenced all future React work: confident state persistence, cleaner API communication, and a new appreciation for the precision required in building analytical tools.`,
-    liveUrl: "https://react-sales-frontend.vercel.app",
+    liveUrl: "https://react-sales-frontend.vercel.app/",
   },
 
   3: {
@@ -455,7 +455,7 @@ export const projectsDescriptions = {
     ],
 
     impact: `Set the template for all my future web projects: think SEO/Performance first, use TypeScript, and maintain strict MVC-like separation in folder structures.`,
-    liveUrl: "https://ashar-armoghan.vercel.app", // Placeholder
+    liveUrl: "https://ashar-dev.vercel.app",
   },
 };
 

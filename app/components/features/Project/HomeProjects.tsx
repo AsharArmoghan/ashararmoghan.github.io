@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import ProjectStack from "@/app/components/ui/Card/ProjectStack/ProjectStack";
-import "../../../projects/projects.css";
+
 import TextReveal from "@/app/utils/TextRevel";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";

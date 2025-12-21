@@ -5,7 +5,7 @@ import { AboutGrid } from "@/app/components/features/About/AboutGrid";
 import HomeProjects from "@/app/components/features/Project/HomeProjects";
 import HomeArticles from "@/app/components/features/Article/HomeArticles";
 import { motion } from "motion/react";
-
+import { websiteSchema } from "@/app/lib/seo/schemas";
 const RevealSection = ({
   children,
   id,
@@ -32,7 +32,11 @@ const RevealSection = ({
 const Main = () => {
   return (
     <section className="min-h-screen w-full">
-      <div className="pointer-events-auto relative z-10 mb-[500px] bg-primary-white dark:bg-primary-black md:mb-[400px]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <div className="pointer-events-auto relative z-10 mb-[380px] bg-primary-white dark:bg-primary-black sm:mb-[380px]">
         <RevealSection id="home">
           <Home />
         </RevealSection>

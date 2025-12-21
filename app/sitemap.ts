@@ -1,11 +1,11 @@
+"use server";
 import { MetadataRoute } from "next";
 import { projectsDescriptions } from "@/app/lib/data/projects/projectDescriptions";
 import { ArticlesData } from "@/app/lib/data/articles/articlesData";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://ashar-dev.vercel.app";
 
-  // Static routes
   const staticRoutes = ["", "/about", "/projects", "/articles"].map(
     (route) => ({
       url: `${baseUrl}${route}`,
@@ -15,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
-  // Dynamic Project Routes
   const projectRoutes = Object.values(projectsDescriptions).map((project) => ({
     url: `${baseUrl}/projects/${project.slug}`,
     lastModified: new Date(),
@@ -23,10 +22,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Dynamic Article Routes
   const articleRoutes = ArticlesData.map((article) => ({
     url: `${baseUrl}/articles/${article.slug}`,
-    lastModified: new Date(), // Ideally this would be the actual article date
+    lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));

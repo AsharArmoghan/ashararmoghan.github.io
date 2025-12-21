@@ -16,34 +16,23 @@ const ArticleContent = ({
 }) => {
   const { slug } = useParams();
   const router = useRouter();
-  // If initialArticle is provided (SSR), use it. Otherwise undefined (loading) until Effect runs.
-  // If we want to show loading spinner for local storage fetch, start as undefined.
-  // If initialArticle is null (not found on server), we still might find it in local storage?
-  // No, if server checked static and failed, it's definitely not static. So we check local storage.
   const [article, setArticle] = useState<Article | null | undefined>(
     initialArticle === null ? undefined : initialArticle,
   );
   const [imgSrc, setImgSrc] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    // If we already have the article from props, we don't need to do anything strictly,
-    // unless we want to support overriding static with local (unlikely).
-    // If initialArticle is passed, we are good.
     if (initialArticle) {
       setArticle(initialArticle);
       return;
     }
 
-    // Only search if we don't have it.
-    // Check static data first (client-side fallback)
-    // Note: This matches original logic, though server usually handles this now.
     const staticArticle = ArticlesData.find((a) => a.slug === slug);
     if (staticArticle) {
       setArticle(staticArticle);
       return;
     }
 
-    // Check localStorage
     const customArticles = JSON.parse(
       localStorage.getItem("custom_articles") || "[]",
     );
@@ -95,7 +84,9 @@ const ArticleContent = ({
     <div className="pointer-events-auto min-h-screen bg-primary-white dark:bg-primary-black">
       <nav className="sticky top-0 z-50 flex w-full items-center justify-between px-6 pt-10 text-primary-black dark:text-primary-white">
         <div className="flex h-10 w-10 flex-row items-center justify-center gap-2 sm:ml-1">
-          <BackButton path="/articles" />
+          <Link href="/articles">
+            <BackButton />
+          </Link>
         </div>
         <button
           onClick={handleDelete}
