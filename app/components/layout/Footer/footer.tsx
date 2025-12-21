@@ -10,7 +10,7 @@ import { ParticleEffect } from "@/app/utils/ParticleEffect";
 
 const Footer = () => {
   return (
-    <footer className="fixed bottom-0 z-0 h-[300px] w-full overflow-hidden bg-stone-500 text-stone-200 dark:bg-stone-800 sm:h-[300px]">
+    <footer className="fixed bottom-0 z-0 h-[380px] w-full overflow-hidden bg-stone-500 text-stone-200 dark:bg-stone-800 sm:h-[380px]">
       <ParticleEffect
         grain={{
           opacity: 0.3,
