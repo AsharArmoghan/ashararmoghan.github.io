@@ -1,4 +1,5 @@
 import { MotionValue } from "motion/react";
+import { Icon } from "./ProjectDescriptionTypes";
 
 export interface ProjectDescription {
   id: number;
@@ -7,7 +8,7 @@ export interface ProjectDescription {
   overview: string;
   images?: { imgSrc: string; width: number; height: number }[];
   image?: { imgSrc: string; width: number; height: number }[];
-  icons: { name: string; component: string; color: string }[];
+  icons: Icon[];
 }
 
 export interface CardProps {

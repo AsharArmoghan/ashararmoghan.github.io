@@ -1,8 +1,10 @@
+import { Icon } from "./ProjectDescriptionTypes";
+
 export interface LegacyProjectData {
   title: string;
   overview: string;
   image: { imgSrc: string; width: number; height: number }[];
-  icons: { name: string; component: string; color: string }[];
+  icons: Icon[];
   introduction?: string;
   purposeAndGoal?: string;
   spotlight?: { title: string; description: string };
@@ -41,9 +43,9 @@ export interface ProjectData {
   description?: string;
   introduction?: string;
   purposeAndGoal?: string;
-  images: { imgSrc: string; width: number; height: number }[]; // renamed from image to images or vice versa? projectDescriptions has images
-  image?: { imgSrc: string; width: number; height: number }[]; // keeping both for compatibility during transition
-  icons: { name: string; component: string; color: string }[];
+  images: { imgSrc: string; width: number; height: number }[];
+  image?: { imgSrc: string; width: number; height: number }[];
+  icons: Icon[];
   features?: string[];
   spotlight?: {
     title: string;

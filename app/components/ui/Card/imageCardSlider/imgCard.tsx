@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa6";
 import { motion, AnimatePresence } from "motion/react";
 
-import { ImageProp } from "@/app/lib/Types/ProjectProps";
+import { ImageProp } from "@/app/lib/Types/ProjectDescriptionTypes";
 // import ResponsiveCanvas from "./ResponsiveImage";
 type ImgCardProps = {
   image: ImageProp[];

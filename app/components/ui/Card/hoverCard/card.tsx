@@ -7,16 +7,16 @@ import {
   useSpring,
 } from "motion/react";
 import Image from "next/image";
-import { ProjectProps } from "@/app/lib/Types/ProjectProps";
+import { ImageProp } from "@/app/lib/Types/ProjectDescriptionTypes";
 // import ResponsiveCanvas from "../imageCardSlider/ResponsiveImage";
-interface CardProps {
-  ProjectProps: ProjectProps;
-}
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = 32.5 / 2;
 
-export const Card: React.FC<CardProps> = ({ ProjectProps }) => {
+export const Card: React.FC<{ image: ImageProp[]; title: string }> = ({
+  image,
+  title,
+}) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -66,10 +66,10 @@ export const Card: React.FC<CardProps> = ({ ProjectProps }) => {
       >
         <Image
           rel="preload"
-          src={ProjectProps.image[0].imgSrc}
-          alt={ProjectProps.title}
-          width={ProjectProps.image[0].width}
-          height={ProjectProps.image[0].height}
+          src={image[0].imgSrc}
+          alt={title}
+          width={image[0].width}
+          height={image[0].height}
           style={{
             transform: "translateZ(75px)",
             backgroundSize: "cover",
