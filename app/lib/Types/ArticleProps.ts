@@ -8,4 +8,5 @@ export interface Article {
   slug: string;
   image?: string;
   status?: "draft" | "published";
+  tags?: string[];
 }

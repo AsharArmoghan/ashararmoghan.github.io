@@ -8,7 +8,26 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About | Ashar",
     description: "Learn more about Ashar, a Full-Stack Developer.",
+    url: "https://ashar-dev.vercel.app/about",
+    siteName: "Ashar Portfolio",
+    images: [
+      {
+        url: "/og-home.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About Ashar",
+      },
+    ],
     type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Ashar",
+    description: "Learn more about Ashar, a Full-Stack Developer.",
+    images: ["/og-home.jpg"],
+  },
+  alternates: {
+    canonical: "/about",
   },
 };
 

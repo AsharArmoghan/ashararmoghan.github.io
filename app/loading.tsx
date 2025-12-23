@@ -1,5 +1,5 @@
-import ShinyLoading from "@/app/utils/LoadingIcon";
+import LoadingIcon from "@/app/utils/LoadingIcon";
 
 export default function Loading() {
-  return <ShinyLoading />;
+  return <LoadingIcon />;
 }

@@ -2,70 +2,76 @@
 import React from "react";
 import { motion } from "motion/react";
 
-const AppleSpinner = () => {
-  return (
-    <div className="relative h-8 w-8">
-      {[...Array(12)].map((_, i) => (
-        <div
-          key={i}
-          className="absolute left-1/2 top-0 h-full w-[8%] -translate-x-1/2"
-          style={{
-            transform: `rotate(${i * 30}deg)`,
-          }}
-        >
-          <div
-            className="animate-spinner-fade h-[25%] w-full rounded-full bg-zinc-400 dark:bg-zinc-500"
-            style={{
-              animationDelay: `-${1.2 - i * 0.1}s`,
-            }}
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
+const LoadingIcon = () => {
+  const dotConfigs = [
+    { delay: -0.036, top: "62.62742px", left: "62.62742px" },
+    { delay: -0.072, top: "67.71281px", left: "56px" },
+    { delay: -0.108, top: "70.90963px", left: "48.28221px" },
+    { delay: -0.144, top: "72px", left: "40px" },
+    { delay: -0.18, top: "70.90963px", left: "31.71779px" },
+    { delay: -0.216, top: "67.71281px", left: "24px" },
+    { delay: -0.252, top: "62.62742px", left: "17.37258px" },
+    { delay: -0.288, top: "56px", left: "12.28719px" },
+  ];
 
-const ShinyLoading = () => {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center gap-8 bg-primary-white backdrop-blur-sm dark:bg-primary-black">
-      <div className="flex flex-col items-center gap-6">
-        <AppleSpinner />
-        <div className="flex items-baseline gap-1">
-          <span className="text-xl font-medium tracking-wide text-zinc-500 dark:text-zinc-200">
-            Loading
-          </span>
-          <div className="flex w-[20px] gap-[4px]">
-            {[0, 1, 2].map((i) => (
-              <motion.span
-                key={i}
-                className="h-[5px] w-[5px] rounded-full bg-zinc-500 dark:bg-zinc-200"
-                initial={{ opacity: 0.2, y: 0 }}
-                animate={{ opacity: [0.2, 1, 0.2], y: [0, -2, 0] }}
-                transition={{
-                  duration: 1.0,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.2,
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-50 dark:bg-zinc-950">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -left-[10%] -top-[10%] h-[40%] w-[40%] rounded-full bg-blue-500/5 blur-[120px]" />
+        <div className="absolute -bottom-[10%] -right-[10%] h-[40%] w-[40%] rounded-full bg-cyan-500/5 blur-[120px]" />
+      </div>
+
+      <div className="relative flex flex-col items-center">
+        <div className="relative h-20 w-20">
+          {dotConfigs.map((config, i) => (
+            <motion.div
+              key={i}
+              className="absolute h-full w-full"
+              style={{ transformOrigin: "40px 40px" }}
+              animate={{ rotate: 360 }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                ease: [0.5, 0, 0.5, 1],
+                delay: config.delay,
+              }}
+            >
+              <div
+                className="absolute h-[7.2px] w-[7.2px] rounded-full"
+                style={{
+                  top: config.top,
+                  left: config.left,
+                  marginTop: "-3.6px",
+                  marginLeft: "-3.6px",
+                  background: `linear-gradient(135deg, ${["#3b82f6", "#06b6d4", "#2dd4bf"][i % 3]}, #2563eb)`,
+                  boxShadow: `0 0 10px ${i % 2 === 0 ? "rgba(59,130,246,0.4)" : "rgba(6,182,212,0.4)"}`,
                 }}
               />
-            ))}
-          </div>
+            </motion.div>
+          ))}
+
+          <div className="absolute inset-4 rounded-full border border-blue-500/5 bg-gradient-to-br from-blue-500/5 to-transparent blur-sm" />
         </div>
 
-        <div className="relative h-1.5 w-64 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
-          <motion.div
-            className="absolute left-0 top-0 h-full bg-zinc-500 dark:bg-zinc-200"
-            initial={{ width: "0%" }}
-            animate={{ width: "100%" }}
-            transition={{
-              duration: 2.1,
-              ease: "easeInOut",
-            }}
-          />
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="mt-12 flex flex-col items-center"
+        >
+          <span className="text-lg tracking-[0.2em] text-zinc-900 dark:text-zinc-100">
+            LOADING
+          </span>
+          {/* <div className="mt-1 h-0.5 w-8 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
+            <motion.div
+              className="h-full bg-blue-500"
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+            />
+          </div> */}
+        </motion.div>
       </div>
     </div>
   );
 };
 
-export default ShinyLoading;
+export default LoadingIcon;

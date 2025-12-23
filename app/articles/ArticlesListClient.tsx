@@ -1,46 +1,29 @@
 "use client";
 import React from "react";
-import { ArticlesData } from "../lib/data/articles/articlesData";
 import ArticleComponent from "@/app/components/features/Article/article";
 import BackButton from "../components/ui/Button/BackButton";
 import Link from "next/link";
-import { Toaster } from "react-hot-toast";
+import TextReveal from "../utils/TextRevel";
 
-const ArticlesListClient: React.FC = () => {
-  const [articles, setArticles] = React.useState(ArticlesData);
+interface ArticlesListClientProps {
+  articles: any[];
+}
 
-  React.useEffect(() => {
-    const customArticles = JSON.parse(
-      localStorage.getItem("custom_articles") || "[]",
-    );
-    const publishedCustomArticles = customArticles.filter(
-      (a: any) => a.status === "published",
-    );
-    setArticles([...ArticlesData, ...publishedCustomArticles]);
-  }, []);
-
+const ArticlesListClient: React.FC<ArticlesListClientProps> = ({
+  articles,
+}) => {
   return (
     <>
-      <div className="pointer-events-auto relative z-10 mb-[380px] min-h-screen bg-primary-white dark:bg-primary-black">
-        <nav className="sticky top-0 w-full pt-10 text-primary-black dark:text-primary-white">
-          <div className="ml-6 flex h-20 w-20 flex-row items-center justify-center gap-2 sm:ml-1">
-            <Link href="/">
-              <BackButton />
-            </Link>
-          </div>
-        </nav>
+      <div className="pointer-events-auto relative z-10 mt-16 min-h-screen bg-primary-white dark:bg-primary-black">
         <div className="container mx-auto flex flex-col items-center justify-center px-4 py-12">
-          <div className="mb-8 flex w-full items-center justify-between">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-              All Articles
-            </h1>
-            <Link
-              href="/articles/new"
-              className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900"
-            >
-              + Create Article
-            </Link>
+          <div className="my-6 flex items-center justify-center text-gray-900 dark:text-white">
+            <TextReveal delay={0.4}>
+              <h2 className="text-5xl font-black leading-none tracking-tight text-black transition-colors dark:text-white lg:text-7xl">
+                All Articles
+              </h2>
+            </TextReveal>
           </div>
+          <hr className="mx-auto my-2 h-1 w-60 rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 md:my-10"></hr>
           <div className="grid w-full gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (
               <ArticleComponent

@@ -1,20 +1,23 @@
-import { ArticlesData } from "@/app/lib/data/articles/articlesData";
+import { prisma } from "@/app/lib/api/db";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import ArticleContent from "./ArticleContent";
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
-
 export async function generateStaticParams() {
-  return ArticlesData.map((article) => ({
+  const articles = await prisma.article.findMany({
+    where: { published: true },
+    select: { slug: true },
+  });
+  return articles.map((article) => ({
     slug: article.slug,
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = ArticlesData.find((a) => a.slug === slug);
+  const article = await prisma.article.findUnique({
+    where: { slug },
+  });
 
   if (!article) {
     return {
@@ -24,49 +27,63 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: article.title,
-    description: article.content.substring(0, 160) + "...",
+    description: article.excerpt || article.content.substring(0, 150),
     openGraph: {
       title: article.title,
-      description: article.content.substring(0, 160) + "...",
-      images: article.image ? [article.image] : [],
+      description: article.excerpt || article.content.substring(0, 150),
+      url: `https://ashar-dev.vercel.app/articles/${slug}`,
+      siteName: "Ashar Portfolio",
       type: "article",
+      images: article.image ? [article.image] : [],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
-      description: article.content.substring(0, 160) + "...",
+      description: article.excerpt || article.content.substring(0, 150),
       images: article.image ? [article.image] : [],
+    },
+    alternates: {
+      canonical: `/articles/${slug}`,
     },
   };
 }
 
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
-  const article = ArticlesData.find((a) => a.slug === slug);
 
-  if (!article) return <ArticleContent initialArticle={null} />;
+  const article = await prisma.article.findUnique({
+    where: { slug },
+  });
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.content.substring(0, 160) + "...",
-    author: {
-      "@type": "Person",
-      name: article.author || "Ashar",
-    },
-    datePublished: article.date,
-    image: article.image || "",
-    url: `https://ashar-dev.vercel.app/articles/${slug}`,
-  };
+  const jsonLd = article
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: article.title,
+        image: article.image,
+        author: {
+          "@type": "Person",
+          name: "Ashar",
+        },
+        datePublished: article.createdAt.toISOString(),
+        dateModified: article.updatedAt.toISOString(),
+        articleBody: article.content,
+      }
+    : null;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <ArticleContent initialArticle={article} />
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      <ArticleContent initialArticle={article as any} />
     </>
   );
 }

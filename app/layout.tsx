@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     title: "Ashar | Full-Stack Developer",
     description: "Building scalable web solutions with Next.js 15 and React.",
     images: ["/og-home.jpg"],
-    creator: "https://x.com/SyedAshar09",
+    creator: "@SyedAshar09",
   },
   robots: {
     index: true,
@@ -100,7 +100,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         {/* Google Analytics Script */}
         <Script
@@ -134,7 +134,9 @@ export default function RootLayout({
           <ThemeProvider>
             <Toaster position="bottom-center" />
             <Header />
-            <main className="relative z-10 grow">{children}</main>
+            <main className="relative z-10 grow bg-primary-white dark:bg-primary-black">
+              {children}
+            </main>
             <Footer />
           </ThemeProvider>
         </LenisProvider>

@@ -1,8 +1,11 @@
 import React from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { VscChromeClose } from "react-icons/vsc";
 import { useRouter, usePathname } from "next/navigation";
 import { SideMenuPropsWithSections } from "@/app/lib/Types/HeaderProps";
+import { twMerge } from "tailwind-merge";
+import { SiGithub, SiLinkedin, SiFiverr } from "react-icons/si";
+import { FaXTwitter } from "react-icons/fa6";
 
 const SideMenu: React.FC<SideMenuPropsWithSections> = ({
   isOpen,
@@ -12,48 +15,132 @@ const SideMenu: React.FC<SideMenuPropsWithSections> = ({
   const router = useRouter();
   const pathname = usePathname();
 
-  return (
-    <div
-      className={`fixed left-0 top-2 z-50 h-screen w-72 transform rounded-lg bg-primary-white shadow-lg backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter transition-all duration-300 ease-in-out dark:bg-primary-black ${
-        isOpen ? "translate-x-0" : "-translate-x-full"
-      }`}
-    >
-      {/* Close Button */}
-      <button
-        onClick={onClose}
-        className="absolute right-4 top-4 p-2 text-neutral-700 hover:text-gray-900 dark:text-neutral-100"
-      >
-        <VscChromeClose className="h-8 w-8" />
-      </button>
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      y: "-100%",
+      transition: {
+        type: "spring" as const,
+        stiffness: 400,
+        damping: 40,
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 300,
+        damping: 30,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
 
-      <div className="overflow-y-hidden py-4">
-        <ul className="space-y-2 font-medium">
-          <li className="mt-[60px] flex h-[500px] flex-col items-center justify-evenly">
-            {sections.map((section) => (
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ ease: "easeInOut", duration: 0.2 }}
-                className="text-black/80 transition hover:text-zinc-500 dark:text-white/80 dark:hover:text-zinc-400"
-                onClick={() => {
-                  onClose();
-                  if (section.id === "home") {
-                    router.push("/");
-                  } else {
-                    router.push(`/${section.id}`);
-                  }
-                }}
-                key={section.id}
-              >
-                <p className="items-center px-3 text-[21px] font-semibold leading-none tracking-tight">
+  const itemVariants = {
+    closed: { opacity: 0, y: 20 },
+    open: { opacity: 1, y: 0 },
+  };
+
+  const handleNavigation = (id: string) => {
+    onClose();
+    if (id === "home") {
+      router.push("/");
+    } else {
+      router.push(`/${id}`);
+    }
+  };
+
+  const socialLinks = [
+    { icon: SiGithub, href: "https://github.com/AsharArmoghan" },
+    {
+      icon: SiLinkedin,
+      href: "https://linkedin.com/in/ashar-armoghan-915191100",
+    },
+    { icon: FaXTwitter, href: "https://x.com/SyedAshar09" },
+    { icon: SiFiverr, href: "https://www.fiverr.com/syedashar09" },
+  ];
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial="closed"
+          animate="open"
+          exit="closed"
+          variants={menuVariants}
+          className="fixed z-[60] flex h-[calc(100vh-60px)] w-full flex-col rounded-3xl bg-white/80 pr-6 dark:bg-black/80"
+        >
+          <div className="flex items-center justify-between px-8 py-12">
+            <span className="text-xl font-black tracking-tighter dark:text-white">
+              ASHAR.
+            </span>
+            <button
+              onClick={onClose}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-black/5 transition-transform hover:scale-110 active:scale-95 dark:bg-white/10"
+            >
+              <VscChromeClose className="h-6 w-6 dark:text-white" />
+            </button>
+          </div>
+
+          <nav className="flex flex-1 flex-col items-center justify-center space-y-8 py-10 pr-6">
+            {sections.map((section) => {
+              const isActive =
+                section.id === "home"
+                  ? pathname === "/"
+                  : pathname.startsWith(`/${section.id}`);
+
+              return (
+                <motion.button
+                  key={section.id}
+                  variants={itemVariants}
+                  onClick={() => handleNavigation(section.id)}
+                  className={twMerge(
+                    "relative text-4xl font-black tracking-tighter transition-colors",
+                    isActive
+                      ? "text-black dark:text-white"
+                      : "text-black/30 hover:text-black/60 dark:text-white/20 dark:hover:text-white/50",
+                  )}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="active-indicator"
+                      className="absolute -left-8 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-blue-600"
+                    />
+                  )}
                   {section.label}
-                </p>
-              </motion.button>
-            ))}
-          </li>
-        </ul>
-      </div>
-    </div>
+                </motion.button>
+              );
+            })}
+          </nav>
+
+          <motion.div
+            variants={itemVariants}
+            className="mt-20 flex flex-col items-center space-y-8 pb-16"
+          >
+            <div className="flex gap-8">
+              {socialLinks.map((social, i) => (
+                <a
+                  key={i}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-2xl text-black/40 transition-colors hover:text-black dark:text-white/40 dark:hover:text-white"
+                >
+                  <social.icon />
+                </a>
+              ))}
+            </div>
+            <p className="text-sm font-medium tracking-tight text-black/20 dark:text-white/10">
+              © 2024 Ashar Armoghan. Built for the future.
+            </p>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

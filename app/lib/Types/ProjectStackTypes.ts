@@ -5,7 +5,8 @@ export interface ProjectDescription {
   title: string;
   slug: string;
   overview: string;
-  image: { imgSrc: string; width: number; height: number }[];
+  images?: { imgSrc: string; width: number; height: number }[];
+  image?: { imgSrc: string; width: number; height: number }[];
   icons: { name: string; component: string; color: string }[];
 }
 

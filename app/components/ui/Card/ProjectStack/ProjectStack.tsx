@@ -2,20 +2,23 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, MotionValue } from "motion/react";
-import { projectsDescriptions } from "@/app/lib/data/projects/projectDescriptions";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import MagneticButton from "../../Button/MagneticButton";
 
-const ProjectStack = ({ limit }: { limit?: number }) => {
+import {
+  ProjectDescription,
+  CardProps,
+} from "@/app/lib/Types/ProjectStackTypes";
+
+const ProjectStack = ({ projects }: { projects: ProjectDescription[] }) => {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end end"],
   });
 
-  const projects = Object.values(projectsDescriptions);
-  const displayProjects = limit ? projects.slice(0, limit) : projects;
+  const displayProjects = projects;
 
   return (
     <div ref={container} className="relative w-full">
@@ -35,11 +38,6 @@ const ProjectStack = ({ limit }: { limit?: number }) => {
     </div>
   );
 };
-
-import {
-  ProjectDescription,
-  CardProps,
-} from "@/app/lib/Types/ProjectStackTypes";
 
 const Card = ({ i, project, progress, range, targetScale }: CardProps) => {
   const container = useRef(null);
@@ -74,9 +72,9 @@ const Card = ({ i, project, progress, range, targetScale }: CardProps) => {
           transition: { duration: 0.3 },
         }}
         viewport={{ once: true, margin: "-50px" }}
-        className="relative flex h-[500px] w-full max-w-[1000px] origin-top flex-col rounded-3xl border border-black/15 bg-white/70 p-6 shadow-2xl backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter dark:border-white/15 dark:bg-zinc-900/70 md:h-[500px] md:flex-row md:gap-20 md:p-12"
+        className="relative flex h-auto w-full max-w-[1000px] origin-top flex-col rounded-3xl border border-black/15 bg-white/70 p-6 shadow-2xl backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter dark:border-white/15 dark:bg-zinc-900/70 md:h-[500px] md:flex-row md:gap-20 md:p-12"
       >
-        <div className="flex h-full w-full flex-col justify-between gap-8 md:w-[340px]">
+        <div className="flex h-auto w-full flex-col justify-between gap-8 md:h-full md:w-[340px]">
           <div className="flex flex-col gap-4">
             <h2 className="font-serif text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
               {project.title}
@@ -107,7 +105,7 @@ const Card = ({ i, project, progress, range, targetScale }: CardProps) => {
         </div>
 
         <div className="relative mt-6 h-64 w-full flex-1 overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-800 md:mt-0 md:h-full">
-          {project.image && project.image.length > 0 && (
+          {project.images && project.images.length > 0 && (
             <motion.div
               layoutId={`project-image-${project.slug}`}
               style={{ scale: imageScale }}
@@ -115,7 +113,7 @@ const Card = ({ i, project, progress, range, targetScale }: CardProps) => {
             >
               <Image
                 fill
-                src={project.image[0].imgSrc}
+                src={project.images[0].imgSrc}
                 alt={project.title}
                 className="object-cover transition-transform duration-500 hover:scale-105"
               />

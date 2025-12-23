@@ -1,54 +1,59 @@
-import {
-  projectsDescriptions,
-  detailedProjectDescriptions,
-} from "@/app/lib/data/projects/projectDescriptions";
+import { projectDescriptions } from "@/app/lib/data/projects/projectDescriptions";
 import { Metadata } from "next";
-import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ProjectData } from "@/app/lib/Types/ProjectDetailsTypes";
 
-import BackButton from "@/app/components/ui/Button/BackButton";
 import ProjectContent from "./ProjectContent";
 
 export async function generateStaticParams() {
-  return Object.values(projectsDescriptions).map((project) => ({
+  return projectDescriptions.map((project) => ({
     slug: project.slug,
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const basicInfo = Object.values(projectsDescriptions).find(
+  const project = (projectDescriptions as ProjectData[]).find(
     (p) => p.slug === slug,
   );
 
-  if (!basicInfo) {
+  if (!project) {
     return {
       title: "Project Not Found | Ashar",
       description: "The requested project could not be found.",
     };
   }
 
+  const images = project.images;
+
   return {
-    title: basicInfo.title,
-    description: basicInfo.overview,
+    title: project.title,
+    description: project.overview || "",
     openGraph: {
-      title: basicInfo.title,
-      description: basicInfo.overview,
-      images: basicInfo.image?.[0]?.imgSrc
-        ? [
-            {
-              url: basicInfo.image[0].imgSrc,
-              width: basicInfo.image[0].width,
-              height: basicInfo.image[0].height,
-              alt: basicInfo.title,
-            },
-          ]
-        : [],
+      title: project.title,
+      description: project.overview || "",
+      url: `https://ashar-dev.vercel.app/projects/${slug}`,
+      siteName: "Ashar Portfolio",
+      images:
+        images.length > 0
+          ? [
+              {
+                url: images[0].imgSrc,
+                width: images[0].width || 1200,
+                height: images[0].height || 630,
+                alt: project.title,
+              },
+            ]
+          : [],
     },
     twitter: {
       card: "summary_large_image",
-      title: basicInfo.title,
-      description: basicInfo.overview,
-      images: basicInfo.image?.[0]?.imgSrc ? [basicInfo.image[0].imgSrc] : [],
+      title: project.title,
+      description: project.overview || "",
+      images: images.length > 0 ? [images[0].imgSrc] : [],
+    },
+    alternates: {
+      canonical: `/projects/${slug}`,
     },
   };
 }
@@ -60,41 +65,26 @@ type Props = {
 const Project = async ({ params }: Props) => {
   const { slug } = await params;
 
-  const basicInfo = Object.values(projectsDescriptions).find(
-    (p) => p.slug === slug,
-  );
-  const detailedInfo =
-    detailedProjectDescriptions[
-      slug as keyof typeof detailedProjectDescriptions
-    ];
+  const project = projectDescriptions.find((p) => p.slug === slug);
 
-  if (!basicInfo) {
-    return (
-      <div className="flex h-[600px] w-full items-center justify-center">
-        <h1>Project Not Found</h1>
-        <p>No project found for slug: {slug}</p>
-        <Link href="/projects">Go Back to Projects</Link>
-      </div>
-    );
+  if (!project) {
+    return notFound();
   }
-
-  const project = {
-    ...basicInfo,
-    sections: detailedInfo?.sections,
-  };
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
-    name: basicInfo.title,
-    description: basicInfo.overview,
+    name: project.title,
+    description: project.overview,
     author: {
       "@type": "Person",
       name: "Ashar",
     },
-    programmingLanguage: basicInfo.icons.map((icon) => icon.name),
+    programmingLanguage: project.icons
+      ? project.icons.map((icon: any) => icon.name)
+      : [],
     url: `https://ashar-dev.vercel.app/projects/${slug}`,
-    image: basicInfo.image?.[0]?.imgSrc || "",
+    image: project.images.length > 0 ? project.images[0].imgSrc : "",
   };
 
   return (
@@ -103,7 +93,7 @@ const Project = async ({ params }: Props) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProjectContent initialProject={project} />
+      <ProjectContent initialProject={project as any} />
     </>
   );
 };

@@ -1,45 +1,47 @@
 "use client";
 import React from "react";
-import { ArticlesData } from "@/app/lib/data/articles/articlesData";
+
 import ArticleComponent from "@/app/components/features/Article/article";
 import TextReveal from "@/app/utils/TextRevel";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import { motion } from "motion/react";
 
-const HomeArticles: React.FC = () => {
-  const displayArticles = ArticlesData.slice(0, 3);
+interface HomeArticlesProps {
+  articles: any[];
+}
 
+const HomeArticles: React.FC<HomeArticlesProps> = ({ articles }) => {
   return (
-    <section className="flex w-full flex-col items-center justify-between bg-primary-white pb-6 dark:bg-primary-black">
-      <div className="py-3 text-zinc-800 dark:text-zinc-300 lg:my-20">
-        <div className="my-12 flex items-center justify-center text-gray-900 dark:text-white">
-          <TextReveal delay={0.4}>
-            <h2 className="text-5xl font-extrabold leading-none tracking-tight md:text-6xl lg:text-7xl">
-              Latest Articles
+    <div className="flex min-h-screen flex-col items-center justify-center bg-primary-white dark:bg-primary-black">
+      <div className="relative z-10 w-full max-w-7xl px-4 py-20 lg:py-32">
+        <div className="mb-20 flex flex-col items-center justify-center text-center">
+          <TextReveal delay={0.2}>
+            <h2 className="mb-4 text-5xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white lg:text-7xl">
+              Latest Insights
             </h2>
           </TextReveal>
+          <hr className="mt-10 h-1 w-40 rounded-full border-0 bg-blue-600 dark:bg-blue-500"></hr>
         </div>
-        <hr className="mx-auto my-2 h-1 w-60 rounded-sm border-0 bg-zinc-300 dark:bg-gray-700 md:my-10"></hr>
-      </div>
 
-      <div className="container mx-auto grid w-full grid-cols-1 gap-8 px-4 md:grid-cols-2 lg:grid-cols-3">
-        {displayArticles.map((article) => (
-          <ArticleComponent key={article.id} article={article} />
-        ))}
-      </div>
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {articles.slice(0, 3).map((article) => (
+            <ArticleComponent key={article.id} article={article} />
+          ))}
+        </div>
 
-      <div className="flex items-center justify-center py-16 sm:py-10 lg:py-24">
-        <Link href="/articles">
-          <MagneticButton>
-            <span className="flex items-center gap-2">
-              View All Articles
-              <FiArrowUpRight className="text-xl transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-            </span>
-          </MagneticButton>
-        </Link>
+        <div className="flex items-center justify-center py-16 sm:py-10 lg:py-24">
+          <Link href="/articles">
+            <MagneticButton>
+              <span className="flex items-center gap-2">
+                View All Articles
+                <FiArrowUpRight className="text-xl transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+              </span>
+            </MagneticButton>
+          </Link>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 

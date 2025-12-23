@@ -29,14 +29,22 @@ export interface LegacyProjectData {
   };
 }
 
-export interface ModernProjectData {
+export interface ProjectData {
+  id: number;
   title: string;
+  fullTitle?: string;
   slug: string;
+  liveUrl?: string;
+  summary?: string;
+  keySkills?: string[];
   overview: string;
-  image: { imgSrc: string; width: number; height: number }[];
-  icons: { name: string; component: string; color: string }[];
+  description?: string;
   introduction?: string;
   purposeAndGoal?: string;
+  images: { imgSrc: string; width: number; height: number }[]; // renamed from image to images or vice versa? projectDescriptions has images
+  image?: { imgSrc: string; width: number; height: number }[]; // keeping both for compatibility during transition
+  icons: { name: string; component: string; color: string }[];
+  features?: string[];
   spotlight?: {
     title: string;
     description?: string;
@@ -70,21 +78,22 @@ export interface ModernProjectData {
       keyTakeaway: string;
     };
   };
+  approach?: {
+    overview: string;
+    points: { label: string; description: string }[];
+    conclusion?: string;
+  };
+  challenges?: { challenge: string; solution: string }[];
+  technologies?: string[];
+  apiEndpoints?: {
+    method: string;
+    route: string;
+    description: string;
+    authRequired?: boolean;
+  }[];
   currentStatus?: string;
   technicalLessons?: string[];
   nonTechnicalLessons?: string[];
   impact?: string;
-  liveUrl?: string;
-  sections?: {
-    introduction: string;
-    approach: {
-      overview: string;
-      points: { label: string; description: string }[];
-      conclusion?: string;
-    };
-    challenges: { challenge: string; solution: string }[];
-    technologies: string[];
-    features?: string[];
-    installation: string;
-  };
+  installation?: string;
 }

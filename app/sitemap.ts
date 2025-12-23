@@ -1,7 +1,7 @@
 "use server";
 import { MetadataRoute } from "next";
-import { projectsDescriptions } from "@/app/lib/data/projects/projectDescriptions";
-import { ArticlesData } from "@/app/lib/data/articles/articlesData";
+import { prisma } from "@/app/lib/api/db";
+import { projectDescriptions } from "@/app/lib/data/projects/projectDescriptions";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://ashar-dev.vercel.app";
@@ -15,16 +15,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   );
 
-  const projectRoutes = Object.values(projectsDescriptions).map((project) => ({
+  const projectRoutes = projectDescriptions.map((project) => ({
     url: `${baseUrl}/projects/${project.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
-  const articleRoutes = ArticlesData.map((article) => ({
+  const articles = await prisma.article.findMany({
+    where: { published: true },
+    select: { slug: true, updatedAt: true },
+  });
+
+  const articleRoutes = articles.map((article) => ({
     url: `${baseUrl}/articles/${article.slug}`,
-    lastModified: new Date(),
+    lastModified: article.updatedAt,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
