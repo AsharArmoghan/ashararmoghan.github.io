@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   turbo: {
-    enabled: false,
+    enabled: true,
   },
 
   webpack(config) {
