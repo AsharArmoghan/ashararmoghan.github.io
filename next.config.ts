@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  turbo: {
-    enabled: true,
-  },
+  turbopack: {},
 
   webpack(config) {
     config.cache = false;
