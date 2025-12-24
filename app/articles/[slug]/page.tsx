@@ -1,6 +1,5 @@
 import { prisma } from "@/app/lib/api/db";
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import ArticleContent from "./ArticleContent";
 
 export async function generateStaticParams() {
@@ -57,7 +56,28 @@ export default async function ArticlePage({ params }: Props) {
 
   const article = await prisma.article.findUnique({
     where: { slug },
+    include: {
+      author_user: true,
+    },
   });
+
+  const formattedArticle = article
+    ? {
+        id: 0,
+        title: article.title,
+        author: article.author_user?.name || "Ashar",
+        date: article.createdAt.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+        readTime: article.readTime || "5 min read",
+        content: article.content,
+        slug: article.slug,
+        image: article.image || undefined,
+        tags: article.tags,
+      }
+    : null;
 
   const jsonLd = article
     ? {
@@ -67,7 +87,7 @@ export default async function ArticlePage({ params }: Props) {
         image: article.image,
         author: {
           "@type": "Person",
-          name: "Ashar",
+          name: article.author_user?.name || "Ashar",
         },
         datePublished: article.createdAt.toISOString(),
         dateModified: article.updatedAt.toISOString(),
@@ -83,7 +103,7 @@ export default async function ArticlePage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       )}
-      <ArticleContent initialArticle={article as any} />
+      <ArticleContent initialArticle={formattedArticle} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import toast from "react-hot-toast";
 
 interface SEOData {
@@ -28,12 +28,29 @@ export default function SEOMetadataGenerator({
 }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [metadata, setMetadata] = useState<SEOData | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
 
   const handleGenerate = async () => {
     if (!title || !description) {
       toast.error("Please fill in title and description first");
       return;
     }
+
+    // Abort previous request if still running
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
 
     setIsLoading(true);
     try {
@@ -46,6 +63,7 @@ export default function SEOMetadataGenerator({
           description,
           content,
         }),
+        signal: controller.signal,
       });
 
       if (!response.ok) {
@@ -56,10 +74,16 @@ export default function SEOMetadataGenerator({
       setMetadata(data.metadata);
       onMetadataGenerated(data.metadata);
       toast.success("SEO metadata generated!");
-    } catch (error) {
+    } catch (error: any) {
+      if (error.name === "AbortError") {
+        console.log("SEO generation aborted");
+        return;
+      }
       toast.error("Failed to generate SEO metadata");
     } finally {
-      setIsLoading(false);
+      if (abortControllerRef.current === controller) {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -71,7 +95,7 @@ export default function SEOMetadataGenerator({
             🔍 Generate SEO Metadata
           </h3>
           <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            Use Free AI to auto-generate meta tags and keywords
+            Used Hugging Face AI to auto-generate meta tags and keywords
           </p>
         </div>
         <button

@@ -1,6 +1,7 @@
 import BackButton from "@/app/components/ui/Button/BackButton";
 import ArticleForm from "@/app/components/admin/ArticleForm";
 import Link from "next/link";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 export default function NewArticlePage() {
   return (
@@ -16,7 +17,7 @@ export default function NewArticlePage() {
         </div>
       </nav>
 
-      <main className="mx-auto max-w-4xl px-6 py-10">
+      <main className="mx-auto max-w-5xl px-6 py-10">
         <ArticleForm />
       </main>
     </div>

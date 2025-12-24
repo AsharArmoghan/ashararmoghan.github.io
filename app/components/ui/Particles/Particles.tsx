@@ -18,42 +18,47 @@ const Particles: React.FC<ParticlesProps> = ({
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
 
+  const rafId = useRef<number | null>(null);
+
   useEffect(() => {
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");
     }
     initCanvas();
     animate();
-    window.addEventListener("resize", initCanvas);
+
+    const handleResize = () => {
+      initCanvas();
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!canvasRef.current) return;
+      const rect = canvasRef.current.getBoundingClientRect();
+      const { w, h } = canvasSize.current;
+      const x = e.clientX - rect.left - w / 2;
+      const y = e.clientY - rect.top - h / 2;
+      const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
+      if (inside) {
+        mouse.current.x = x;
+        mouse.current.y = y;
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      window.removeEventListener("resize", initCanvas);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
     };
-  }, []);
-
-  useEffect(() => {
-    onMouseMove();
   }, []);
 
   const initCanvas = () => {
     resizeCanvas();
     drawParticles();
-  };
-
-  const onMouseMove = () => {
-    if (canvasRef.current) {
-      window.addEventListener("mousemove", (e) => {
-        const rect = canvasRef.current!.getBoundingClientRect();
-        const { w, h } = canvasSize.current;
-        const x = e.clientX - rect.left - w / 2;
-        const y = e.clientY - rect.top - h / 2;
-        const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
-        if (inside) {
-          mouse.current.x = x;
-          mouse.current.y = y;
-        }
-      });
-    }
   };
 
   const resizeCanvas = () => {
@@ -188,7 +193,7 @@ const Particles: React.FC<ParticlesProps> = ({
 
       drawCircle(circle, true);
     });
-    window.requestAnimationFrame(animate);
+    rafId.current = window.requestAnimationFrame(animate);
   };
 
   return (

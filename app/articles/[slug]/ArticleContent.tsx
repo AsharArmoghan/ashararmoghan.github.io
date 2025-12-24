@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useMemo } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
@@ -11,11 +12,14 @@ import {
   FiArrowLeft,
   FiShare2,
   FiChevronRight,
+  FiChevronDown,
+  FiChevronUp,
 } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 import { Article } from "@/app/lib/Types/ArticleProps";
 import { ArticlesData } from "@/app/lib/data/articles/articlesData";
 import BackButton from "@/app/components/ui/Button/BackButton";
+import ThemeToggle from "@/app/components/ui/Theme/theme-toggle";
 
 interface TocItem {
   id: string;
@@ -35,8 +39,11 @@ const ArticleContent = ({
   );
   const [imgSrc, setImgSrc] = useState<string | undefined>(undefined);
   const [activeId, setActiveId] = useState<string>("");
+  const [isTocExpanded, setIsTocExpanded] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     if (initialArticle) {
       setArticle(initialArticle);
       return;
@@ -55,14 +62,13 @@ const ArticleContent = ({
     setArticle(customArticle || null);
   }, [slug, initialArticle]);
 
-  const toc = useMemo(() => {
-    if (!article?.content) return [];
+  const { toc, processedContent } = useMemo(() => {
+    if (!article?.content) return { toc: [], processedContent: "" };
 
-    const lines = article.content
-      .split(/\r?\n/)
-      .map((l) => l.trim())
-      .filter(Boolean);
+    const isHtml =
+      article.content.trim().startsWith("<") || article.content.includes("</");
     const foundItems: TocItem[] = [];
+    let processed = article.content;
 
     foundItems.push({
       id: "article-top",
@@ -70,24 +76,49 @@ const ArticleContent = ({
       level: 1,
     });
 
-    lines.forEach((line) => {
-      const hMatch = line.match(/^(#{1,6})\s+(.+)$/);
-      if (hMatch) {
-        const level = hMatch[1].length;
-        const text = hMatch[2].trim();
-        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-        foundItems.push({ id, text, level });
-      } else {
-        const bMatch = line.match(/^\*\*(.+)\*\*$/);
-        if (bMatch) {
-          const text = bMatch[1].trim();
-          const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-          foundItems.push({ id, text, level: 7 }); // Level 7 for highlights
-        }
-      }
-    });
+    if (isHtml) {
+      const headingRegex = /<(h[1-6])(.*?)>(.*?)<\/h[1-6]>/gi;
 
-    return foundItems;
+      processed = article.content.replace(
+        headingRegex,
+        (match, tag, attrs, text) => {
+          const cleanText = text.replace(/<[^>]*>?/gm, "").trim();
+          const id = cleanText.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+          const level = parseInt(tag.substring(1));
+          foundItems.push({ id, text: cleanText, level });
+          return `<${tag}${attrs} id="${id}" class="scroll-mt-32">${text}</${tag}>`;
+        },
+      );
+    } else {
+      const lines = article.content.split("\n");
+      const processedLines = lines.map((line) => {
+        const hMatch = line.match(/^(#{1,6})\s+(.+)$/);
+        if (hMatch) {
+          const level = hMatch[1].length;
+          const text = hMatch[2].trim();
+          const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+          foundItems.push({ id, text, level });
+          const tagName = `h${level + 1}`;
+          return `<${tagName} id="${id}" class="scroll-mt-32">${text}</${tagName}>`;
+        }
+
+        return line
+          .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+          .replace(/\*(.*?)\*/g, "<em>$1</em>")
+          .replace(
+            /\[(.*?)\]\((.*?)\)/g,
+            '<a href="$2" class="text-blue-600 hover:underline dark:text-blue-400" target="_blank">$1</a>',
+          )
+          .replace(
+            /`(.*?)`/g,
+            '<code class="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm font-mono">$1</code>',
+          )
+          .replace(/^- (.*)$/g, '<li class="ml-4">$1</li>');
+      });
+      processed = processedLines.join("\n");
+    }
+
+    return { toc: foundItems, processedContent: processed };
   }, [article?.content, article?.title]);
 
   useEffect(() => {
@@ -113,6 +144,7 @@ const ArticleContent = ({
 
     return () => observer.disconnect();
   }, [toc]);
+
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
     toast.success("Link copied to clipboard!");
@@ -152,6 +184,8 @@ const ArticleContent = ({
     );
   }
 
+  const tocItemsToShow = isTocExpanded ? toc : toc.slice(0, 6);
+
   return (
     <div className="relative min-h-screen bg-white dark:bg-zinc-950">
       <div className="fixed left-0 right-0 top-0 z-40 hidden border-b border-zinc-100 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80 md:block">
@@ -162,13 +196,39 @@ const ArticleContent = ({
           >
             <BackButton />
           </Link>
-          <div className="flex items-center gap-4 text-zinc-400">
-            <button
+          <div className="flex items-center gap-4">
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                duration: 0.3,
+                mass: 1,
+              }}
               onClick={handleShare}
               className="transition-colors hover:text-zinc-900 dark:hover:text-white"
             >
-              <FiShare2 size={24} />
-            </button>
+              <FiShare2 size={26} />
+            </motion.button>
+            <motion.div
+              className="items-center"
+              animate={{
+                transition: {
+                  type: "tween",
+                  duration: 0.3,
+                  velocity: 1.5,
+                  restDelta: 0.01,
+                },
+              }}
+              layout={true}
+              whileHover={{
+                rotate: -90,
+              }}
+              whileTap={{ rotate: 360 }}
+            >
+              <ThemeToggle />
+            </motion.div>
           </div>
         </div>
       </div>
@@ -178,36 +238,51 @@ const ArticleContent = ({
           <aside className="hidden lg:col-span-2 lg:block">
             <div className="sticky top-28 space-y-8">
               <div>
-                <h3 className="mb-6 text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
-                  In this article
-                </h3>
+                <div className="mb-6 flex items-center justify-between">
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+                    In this article
+                  </h3>
+                </div>
                 <nav className="space-y-1">
                   {toc.length > 0 ? (
-                    toc.map((item) => (
-                      <a
-                        key={item.id}
-                        href={`#${item.id}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          document
-                            .getElementById(item.id)
-                            ?.scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className={`group flex items-center py-2 text-sm transition-all ${
-                          activeId === item.id
-                            ? "translate-x-1 font-bold text-blue-600"
-                            : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                        } ${item.level > 2 ? "ml-4" : ""}`}
-                      >
-                        <span
-                          className={`mr-2 h-1.5 w-1.5 rounded-full bg-blue-600 transition-transform ${activeId === item.id ? "scale-100" : "scale-0"}`}
-                        />
-                        {item.level === 7 && (
-                          <span className="mr-2 text-xs opacity-50">✦</span>
-                        )}
-                        {item.text}
-                      </a>
-                    ))
+                    <>
+                      <div className="space-y-1 overflow-hidden transition-all duration-300">
+                        {tocItemsToShow.map((item) => (
+                          <a
+                            key={item.id}
+                            href={`#${item.id}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              document
+                                .getElementById(item.id)
+                                ?.scrollIntoView({ behavior: "smooth" });
+                            }}
+                            className={`group flex items-center py-2 text-sm transition-all ${
+                              activeId === item.id
+                                ? "translate-x-1 font-bold text-blue-600"
+                                : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                            } ${item.level > 2 ? "ml-4" : ""}`}
+                          >
+                            <span
+                              className={`mr-2 h-1.5 w-1.5 rounded-full bg-blue-600 transition-transform ${activeId === item.id ? "scale-100" : "scale-0"}`}
+                            />
+                            {item.text}
+                          </a>
+                        ))}
+                      </div>
+
+                      {toc.length > 6 && (
+                        <button
+                          onClick={() => setIsTocExpanded(!isTocExpanded)}
+                          className="mt-4 flex items-center gap-2 text-xs font-bold text-blue-600 transition-all hover:text-blue-700"
+                        >
+                          {isTocExpanded ? "Show Less" : "Expand All"}
+                          <FiChevronDown
+                            className={`transition-transform duration-300 ${isTocExpanded ? "rotate-180" : ""}`}
+                          />
+                        </button>
+                      )}
+                    </>
                   ) : (
                     <p className="text-sm italic text-zinc-400">Reading...</p>
                   )}
@@ -306,53 +381,9 @@ const ArticleContent = ({
             <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-black prose-headings:tracking-tight prose-a:text-blue-600 prose-pre:rounded-2xl prose-pre:bg-zinc-900 prose-pre:shadow-2xl prose-img:rounded-3xl dark:prose-a:text-blue-400">
               <div
                 className="leading-relaxed text-zinc-700 dark:text-zinc-300"
+                suppressHydrationWarning={true}
                 dangerouslySetInnerHTML={{
-                  __html:
-                    article.content.trim().startsWith("<") ||
-                    article.content.includes("</")
-                      ? article.content // It's HTML from Tiptap
-                      : article.content // Fallback to legacy Markdown parser
-                          .split("\n")
-                          .map((line) => {
-                            const hMatch = line.match(/^(#{1,3})\s+(.+)$/);
-                            if (hMatch) {
-                              const level = hMatch[1].length;
-                              const text = hMatch[2].trim();
-                              const id = text
-                                .toLowerCase()
-                                .replace(/[^a-z0-9]+/g, "-");
-                              const tagName = `h${level + 1}`;
-                              return `<${tagName} id="${id}" class="scroll-mt-32">${text}</${tagName}>`;
-                            }
-
-                            const bMatch = line.match(/^\*\*(.+)\*\*$/);
-                            if (bMatch) {
-                              const text = bMatch[1].trim();
-                              const id = text
-                                .toLowerCase()
-                                .replace(/[^a-z0-9]+/g, "-");
-                              return `<strong id="${id}" class="block scroll-mt-32 text-zinc-900 dark:text-white py-2">${text}</strong>`;
-                            }
-
-                            let processed = line
-                              .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-                              .replace(/\*(.*?)\*/g, "<em>$1</em>")
-                              .replace(
-                                /\[(.*?)\]\((.*?)\)/g,
-                                '<a href="$2" class="text-blue-600 hover:underline dark:text-blue-400" target="_blank">$1</a>',
-                              )
-                              .replace(
-                                /`(.*?)`/g,
-                                '<code class="bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm font-mono">$1</code>',
-                              );
-
-                            if (processed.trim().startsWith("- ")) {
-                              return `<li class="ml-4">${processed.trim().substring(2)}</li>`;
-                            }
-
-                            return processed || "<br />";
-                          })
-                          .join("\n"),
+                  __html: processedContent,
                 }}
               />
             </div>
@@ -389,14 +420,39 @@ const ArticleContent = ({
         </div>
       </div>
 
-      <div className="fixed bottom-6 right-6 z-50 md:hidden">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-2xl"
-        >
-          <FiChevronRight className="-rotate-90 text-xl" />
-        </button>
-      </div>
+      {isMounted &&
+        createPortal(
+          <div className="fixed bottom-10 right-10 z-[100] flex flex-col gap-4">
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="group flex h-14 w-14 items-center justify-center rounded-full border border-zinc-200 bg-white/90 text-zinc-600 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl transition-all hover:scale-110 hover:bg-blue-600 hover:text-white active:scale-95 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-400 dark:hover:bg-blue-500"
+              title="Scroll to Top"
+            >
+              <FiChevronUp
+                size={28}
+                className="transition-transform group-hover:-translate-y-1"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                window.scrollTo({
+                  top: document.documentElement.scrollHeight,
+                  behavior: "smooth",
+                })
+              }
+              className="group flex h-14 w-14 items-center justify-center rounded-full border border-zinc-200 bg-white/90 text-zinc-600 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl transition-all hover:scale-110 hover:bg-blue-600 hover:text-white active:scale-95 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-400 dark:hover:bg-blue-500"
+              title="Scroll to Bottom"
+            >
+              <FiChevronDown
+                size={28}
+                className="transition-transform group-hover:translate-y-1"
+              />
+            </button>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 };
