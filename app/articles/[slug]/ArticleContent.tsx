@@ -336,11 +336,26 @@ const ArticleContent = ({
 
                 <div className="flex flex-wrap items-center gap-x-8 gap-y-4 border-b border-zinc-100 pb-8 text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
                   <div className="flex items-center gap-2 rounded-full bg-zinc-50 px-3 py-1.5 dark:bg-zinc-900">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
-                      A
-                    </div>
+                    {article.author_user?.image ? (
+                      <div className="relative h-6 w-6 overflow-hidden rounded-full">
+                        <Image
+                          src={article.author_user.image}
+                          alt={article.author_user.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
+                        {
+                          (article.author_user?.name ||
+                            article.author ||
+                            "A")[0]
+                        }
+                      </div>
+                    )}
                     <span className="text-sm font-bold text-zinc-900 dark:text-white">
-                      {article.author}
+                      {article.author_user?.name || article.author}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 text-sm font-medium">
@@ -391,15 +406,26 @@ const ArticleContent = ({
             <footer className="mt-20 border-t border-zinc-100 pt-12 dark:border-zinc-800">
               <div className="group flex flex-col items-center justify-between gap-8 md:flex-row">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-blue-600 text-3xl font-black text-white shadow-xl shadow-blue-500/20 transition-transform group-hover:rotate-6">
-                    A
-                  </div>
+                  {article.author_user?.image ? (
+                    <div className="relative h-16 w-16 overflow-hidden rounded-3xl shadow-xl shadow-blue-500/20 transition-transform group-hover:rotate-6">
+                      <Image
+                        src={article.author_user.image}
+                        alt={article.author_user.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-blue-600 text-3xl font-black text-white shadow-xl shadow-blue-500/20 transition-transform group-hover:rotate-6">
+                      {(article.author_user?.name || article.author || "A")[0]}
+                    </div>
+                  )}
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
                       Written by
                     </p>
                     <h4 className="text-xl font-black text-zinc-900 dark:text-white">
-                      {article.author}
+                      {article.author_user?.name || article.author}
                     </h4>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400">
                       Developer & Content Strategist

@@ -11,6 +11,14 @@ export async function GET(
   try {
     const article = await prisma.article.findUnique({
       where: { id },
+      include: {
+        author_user: {
+          select: {
+            name: true,
+            image: true,
+          },
+        },
+      },
     });
     if (!article) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -33,6 +41,7 @@ export async function PUT(
   }
 
   try {
+    const json = await req.json();
     const {
       id: _id,
       createdAt,
@@ -40,15 +49,17 @@ export async function PUT(
       authorId,
       author_user,
       ...data
-    } = await req.json();
+    } = json;
 
-    if (data.image) {
+    // Optimize images
+    if (data.image && data.image.startsWith("data:image/")) {
       data.image = await optimizeImage(data.image);
     }
     if (data.content) {
       data.content = await optimizeHtmlImages(data.content);
     }
 
+    // Ensure tags and metaKeywords are arrays
     if (data.tags && !Array.isArray(data.tags)) {
       data.tags = String(data.tags)
         .split(",")
@@ -62,6 +73,8 @@ export async function PUT(
         .filter(Boolean);
     }
 
+    delete data.id;
+
     const article = await prisma.article.update({
       where: { id },
       data: {
@@ -69,10 +82,10 @@ export async function PUT(
       },
     });
     return NextResponse.json(article);
-  } catch (error) {
+  } catch (error: any) {
     console.error("Article update error:", error);
     return NextResponse.json(
-      { error: "Failed to update article" },
+      { error: `Failed to update article: ${error.message}` },
       { status: 500 },
     );
   }

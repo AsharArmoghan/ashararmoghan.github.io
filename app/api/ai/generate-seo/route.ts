@@ -35,7 +35,7 @@ Return ONLY valid JSON.<end_of_turn>
 
   try {
     const response = await fetch(
-      "https://router.huggingface.co/models/cyberandy/SEOcrate-4B_grpo_new_01",
+      "https://router.huggingface.co/models/zai-org/GLM-4.7",
       {
         headers: {
           Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
@@ -45,9 +45,9 @@ Return ONLY valid JSON.<end_of_turn>
         body: JSON.stringify({
           inputs: prompt,
           parameters: {
-            max_new_tokens: 512,
+            max_new_tokens: 1024,
             return_full_text: false,
-            temperature: 0.1, // Lower temperature for more stable JSON output
+            temperature: 0.1,
           },
         }),
       },
@@ -55,8 +55,17 @@ Return ONLY valid JSON.<end_of_turn>
 
     if (!response.ok) {
       const errorText = await response.text();
+      let errorMessage = `Hugging Face API error: ${response.status}`;
+      try {
+        const errorJson = JSON.parse(errorText);
+        if (errorJson.error) {
+          errorMessage += ` - ${errorJson.error}`;
+        }
+      } catch (e) {
+        if (errorText.length < 100) errorMessage += ` - ${errorText}`;
+      }
       console.error("HF API Error:", errorText);
-      throw new Error(`Hugging Face API error: ${response.status}`);
+      throw new Error(errorMessage);
     }
 
     const result = await response.json();
@@ -64,12 +73,11 @@ Return ONLY valid JSON.<end_of_turn>
       ? result[0].generated_text
       : result.generated_text;
 
-    // Extract JSON from response
     const jsonMatch = text.match(/\{[\s\S]*\}/);
 
     if (!jsonMatch) {
       console.error("No JSON in response:", text);
-      // Fallback or retry logic could go here
+
       throw new Error("No JSON found in response");
     }
 
@@ -109,9 +117,6 @@ export async function POST(req: NextRequest) {
   const session = await auth();
 
   if (!session || session.user?.role !== "admin") {
-    // return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    // Allow for dev/demo temporarily if needed, but strict is key.
-    // Keeping strict for production readiness.
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
@@ -126,6 +131,7 @@ export async function POST(req: NextRequest) {
     }
 
     let seoData: SEOMetadata;
+    let aiError: string | null = null;
 
     if (process.env.HUGGINGFACE_API_KEY) {
       try {
@@ -135,8 +141,12 @@ export async function POST(req: NextRequest) {
           description,
           content,
         );
-      } catch (error) {
-        console.warn("Falling back to basic SEO due to AI error");
+      } catch (error: any) {
+        console.warn(
+          "Falling back to basic SEO due to AI error:",
+          error.message,
+        );
+        aiError = error.message;
         seoData = generateBasicSEO(title, description);
       }
     } else {
@@ -146,6 +156,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       metadata: seoData,
+      aiError,
     });
   } catch (error) {
     console.error("SEO generation error:", error);

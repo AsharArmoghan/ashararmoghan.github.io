@@ -37,9 +37,12 @@ export default async function AdminDashboard() {
           <div className="flex items-center gap-4 text-sm">
             <span className="hidden font-medium text-zinc-500 dark:text-zinc-400 sm:block">
               Hi,{" "}
-              <span className="text-zinc-900 dark:text-white">
+              <Link
+                href="/admin/profile"
+                className="text-zinc-900 transition-colors hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
+              >
                 {session.user?.name}
-              </span>
+              </Link>
             </span>
             <Link
               href="/"

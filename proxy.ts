@@ -1,5 +1,6 @@
 import { auth } from "@/app/lib/api/auth";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
@@ -23,5 +24,5 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  proxy: ["/admin/:path*"],
 };

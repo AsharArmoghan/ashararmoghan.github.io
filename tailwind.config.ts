@@ -1,9 +1,9 @@
 import type { Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
+import defaultTheme from "tailwindcss/defaultTheme";
 import typography from "@tailwindcss/typography";
 
 const config: Config = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -27,11 +27,11 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "custom-radial":
-          "radial-gradient(ellipse 50% 50px,  , amber 10%, #1e90ff 50%, slate)",
+          "radial-gradient(ellipse 50% 50px, amber 10%, #1e90ff 50%, slate)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
-        serif: ["var(--font-serif)", ...fontFamily.serif],
+        sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+        serif: ["var(--font-serif)", ...defaultTheme.fontFamily.serif],
         ninja: ["NinjaKage", "sans-serif"],
         ninjaRough: ["NinjaKageRough", "sans-serif"],
       },

@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       ...data
     } = await req.json();
 
-    if (data.image) {
+    if (data.image && data.image.startsWith("data:image/")) {
       data.image = await optimizeImage(data.image);
     }
     if (data.content) {
@@ -53,6 +53,8 @@ export async function POST(req: NextRequest) {
       ? data.metaKeywords
       : [];
 
+    delete (data as any).id;
+
     const article = await prisma.article.create({
       data: {
         ...data,
@@ -63,10 +65,10 @@ export async function POST(req: NextRequest) {
       },
     });
     return NextResponse.json(article, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Article creation error:", error);
     return NextResponse.json(
-      { error: "Failed to create article" },
+      { error: `Failed to create article: ${error.message}` },
       { status: 500 },
     );
   }

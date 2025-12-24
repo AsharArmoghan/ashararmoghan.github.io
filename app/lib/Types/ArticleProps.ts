@@ -9,4 +9,8 @@ export interface Article {
   image?: string;
   status?: "draft" | "published";
   tags?: string[];
+  author_user?: {
+    name: string;
+    image?: string;
+  };
 }

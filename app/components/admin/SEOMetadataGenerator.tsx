@@ -73,13 +73,20 @@ export default function SEOMetadataGenerator({
       const data = await response.json();
       setMetadata(data.metadata);
       onMetadataGenerated(data.metadata);
-      toast.success("SEO metadata generated!");
+
+      if (data.aiError) {
+        toast.error(
+          `Note: AI generation failed (${data.aiError}). Using fallback logic.`,
+        );
+      } else {
+        toast.success("SEO metadata generated!");
+      }
     } catch (error: any) {
       if (error.name === "AbortError") {
         console.log("SEO generation aborted");
         return;
       }
-      toast.error("Failed to generate SEO metadata");
+      toast.error(error.message || "Failed to generate SEO metadata");
     } finally {
       if (abortControllerRef.current === controller) {
         setIsLoading(false);
@@ -115,7 +122,7 @@ export default function SEOMetadataGenerator({
             </h4>
 
             <div className="mb-4 rounded border-l-4 border-blue-600 bg-white p-3 dark:bg-gray-800">
-              <label className="text-xs font-semibold uppercase text-gray-500">
+              <label className="text-xs font-semibold text-gray-500 uppercase">
                 Meta Description ({metadata.metaDescription?.length || 0}/160)
               </label>
               <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
@@ -124,7 +131,7 @@ export default function SEOMetadataGenerator({
             </div>
 
             <div className="mb-4 rounded border-l-4 border-indigo-600 bg-white p-3 dark:bg-gray-800">
-              <label className="text-xs font-semibold uppercase text-gray-500">
+              <label className="text-xs font-semibold text-gray-500 uppercase">
                 Keywords
               </label>
               <div className="mt-2 flex flex-wrap gap-2">
@@ -140,7 +147,7 @@ export default function SEOMetadataGenerator({
             </div>
 
             <div className="rounded border-l-4 border-green-600 bg-white p-3 dark:bg-gray-800">
-              <label className="text-xs font-semibold uppercase text-gray-500">
+              <label className="text-xs font-semibold text-gray-500 uppercase">
                 Open Graph (Social Sharing)
               </label>
               <div className="mt-2 text-sm">

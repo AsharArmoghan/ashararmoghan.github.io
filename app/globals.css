@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.ts";
 html {
   scroll-behavior: smooth;
 }
@@ -124,10 +123,10 @@ body {
     @apply bg-background;
   }
   .title {
-    @apply font-serif text-3xl font-bold underline decoration-border/75 decoration-2 underline-offset-8;
+    @apply decoration-border/75 font-serif text-3xl font-bold underline decoration-2 underline-offset-8;
   }
   .prose pre {
-    @apply overflow-x-auto rounded-lg bg-accent px-5 py-4 text-sm;
+    @apply bg-accent overflow-x-auto rounded-lg px-5 py-4 text-sm;
   }
   .prose code {
     @apply rounded-lg px-1 py-0.5;
