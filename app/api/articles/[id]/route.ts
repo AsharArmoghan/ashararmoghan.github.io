@@ -1,6 +1,7 @@
 import { prisma } from "@/app/lib/api/db";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/app/lib/api/auth";
+import { optimizeImage, optimizeHtmlImages } from "@/app/lib/api/image";
 
 export async function GET(
   req: NextRequest,
@@ -41,7 +42,13 @@ export async function PUT(
       ...data
     } = await req.json();
 
-    // Ensure tags and metaKeywords are arrays
+    if (data.image) {
+      data.image = await optimizeImage(data.image);
+    }
+    if (data.content) {
+      data.content = await optimizeHtmlImages(data.content);
+    }
+
     if (data.tags && !Array.isArray(data.tags)) {
       data.tags = String(data.tags)
         .split(",")

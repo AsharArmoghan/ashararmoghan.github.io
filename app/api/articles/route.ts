@@ -1,6 +1,7 @@
 import { prisma } from "@/app/lib/api/db";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/app/lib/api/auth";
+import { optimizeImage, optimizeHtmlImages } from "@/app/lib/api/image";
 
 export async function GET(req: NextRequest) {
   try {
@@ -32,7 +33,13 @@ export async function POST(req: NextRequest) {
       ...data
     } = await req.json();
 
-    // Auto-generate slug
+    if (data.image) {
+      data.image = await optimizeImage(data.image);
+    }
+    if (data.content) {
+      data.content = await optimizeHtmlImages(data.content);
+    }
+
     let slug = data.slug;
     if (!slug) {
       slug = data.title
@@ -41,7 +48,6 @@ export async function POST(req: NextRequest) {
         .replace(/(^-|-$)+/g, "");
     }
 
-    // Ensure tags and metaKeywords are arrays
     const tags = Array.isArray(data.tags) ? data.tags : [];
     const metaKeywords = Array.isArray(data.metaKeywords)
       ? data.metaKeywords
