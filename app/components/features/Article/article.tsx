@@ -33,7 +33,7 @@ const ArticleComponent: React.FC<{ article: Article }> = ({ article }) => {
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
+            <div className="absolute top-4 right-4 rounded-full bg-white/10 p-2 text-white opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100">
               <FiArrowUpRight className="text-xl" />
             </div>
           </div>
@@ -50,12 +50,12 @@ const ArticleComponent: React.FC<{ article: Article }> = ({ article }) => {
             </span>
           </div>
 
-          <h2 className="mb-3 text-xl font-bold leading-tight text-zinc-900 transition-colors group-hover:text-blue-600 dark:text-zinc-100 dark:group-hover:text-blue-400">
+          <h2 className="mb-3 text-xl leading-tight font-bold text-zinc-900 transition-colors group-hover:text-blue-600 dark:text-zinc-100 dark:group-hover:text-blue-400">
             {article.title}
           </h2>
 
           <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {article.content}
+            {article.excerpt ? article.excerpt.replace(/<[^>]*>/g, "") : ""}
           </p>
 
           <div className="mt-auto flex items-center gap-3 border-t border-zinc-100 pt-4 dark:border-zinc-800">

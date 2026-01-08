@@ -4,6 +4,7 @@ export interface Article {
   author: string;
   date: string;
   readTime: string;
+  excerpt: string;
   content: string;
   slug: string;
   image?: string;

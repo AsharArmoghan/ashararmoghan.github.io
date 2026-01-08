@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Metadata } from "next";
 import { prisma } from "@/app/lib/api/db";
 import ArticlesList from "./ArticlesListClient";

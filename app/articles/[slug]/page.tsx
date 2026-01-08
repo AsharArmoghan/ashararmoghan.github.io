@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { prisma } from "@/app/lib/api/db";
 import { Metadata } from "next";
 import ArticleContent from "./ArticleContent";
@@ -72,6 +74,7 @@ export default async function ArticlePage({ params }: Props) {
           day: "numeric",
         }),
         readTime: article.readTime || "5 min read",
+        excerpt: article.excerpt,
         content: article.content,
         slug: article.slug,
         image: article.image || undefined,
