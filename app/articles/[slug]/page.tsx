@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import { prisma } from "@/app/lib/api/db";
 import { Metadata } from "next";
+import { Article } from "@/app/lib/Types/ArticleProps";
 import ArticleContent from "./ArticleContent";
 
 export async function generateStaticParams() {
@@ -63,9 +64,9 @@ export default async function ArticlePage({ params }: Props) {
     },
   });
 
-  const formattedArticle = article
+  const formattedArticle: Article = article
     ? {
-        id: 0,
+        id: article.id,
         title: article.title,
         author: article.author_user?.name || "Ashar",
         date: article.createdAt.toLocaleDateString("en-US", {
@@ -79,6 +80,12 @@ export default async function ArticlePage({ params }: Props) {
         slug: article.slug,
         image: article.image || undefined,
         tags: article.tags,
+        author_user: article.author_user
+          ? {
+              name: article.author_user.name,
+              image: article.author_user.image || undefined,
+            }
+          : undefined,
       }
     : null;
 

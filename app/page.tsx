@@ -36,14 +36,46 @@ export const metadata: Metadata = {
   },
 };
 
+import { Article } from "@/app/lib/Types/ArticleProps";
+
 export default async function Page() {
   const projects = projectDescriptions;
-
-  const articles = await prisma.article.findMany({
+  const articlesFromDb = await prisma.article.findMany({
     where: { published: true },
     orderBy: { createdAt: "desc" },
     take: 3,
+    include: {
+      author_user: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
   });
+
+  const articles: Article[] = articlesFromDb.map((article) => ({
+    id: article.id,
+    title: article.title,
+    author: article.author_user?.name || "Ashar",
+    date: article.createdAt.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+    readTime: article.readTime || "5 min read",
+    excerpt: article.excerpt,
+    content: article.content,
+    slug: article.slug,
+    image: article.image || undefined,
+    tags: article.tags,
+    author_user: article.author_user
+      ? {
+          name: article.author_user.name,
+          image: article.author_user.image || undefined,
+        }
+      : undefined,
+  }));
 
   return <MainClient projects={projects} articles={articles} />;
 }

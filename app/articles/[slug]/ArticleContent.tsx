@@ -17,7 +17,6 @@ import {
 } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 import { Article } from "@/app/lib/Types/ArticleProps";
-import { ArticlesData } from "@/app/lib/data/articles/articlesData";
 import BackButton from "@/app/components/ui/Button/BackButton";
 import ThemeToggle from "@/app/components/ui/Theme/theme-toggle";
 
@@ -46,20 +45,7 @@ const ArticleContent = ({
     setIsMounted(true);
     if (initialArticle) {
       setArticle(initialArticle);
-      return;
     }
-
-    const staticArticle = ArticlesData.find((a) => a.slug === slug);
-    if (staticArticle) {
-      setArticle(staticArticle);
-      return;
-    }
-
-    const customArticles = JSON.parse(
-      localStorage.getItem("custom_articles") || "[]",
-    );
-    const customArticle = customArticles.find((a: Article) => a.slug === slug);
-    setArticle(customArticle || null);
   }, [slug, initialArticle]);
 
   const { toc, processedContent } = useMemo(() => {
@@ -188,7 +174,7 @@ const ArticleContent = ({
 
   return (
     <div className="relative min-h-screen bg-white dark:bg-zinc-950">
-      <div className="fixed left-0 right-0 top-0 z-40 hidden border-b border-zinc-100 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80 md:block">
+      <div className="fixed top-0 right-0 left-0 z-40 hidden border-b border-zinc-100 bg-white/80 backdrop-blur-md md:block dark:border-zinc-800 dark:bg-zinc-950/80">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <Link
             href="/articles"
@@ -233,13 +219,13 @@ const ArticleContent = ({
         </div>
       </div>
 
-      <div className="mx-auto max-w-[85rem] px-6 pb-20 pt-28">
+      <div className="mx-auto max-w-[85rem] px-6 pt-28 pb-20">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
           <aside className="hidden lg:col-span-2 lg:block">
             <div className="sticky top-28 space-y-8">
               <div>
                 <div className="mb-6 flex items-center justify-between">
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+                  <h3 className="text-xs font-bold tracking-widest text-zinc-400 uppercase dark:text-zinc-500">
                     In this article
                   </h3>
                 </div>
@@ -284,14 +270,14 @@ const ArticleContent = ({
                       )}
                     </>
                   ) : (
-                    <p className="text-sm italic text-zinc-400">Reading...</p>
+                    <p className="text-sm text-zinc-400 italic">Reading...</p>
                   )}
                 </nav>
               </div>
 
               <div className="border-t border-zinc-100 pt-8 dark:border-zinc-800">
                 <div className="rounded-2xl border border-zinc-100 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900/50">
-                  <p className="mb-4 text-xs font-bold uppercase tracking-widest text-zinc-400">
+                  <p className="mb-4 text-xs font-bold tracking-widest text-zinc-400 uppercase">
                     Support
                   </p>
                   <p className="mb-4 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -320,7 +306,7 @@ const ArticleContent = ({
                   {article.tags?.map((tag, i) => (
                     <span
                       key={i}
-                      className="rounded-full bg-blue-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:bg-blue-900/20 dark:text-blue-400"
+                      className="rounded-full bg-blue-50 px-3 py-1 text-[10px] font-bold tracking-wider text-blue-600 uppercase dark:bg-blue-900/20 dark:text-blue-400"
                     >
                       {tag}
                     </span>
@@ -329,7 +315,7 @@ const ArticleContent = ({
 
                 <h1
                   id="article-top"
-                  className="mb-8 scroll-mt-32 text-4xl font-black leading-[1.1] tracking-tight text-zinc-900 dark:text-white md:text-5xl lg:text-6xl"
+                  className="mb-8 scroll-mt-32 text-4xl leading-[1.1] font-black tracking-tight text-zinc-900 md:text-5xl lg:text-6xl dark:text-white"
                 >
                   {article.title}
                 </h1>
@@ -393,7 +379,7 @@ const ArticleContent = ({
               </motion.div>
             )}
 
-            <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-black prose-headings:tracking-tight prose-a:text-blue-600 prose-pre:rounded-2xl prose-pre:bg-zinc-900 prose-pre:shadow-2xl prose-img:rounded-3xl dark:prose-a:text-blue-400">
+            <div className="prose prose-lg dark:prose-invert prose-headings:font-black prose-headings:tracking-tight prose-a:text-blue-600 prose-pre:rounded-2xl prose-pre:bg-zinc-900 prose-pre:shadow-2xl prose-img:rounded-3xl dark:prose-a:text-blue-400 max-w-none">
               <div
                 className="leading-relaxed text-zinc-700 dark:text-zinc-300"
                 suppressHydrationWarning={true}
@@ -421,7 +407,7 @@ const ArticleContent = ({
                     </div>
                   )}
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
+                    <p className="text-xs font-bold tracking-widest text-blue-600 uppercase dark:text-blue-400">
                       Written by
                     </p>
                     <h4 className="text-xl font-black text-zinc-900 dark:text-white">
@@ -448,7 +434,7 @@ const ArticleContent = ({
 
       {isMounted &&
         createPortal(
-          <div className="fixed bottom-10 right-10 z-[100] flex flex-col gap-4">
+          <div className="fixed right-10 bottom-10 z-[100] flex flex-col gap-4">
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

@@ -8,6 +8,14 @@ export async function GET(req: NextRequest) {
   try {
     const articles = await prisma.article.findMany({
       orderBy: { createdAt: "desc" },
+      include: {
+        author_user: {
+          select: {
+            name: true,
+            image: true,
+          },
+        },
+      },
     });
     return NextResponse.json(articles);
   } catch (error) {

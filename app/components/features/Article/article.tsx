@@ -59,7 +59,20 @@ const ArticleComponent: React.FC<{ article: Article }> = ({ article }) => {
           </p>
 
           <div className="mt-auto flex items-center gap-3 border-t border-zinc-100 pt-4 dark:border-zinc-800">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600"></div>
+            {article.author_user?.image ? (
+              <div className="relative h-8 w-8 overflow-hidden rounded-full">
+                <Image
+                  src={article.author_user.image}
+                  alt={article.author_user.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ) : (
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-[10px] font-bold text-white">
+                {(article.author_user?.name || article.author || "A")[0]}
+              </div>
+            )}
             <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
               {article.author}
             </span>
