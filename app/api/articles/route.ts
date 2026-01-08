@@ -2,6 +2,7 @@ import { prisma } from "@/app/lib/api/db";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/app/lib/api/auth";
 import { optimizeImage, optimizeHtmlImages } from "@/app/lib/api/image";
+import { revalidatePath } from "next/cache";
 
 export async function GET(req: NextRequest) {
   try {
@@ -64,6 +65,11 @@ export async function POST(req: NextRequest) {
         authorId: session.user.id,
       },
     });
+
+    // Revalidate relevant paths
+    revalidatePath("/articles");
+    revalidatePath("/");
+
     return NextResponse.json(article, { status: 201 });
   } catch (error: any) {
     console.error("Article creation error:", error);

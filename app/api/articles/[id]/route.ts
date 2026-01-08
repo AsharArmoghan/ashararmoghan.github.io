@@ -2,6 +2,7 @@ import { prisma } from "@/app/lib/api/db";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/app/lib/api/auth";
 import { optimizeImage, optimizeHtmlImages } from "@/app/lib/api/image";
+import { revalidatePath } from "next/cache";
 
 export async function GET(
   req: NextRequest,
@@ -81,6 +82,12 @@ export async function PUT(
         ...data,
       },
     });
+
+    // Revalidate relevant paths
+    revalidatePath("/articles");
+    revalidatePath(`/articles/${article.slug}`);
+    revalidatePath("/");
+
     return NextResponse.json(article);
   } catch (error: any) {
     console.error("Article update error:", error);
@@ -103,9 +110,15 @@ export async function DELETE(
   }
 
   try {
-    await prisma.article.delete({
+    const article = await prisma.article.delete({
       where: { id },
     });
+
+    // Revalidate relevant paths
+    revalidatePath("/articles");
+    revalidatePath(`/articles/${article.slug}`);
+    revalidatePath("/");
+
     return NextResponse.json({ message: "Article deleted" });
   } catch (error) {
     return NextResponse.json(

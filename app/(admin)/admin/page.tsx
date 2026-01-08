@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { auth } from "@/app/lib/api/auth";
 import { prisma } from "@/app/lib/api/db";
 import Link from "next/link";
@@ -35,7 +37,7 @@ export default async function AdminDashboard() {
           </div>
 
           <div className="flex items-center gap-4 text-sm">
-            <span className="hidden font-medium text-zinc-500 dark:text-zinc-400 sm:block">
+            <span className="hidden font-medium text-zinc-500 sm:block dark:text-zinc-400">
               Hi,{" "}
               <Link
                 href="/admin/profile"
@@ -49,7 +51,7 @@ export default async function AdminDashboard() {
               className="group flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2 font-bold text-zinc-700 transition-all hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
             >
               Live Site{" "}
-              <FiExternalLink className="text-xs transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <FiExternalLink className="text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
         </div>
@@ -57,10 +59,10 @@ export default async function AdminDashboard() {
 
       <main className="mx-auto max-w-6xl px-6 py-12">
         <header className="mb-12">
-          <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
+          <h2 className="text-sm font-bold tracking-[0.2em] text-blue-600 uppercase dark:text-blue-400">
             Overview
           </h2>
-          <p className="mt-2 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+          <p className="mt-2 text-3xl font-bold text-gray-900 sm:text-4xl dark:text-white">
             Welcome back to your workstation.
           </p>
         </header>
@@ -68,7 +70,7 @@ export default async function AdminDashboard() {
         {/* Stats Cards */}
         <div className="mb-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div className="group relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl hover:shadow-blue-500/5 dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="absolute -right-4 -top-4 text-9xl font-black text-blue-500/5 transition-transform group-hover:scale-110">
+            <div className="absolute -top-4 -right-4 text-9xl font-black text-blue-500/5 transition-transform group-hover:scale-110">
               01
             </div>
             <div className="relative z-10">
@@ -82,7 +84,7 @@ export default async function AdminDashboard() {
                 <span className="text-5xl font-black text-zinc-900 dark:text-white">
                   {projectCount}
                 </span>
-                <span className="text-sm font-semibold uppercase tracking-widest text-zinc-400">
+                <span className="text-sm font-semibold tracking-widest text-zinc-400 uppercase">
                   Active
                 </span>
               </div>
@@ -96,7 +98,7 @@ export default async function AdminDashboard() {
           </div>
 
           <div className="group relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-xl hover:shadow-emerald-500/5 dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="absolute -right-4 -top-4 text-9xl font-black text-emerald-500/5 transition-transform group-hover:scale-110">
+            <div className="absolute -top-4 -right-4 text-9xl font-black text-emerald-500/5 transition-transform group-hover:scale-110">
               02
             </div>
             <div className="relative z-10">
@@ -110,7 +112,7 @@ export default async function AdminDashboard() {
                 <span className="text-5xl font-black text-zinc-900 dark:text-white">
                   {articleCount}
                 </span>
-                <span className="text-sm font-semibold uppercase tracking-widest text-zinc-400">
+                <span className="text-sm font-semibold tracking-widest text-zinc-400 uppercase">
                   Articles
                 </span>
               </div>
@@ -127,7 +129,7 @@ export default async function AdminDashboard() {
         {/* Quick Actions */}
         <section>
           <div className="mb-6 flex items-center gap-4">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+            <h3 className="text-sm font-bold tracking-widest text-zinc-500 uppercase dark:text-zinc-400">
               Quick Creation
             </h3>
             <div className="h-px grow bg-zinc-200 dark:bg-zinc-800" />
