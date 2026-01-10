@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,7 +11,6 @@ import {
   FiCalendar,
   FiArrowLeft,
   FiShare2,
-  FiChevronRight,
   FiChevronDown,
   FiChevronUp,
 } from "react-icons/fi";
@@ -40,7 +39,6 @@ const ArticleContent = ({
   const [activeId, setActiveId] = useState<string>("");
   const [isTocExpanded, setIsTocExpanded] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-
   useEffect(() => {
     setIsMounted(true);
     if (initialArticle) {
@@ -142,7 +140,7 @@ const ArticleContent = ({
         <div className="flex flex-col items-center gap-4">
           <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-600 border-t-transparent shadow-xl"></div>
           <p className="animate-pulse text-sm font-medium text-zinc-500">
-            Loading masterpiece...
+            Loading Article...
           </p>
         </div>
       </div>
@@ -414,7 +412,8 @@ const ArticleContent = ({
                       {article.author_user?.name || article.author}
                     </h4>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                      Developer & Content Strategist
+                      Developer & Verified contributor sharing deep technical
+                      insights.
                     </p>
                   </div>
                 </div>
@@ -438,7 +437,7 @@ const ArticleContent = ({
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="group flex h-14 w-14 items-center justify-center rounded-full border border-zinc-200 bg-white/90 text-zinc-600 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl transition-all hover:scale-110 hover:bg-blue-600 hover:text-white active:scale-95 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-400 dark:hover:bg-blue-500"
+              className="group flex h-14 w-14 items-center justify-center rounded-full border border-zinc-200 bg-white/90 text-zinc-600 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl transition-all hover:scale-110 hover:bg-blue-600 hover:text-white active:scale-95 sm:h-10 sm:w-10 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-400 dark:hover:bg-blue-500"
               title="Scroll to Top"
             >
               <FiChevronUp
@@ -454,7 +453,7 @@ const ArticleContent = ({
                   behavior: "smooth",
                 })
               }
-              className="group flex h-14 w-14 items-center justify-center rounded-full border border-zinc-200 bg-white/90 text-zinc-600 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl transition-all hover:scale-110 hover:bg-blue-600 hover:text-white active:scale-95 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-400 dark:hover:bg-blue-500"
+              className="group flex h-14 w-14 items-center justify-center rounded-full border border-zinc-200 bg-white/90 text-zinc-600 shadow-[0_20px_50px_rgba(0,0,0,0.1)] backdrop-blur-xl transition-all hover:scale-110 hover:bg-blue-600 hover:text-white active:scale-95 sm:h-10 sm:w-10 dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-400 dark:hover:bg-blue-500"
               title="Scroll to Bottom"
             >
               <FiChevronDown

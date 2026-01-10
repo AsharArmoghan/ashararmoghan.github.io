@@ -62,12 +62,12 @@ const Header: React.FC = () => {
   return (
     <header
       className={twMerge(
-        "top-0 h-0 scroll-smooth border-b bg-primary-white dark:bg-primary-black md:border-none",
+        "bg-primary-white dark:bg-primary-black top-0 h-0 scroll-smooth border-b md:border-none",
         slug ? "md:hidden" : "block",
       )}
     >
       <div className="flex items-center justify-center">
-        <div className="dark:bg-primary-black/10 fixed top-[30px] z-50 flex h-[57.5px] flex-row items-center justify-around rounded-[20px] border-black/15 px-3 backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter dark:border-white/15 sm:w-full md:w-[550px] md:border md:p-2.5">
+        <div className="dark:bg-primary-black/10 bg-primary-white/10 fixed top-0 z-50 flex h-[57.5px] flex-row items-center justify-around rounded-[15px] border-black/15 px-3 shadow-md backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter sm:h-[60px] sm:w-full sm:p-1.5 md:top-[24px] md:w-[550px] md:border md:p-2.5 dark:border-white/15">
           <div className="md:hidden">
             {isBackablePage ? (
               <button
@@ -75,7 +75,7 @@ const Header: React.FC = () => {
                 className="flex h-10 w-10 items-center justify-center rounded-xl transition-colors hover:bg-black/5 dark:hover:bg-white/5"
                 aria-label="Go back"
               >
-                <FiArrowLeft className="h-6 w-6 text-primary-black dark:text-primary-white" />
+                <FiArrowLeft className="text-primary-black dark:text-primary-white h-6 w-6" />
               </button>
             ) : (
               <MobileNav
@@ -89,7 +89,7 @@ const Header: React.FC = () => {
           </div>
           <div className="hidden md:block">
             <Tabs value={activeSection} onValueChange={handleTabChange}>
-              <Tabs.List className="flex items-center justify-between text-primary-black dark:text-primary-white">
+              <Tabs.List className="text-primary-black dark:text-primary-white flex items-center justify-between">
                 {NAV_SECTIONS.map((section) => (
                   <Tabs.Trigger
                     key={section.id}

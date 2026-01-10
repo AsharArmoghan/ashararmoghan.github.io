@@ -31,11 +31,13 @@ const MobileNav: React.FC<HeaderProps> = ({ sections }) => {
         />
       </button>
 
-      <SideMenu
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-        sections={sections}
-      />
+      <div className="shadow-md">
+        <SideMenu
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          sections={sections}
+        />
+      </div>
     </div>
   );
 };

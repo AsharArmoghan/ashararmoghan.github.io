@@ -23,7 +23,7 @@ const ProjectsClient: React.FC<Props> = ({ projects }) => {
           <hr className="mx-auto my-4 h-1 w-60 rounded-sm border-0 bg-zinc-300 md:my-10 dark:bg-gray-700"></hr>
         </div>
 
-        <div className="mt-24 w-full px-4">
+        <div className="mt-24 w-full px-4 sm:mt-16">
           <ProjectStack projects={projects} />
         </div>
       </div>

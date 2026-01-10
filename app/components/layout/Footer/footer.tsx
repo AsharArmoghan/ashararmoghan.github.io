@@ -91,7 +91,7 @@ const Footer = () => {
             }}
             className="flex flex-1 flex-col justify-end bg-zinc-950/80 px-6 pb-6 backdrop-blur-sm sm:px-10 sm:pb-1 lg:px-24"
           >
-            <div className="mb-8 grid grid-cols-1 gap-12 sm:mb-1 sm:gap-6 md:grid-cols-12">
+            <div className="mb-8 grid grid-cols-1 gap-12 sm:mb-1 sm:gap-6 sm:pt-2 md:grid-cols-12">
               <div className="col-span-1 md:col-span-12">
                 <div className="mb-4 flex items-center gap-3">
                   <Logo color="fill-white" className="h-10 w-10" />
@@ -99,7 +99,7 @@ const Footer = () => {
                     LETS CONNECT
                   </span>
                 </div>
-                <p className="max-w-2xl text-lg font-medium leading-relaxed text-zinc-500">
+                <p className="max-w-2xl text-lg leading-relaxed font-medium text-zinc-500">
                   Crafting digital experiences with precision and passion.
                   Whether you have a specific project in mind or just want to
                   chat about tech, feel free to reach out.
@@ -118,7 +118,7 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-8 pb-2 sm:gap-6 md:grid-cols-12">
               <div className="col-span-2 flex flex-col gap-6 md:col-span-4">
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">
+                  <h3 className="text-[10px] font-black tracking-[0.2em] text-zinc-600 uppercase">
                     Navigation
                   </h3>
                   <nav className="flex flex-wrap gap-x-6 gap-y-2">
@@ -136,7 +136,7 @@ const Footer = () => {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">
+                  <h3 className="text-[10px] font-black tracking-[0.2em] text-zinc-600 uppercase">
                     Location
                   </h3>
                   <p className="flex items-center gap-2 text-sm font-bold text-zinc-400">
@@ -146,7 +146,7 @@ const Footer = () => {
               </div>
 
               <div className="col-span-2 flex flex-col gap-2 md:col-span-6 md:col-start-7">
-                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">
+                <h3 className="text-[10px] font-black tracking-[0.2em] text-zinc-600 uppercase">
                   Social Presence
                 </h3>
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -169,15 +169,15 @@ const Footer = () => {
             </div>
 
             <div className="mt-auto flex flex-col items-center justify-between gap-4 border-t border-zinc-900 py-8 md:flex-row">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-zinc-700">
+              <p className="text-[11px] font-bold tracking-widest text-zinc-700 uppercase">
                 © {new Date().getFullYear()} ASHAR ARMOGHAN. ALL RIGHTS
                 RESERVED.
               </p>
               <div className="flex items-center gap-6">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-zinc-700">
+                <span className="text-[11px] font-bold tracking-widest text-zinc-700 uppercase">
                   BACK TO TOP ↑
                 </span>
-                <p className="text-[11px] font-bold uppercase tracking-widest text-zinc-500">
+                <p className="text-[11px] font-bold tracking-widest text-zinc-500 uppercase">
                   STAY HUNGRY. STAY FOOLISH.
                 </p>
               </div>

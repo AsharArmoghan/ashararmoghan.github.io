@@ -52,7 +52,7 @@ const Card = ({ i, project, progress, range, targetScale }: CardProps) => {
   return (
     <div
       ref={container}
-      className="sticky top-28 flex min-h-screen origin-top items-start justify-center py-16"
+      className="sticky top-28 flex min-h-screen origin-top items-start justify-center py-16 sm:top-16 sm:py-12"
     >
       <motion.div
         style={{
@@ -72,11 +72,11 @@ const Card = ({ i, project, progress, range, targetScale }: CardProps) => {
           transition: { duration: 0.3 },
         }}
         viewport={{ once: true, margin: "-50px" }}
-        className="relative flex h-auto w-full max-w-[1000px] origin-top flex-col rounded-3xl border border-black/15 bg-white/70 p-6 shadow-2xl backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter dark:border-white/15 dark:bg-zinc-900/70 md:h-[500px] md:flex-row md:gap-20 md:p-12"
+        className="relative flex h-auto w-full max-w-[1000px] origin-top flex-col rounded-3xl border border-black/15 bg-white/70 p-6 shadow-2xl backdrop-blur-[13px] backdrop-contrast-150 backdrop-opacity-95 backdrop-filter md:h-[500px] md:flex-row md:gap-20 md:p-12 dark:border-white/15 dark:bg-zinc-900/70"
       >
         <div className="flex h-auto w-full flex-col justify-between gap-8 md:h-full md:w-[340px]">
           <div className="flex flex-col gap-4">
-            <h2 className="font-serif text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+            <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
               {project.title}
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -90,13 +90,13 @@ const Card = ({ i, project, progress, range, targetScale }: CardProps) => {
                   </span>
                 ))}
             </div>
-            <p className="line-clamp-4 pr-2 text-sm leading-loose text-gray-600 dark:text-gray-400 md:text-base">
+            <p className="line-clamp-4 pr-2 text-sm leading-loose text-gray-600 md:text-base dark:text-gray-400">
               {project.overview}
             </p>
           </div>
           <MagneticButton className="group flex w-fit items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition-all transition-transform hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200">
             <Link href={`/projects/${project.slug}`} className="">
-              <div className="flex items-center group-hover:-translate-y-1 group-hover:translate-x-1">
+              <div className="flex items-center group-hover:translate-x-1 group-hover:-translate-y-1">
                 View Project
                 <FiArrowUpRight className="text-lg" />
               </div>
@@ -104,7 +104,7 @@ const Card = ({ i, project, progress, range, targetScale }: CardProps) => {
           </MagneticButton>
         </div>
 
-        <div className="relative mt-6 h-64 w-full flex-1 overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-800 md:mt-0 md:h-full">
+        <div className="relative mt-6 h-64 w-full flex-1 overflow-hidden rounded-2xl bg-gray-100 md:mt-0 md:h-full dark:bg-zinc-800">
           {project.images && project.images.length > 0 && (
             <motion.div
               layoutId={`project-image-${project.slug}`}

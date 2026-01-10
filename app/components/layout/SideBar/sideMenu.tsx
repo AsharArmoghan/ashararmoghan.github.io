@@ -108,7 +108,7 @@ const SideMenu: React.FC<SideMenuPropsWithSections> = ({
                   {isActive && (
                     <motion.span
                       layoutId="active-indicator"
-                      className="absolute -left-8 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-blue-600"
+                      className="absolute top-1/2 -left-8 h-2 w-2 -translate-y-1/2 rounded-full bg-blue-600"
                     />
                   )}
                   {section.label}
